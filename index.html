@@ -163,11 +163,21 @@
       text-align: center; overflow: hidden;
     }
     .hero-bg {
-      position: absolute; inset: 0;
+      position: absolute; inset: -40%;
+      width: 180%; height: 180%;
       background:
-        radial-gradient(ellipse 100% 60% at 50% 110%, rgba(140,20,10,.35) 0%, transparent 55%),
-        radial-gradient(ellipse 60% 50% at 15% 60%, rgba(90,55,20,.2) 0%, transparent 50%),
-        radial-gradient(ellipse 50% 40% at 85% 20%, rgba(60,40,15,.15) 0%, transparent 50%);
+        radial-gradient(ellipse 80% 60% at 50% 90%, rgba(140,20,10,.4) 0%, transparent 55%),
+        radial-gradient(ellipse 55% 45% at 15% 60%, rgba(90,55,20,.25) 0%, transparent 50%),
+        radial-gradient(ellipse 50% 40% at 85% 25%, rgba(60,40,15,.2) 0%, transparent 50%);
+      animation: heroFloat 8s ease-in-out infinite alternate;
+    }
+    @keyframes heroFloat {
+      0%   { transform: translate(0, 0) scale(1); }
+      20%  { transform: translate(-10%, 6%) scale(1.12); }
+      40%  { transform: translate(8%, -8%) scale(1.06); }
+      60%  { transform: translate(-6%, 10%) scale(1.15); }
+      80%  { transform: translate(10%, -5%) scale(1.08); }
+      100% { transform: translate(-8%, 4%) scale(1.1); }
     }
     .hero-eyebrow {
       font-size: .65rem;
