@@ -24,7 +24,7 @@
       --nav-h:      72px;
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: clip; }
 
     body {
       background: var(--bg);
@@ -350,7 +350,7 @@
     }
     .music-header { max-width: 1200px; margin: 0 auto 48px; }
     .music-carousel-wrap { position: relative; max-width: 1200px; margin: 0 auto; }
-    .music-carousel-outer { overflow: hidden; }
+    .music-carousel-outer { overflow: hidden; width: 100%; }
     .music-carousel {
       display: flex; gap: 2px;
       transition: transform .45s cubic-bezier(.25,.46,.45,.94);
@@ -363,7 +363,7 @@
       gap: 16px; margin-top: 20px;
     }
     .carousel-btn {
-      width: 36px; height: 36px;
+      width: 44px; height: 44px;
       background: none; border: 1px solid var(--gray2);
       color: var(--cream); font-size: 1rem;
       display: flex; align-items: center; justify-content: center;
@@ -371,20 +371,27 @@
     }
     .carousel-btn:hover { background: var(--red); border-color: var(--red); color: var(--warm-white); }
     .carousel-btn:disabled { opacity: .25; pointer-events: none; }
-    .carousel-dots { display: flex; gap: 6px; align-items: center; }
+    .carousel-dots { display: flex; gap: 8px; align-items: center; }
     .carousel-dot {
-      width: 18px; height: 2px; background: var(--gray2);
+      width: 18px; height: 36px;
+      background: linear-gradient(to bottom, transparent 46%, var(--gray2) 46%, var(--gray2) 54%, transparent 54%);
       border: none; padding: 0; cursor: pointer;
       transition: background .25s, width .25s;
     }
-    .carousel-dot.active { background: var(--red); width: 30px; }
+    .carousel-dot.active {
+      width: 30px;
+      background: linear-gradient(to bottom, transparent 46%, var(--red) 46%, var(--red) 54%, transparent 54%);
+    }
     .music-card {
       flex: 0 0 calc(25% - 1.5px);
       aspect-ratio: 1; position: relative;
       background: var(--bg3); overflow: hidden; cursor: pointer;
     }
     @media (max-width: 900px) { .music-card { flex: 0 0 calc(50% - 1px); } }
-    @media (max-width: 560px) { .music-card { flex: 0 0 82%; } }
+    @media (max-width: 560px) {
+      .music-card { flex: 0 0 82%; }
+      .music-card .music-play { opacity: .7; }
+    }
     .music-card-bg {
       position: absolute; inset: 0;
       transition: transform .5s ease;
@@ -613,6 +620,9 @@
       .hamburger { display: flex; }
       .mobile-menu { display: flex; }
       section { padding: 80px 24px; }
+      #music { padding-left: 0; padding-right: 0; }
+      #music .music-header { padding-left: 24px; }
+      #music .carousel-nav { padding: 0 24px; }
       .about { grid-template-columns: 1fr; gap: 48px; }
 
       .live-item { grid-template-columns: 80px 1fr; }
