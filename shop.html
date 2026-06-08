@@ -164,6 +164,9 @@
       border-bottom: 1px solid var(--gray2);
     }
     .shop-header-inner { max-width: 1280px; margin: 0 auto; }
+    .shop-back { display: inline-flex; align-items: center; gap: 8px; font-family: 'Inter', sans-serif; font-size: .65rem; letter-spacing: .18em; text-transform: uppercase; text-decoration: none; color: var(--gray); border: 1px solid var(--gray2); padding: 8px 16px; margin-bottom: 28px; transition: color .2s, border-color .2s; }
+    .shop-back:hover { color: var(--warm-white); border-color: var(--warm-white); }
+    .shop-back::before { content: '←'; font-size: .75rem; }
     .shop-label { font-size: .6rem; letter-spacing: .35em; color: var(--red); text-transform: uppercase; margin-bottom: 12px; }
     .shop-title {
       font-family: 'Cormorant Garamond', serif;
@@ -408,7 +411,7 @@
 
   <!-- BREADCRUMB -->
   <div class="breadcrumb">
-    <a href="index.html" class="transition-link">Wataru Takahashi</a>
+    <a href="index.html" class="transition-link">Dadaïsme</a>
     <span>›</span> Store
   </div>
 
@@ -416,31 +419,18 @@
   <div class="shop-header">
     <div class="shop-header-inner">
       <p class="shop-label">Official Store</p>
-      <h1 class="shop-title">Shop <em>Everything.</em></h1>
-      <p class="shop-subtitle">Apparel · CD · Vinyl &nbsp;—&nbsp; 全国送料無料</p>
+      <h1 class="shop-title"><em>Dadaïsme</em></h1>
     </div>
   </div>
 
   <!-- CATEGORY TABS -->
-  <div class="category-bar">
-    <button class="category-tab active" data-filter="all">All</button>
-    <button class="category-tab" data-filter="apparel">Apparel</button>
-    <button class="category-tab" data-filter="music">CD · Vinyl</button>
-    <div class="category-spacer"></div>
-    <select class="category-sort">
-      <option>Featured</option>
-      <option>Price: Low to High</option>
-      <option>Price: High to Low</option>
-      <option>Newest</option>
-    </select>
-  </div>
 
   <!-- SHOP MAIN -->
   <div class="shop-main">
 
     <!-- APPAREL -->
     <p class="product-section-label" id="apparel">Apparel</p>
-    <h2 class="product-section-title">Wear the <em>Story.</em></h2>
+    <h2 class="product-section-title">The <em>Uniform.</em></h2>
 
     <div class="product-grid">
 
@@ -513,26 +503,8 @@
 
     <!-- MUSIC -->
     <hr class="section-divider" />
-    <p class="product-section-label" id="music">CD · Vinyl</p>
+    <p class="product-section-label" id="music">CD</p>
     <h2 class="product-section-title">Own the <em>Record.</em></h2>
-
-    <div class="shipping-notice">
-      <div class="shipping-notice-item">
-        <div class="shipping-notice-icon">◎</div>
-        <div class="shipping-notice-title">送料無料</div>
-        <div class="shipping-notice-text">全国一律送料無料。<br>通常3〜5営業日でお届けします。</div>
-      </div>
-      <div class="shipping-notice-item">
-        <div class="shipping-notice-icon">◎</div>
-        <div class="shipping-notice-title">限定盤</div>
-        <div class="shipping-notice-text">一部商品はここだけの限定販売。<br>売り切れ次第終了します。</div>
-      </div>
-      <div class="shipping-notice-item">
-        <div class="shipping-notice-icon">◎</div>
-        <div class="shipping-notice-title">サイン入り</div>
-        <div class="shipping-notice-text">定期的にサイン入り版を販売中。<br>入荷通知はSNSをチェック。</div>
-      </div>
-    </div>
 
     <div class="music-product-grid">
 
@@ -597,7 +569,7 @@
       <a href="index.html#live" class="transition-link">Live</a>
       <a href="index.html#contact" class="transition-link">Contact</a>
     </div>
-    <div class="footer-copy">© 2026 Wataru Takahashi. All rights reserved.</div>
+    <div class="footer-copy">© 2026 Dadaïsme. All rights reserved.</div>
   </footer>
 
   <div id="page-transition"></div>
