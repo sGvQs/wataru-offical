@@ -2206,6 +2206,78 @@
         background-color: rgba(19,14,7,.82) !important;
     }
 
+    /* ── LAW PAGE (特定商取引法) ── */
+    #law {
+        background: var(--bg2) !important;
+        color: var(--cream) !important;
+        max-width: 720px;
+        margin: 56px auto 80px !important;
+        padding: 48px 64px !important;
+        border: 1px solid var(--border);
+    }
+    #law h2 {
+        font-family: 'Cormorant Garamond', serif !important;
+        font-weight: 300 !important;
+        font-size: clamp(1.6rem, 3vw, 2.2rem) !important;
+        letter-spacing: .18em !important;
+        color: var(--warm-white) !important;
+        text-transform: uppercase;
+        margin: 0 0 32px !important;
+        padding-bottom: 16px !important;
+        border-bottom: 1px solid var(--border) !important;
+    }
+    #law h3 {
+        font-family: 'Inter', sans-serif !important;
+        font-size: .72rem !important;
+        letter-spacing: .16em !important;
+        text-transform: uppercase;
+        color: var(--cream) !important;
+        margin: 28px 0 8px !important;
+        font-weight: 400 !important;
+    }
+    #law p {
+        color: var(--gray) !important;
+        font-size: .84rem !important;
+        line-height: 1.85 !important;
+        margin: 0 0 4px !important;
+    }
+    #law .law_attention {
+        color: var(--gray2) !important;
+        font-size: .75rem !important;
+        border-left: 2px solid var(--border) !important;
+        padding-left: 12px !important;
+        margin-top: 8px !important;
+    }
+    #law .law_anchor,
+    #law .law_anchor:link {
+        color: var(--red) !important;
+        text-decoration: underline;
+    }
+    #law .bnplTerm,
+    #law .btTerm,
+    #law div[class$="Term"] {
+        background: var(--bg3) !important;
+        border: 1px solid var(--border) !important;
+        padding: 12px 16px !important;
+        margin-top: 10px !important;
+    }
+    #law .bnplTerm__title,
+    #law .btTerm__title {
+        color: var(--warm-white) !important;
+        font-size: .75rem !important;
+        letter-spacing: .1em;
+        margin-bottom: 6px !important;
+    }
+    #law .bnplTerm__body p,
+    #law .btTerm p {
+        color: var(--gray) !important;
+        font-size: .78rem !important;
+        margin: 2px 0 !important;
+    }
+    @media (max-width: 768px) {
+        #law { padding: 32px 20px !important; margin: 32px 16px !important; }
+    }
+
     /* ── CONTACT PAGE ── */
     section.inquirySection {
         background: var(--bg2);
