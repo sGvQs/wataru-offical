@@ -2190,6 +2190,59 @@
         background-color: rgba(19,14,7,.82) !important;
     }
 
+    /* ── NO ITEMS STATE ── */
+    .no-items-state {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 160px 24px;
+        gap: 20px;
+        overflow: hidden;
+    }
+    .no-items-state::before {
+        content: '';
+        position: absolute;
+        inset: -40%;
+        width: 180%; height: 180%;
+        background:
+            radial-gradient(ellipse 90% 60% at 50% 90%, rgba(200,112,40,.35) 0%, transparent 55%),
+            radial-gradient(ellipse 70% 50% at 20% 70%, rgba(160,80,20,.18) 0%, transparent 50%),
+            radial-gradient(ellipse 50% 40% at 85% 20%, rgba(100,60,10,.15) 0%, transparent 50%);
+        animation: noItemsFloat 7s ease-in-out infinite alternate;
+        pointer-events: none;
+        z-index: 0;
+    }
+    @keyframes noItemsFloat {
+        0%   { transform: translate(0, 0) scale(1); }
+        20%  { transform: translate(-10%, 6%) scale(1.12); }
+        40%  { transform: translate(8%, -8%) scale(1.06); }
+        60%  { transform: translate(-6%, 10%) scale(1.15); }
+        80%  { transform: translate(10%, -5%) scale(1.08); }
+        100% { transform: translate(-8%, 4%) scale(1.1); }
+    }
+    .no-items-label {
+        position: relative; z-index: 1;
+        font-family: 'Cormorant Garamond', serif !important;
+        font-style: italic;
+        font-weight: 300;
+        font-size: 1.1rem;
+        letter-spacing: .35em;
+        color: var(--gray) !important;
+        text-transform: lowercase;
+        margin: 0 !important;
+    }
+    .no-items-text {
+        position: relative; z-index: 1;
+        font-family: 'Inter', sans-serif !important;
+        font-size: .72rem !important;
+        letter-spacing: .2em;
+        color: var(--gray2) !important;
+        text-transform: uppercase;
+        margin: 0 !important;
+    }
+
     /* ── PRIVACY PAGE ── */
     #privacy {
         background: var(--bg2) !important;
@@ -2614,6 +2667,7 @@
                     <li><a class="mainHeaderNavColor" href="{MembershipMyPageURL}">MYPAGE</a></li>
                 {/block:AppsMembership}
                 <li><a class="mainHeaderNavColor" href="{ContactPageURL}">CONTACT</a></li>
+                <li><a class="mainHeaderNavColor base-nav-site-link" href="https://sgvqs.github.io/wataru-offical/index-amber.html">← Artist Site</a></li>
                 {block:AppsSearch}
                     <li class="column itemSearch">
                         <form id="x_itemSearchForm" class="itemSearch__form" action="{SearchPageURL}" method="get">
@@ -2634,9 +2688,6 @@
                 </ul>
             {/block:HasAppsItemCategoryChildCategories}
         {/block:IndexPageCategory}{/block:AppsItemCategory}
-        <div class="base-nav-icons">
-            <a class="base-nav-site-link" href="https://sgvqs.github.io/wataru-offical/index-amber.html">← Artist Site</a>
-        </div>
         <button class="hamburger" id="hamburger" aria-label="メニュー">
             <span></span><span></span><span></span>
         </button>
@@ -2734,7 +2785,10 @@
             <div id="loading" style="display: none;text-align: center;"><img src="/img/loading.gif" width="220" style="padding: 20px 0;;"></div>
         {/block:HasItems}
         {block:NoItems}
-            <p style="text-align: center;">{lang:NoItemsMessage}</p>
+            <div class="no-items-state">
+                <p class="no-items-label">— sold out —</p>
+                <p class="no-items-text">{lang:NoItemsMessage}</p>
+            </div>
         {/block:NoItems}
     {/block:ShopPublic}
     <script type="text/javascript">
