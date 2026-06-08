@@ -2028,10 +2028,14 @@
         background: rgba(19,14,7,.96) !important;
         -webkit-backdrop-filter: blur(16px);
         backdrop-filter: blur(16px);
-        border-bottom: 1px solid var(--border) !important;
+        border-bottom: 1px solid rgba(200,112,40,0) !important;
+        transition: border-bottom-color .4s ease !important;
         margin: 0 !important;
         width: 100% !important;
         box-sizing: border-box;
+    }
+    header#mainHeader.scrolled {
+        border-bottom-color: rgba(200,112,40,.25) !important;
     }
     body.shop #shopHeader {
         display: flex !important;
@@ -2115,20 +2119,106 @@
     .base-nav-site-link:hover { color: var(--warm-white); }
 
     /* shop title header */
+    /* ── KV / HERO ── */
+    @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeUpCenter {
+        from { opacity: 0; transform: translate(-50%, 16px); }
+        to   { opacity: 1; transform: translate(-50%, 0); }
+    }
+    @keyframes scrollPulse { 0%,100%{opacity:.3} 50%{opacity:1} }
+
     .base-shop-header {
-        padding: 48px 48px 32px;
-        background: var(--bg2);
+        position: relative;
+        height: 100svh; min-height: 640px;
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: center;
+        text-align: center; overflow: hidden;
         border-bottom: 1px solid var(--border);
     }
+    .base-shop-hero-bg {
+        position: absolute; inset: -40%;
+        width: 180%; height: 180%;
+        background:
+            radial-gradient(ellipse 90% 60% at 50% 90%, rgba(200,112,40,.5) 0%, transparent 55%),
+            radial-gradient(ellipse 70% 50% at 20% 70%, rgba(160,80,20,.25) 0%, transparent 50%),
+            radial-gradient(ellipse 50% 40% at 85% 20%, rgba(100,60,10,.2) 0%, transparent 50%);
+        animation: heroFloat 7s ease-in-out infinite alternate;
+        pointer-events: none;
+    }
+    .base-shop-hero-bg::after {
+        content: '';
+        position: absolute; inset: 0;
+        background: repeating-linear-gradient(
+            to bottom,
+            transparent 0, transparent 3px,
+            rgba(228,192,122,.015) 3px, rgba(228,192,122,.015) 4px
+        );
+        pointer-events: none;
+    }
     .base-shop-label {
-        font-size: .6rem; letter-spacing: .35em;
-        color: var(--red); text-transform: uppercase; margin-bottom: 12px;
+        position: relative; z-index: 1;
+        font-size: .6rem; letter-spacing: .4em;
+        color: var(--red); text-transform: uppercase;
+        margin-bottom: 20px;
+        animation: fadeUp .8s ease both;
+    }
+    .base-shop-rule {
+        position: relative; z-index: 1;
+        width: 48px; height: 1px; background: var(--red);
+        margin: 0 auto 24px;
+        animation: fadeUp .8s ease .05s both;
     }
     .base-shop-title {
+        position: relative; z-index: 1;
         font-family: 'Cormorant Garamond', serif;
-        font-weight: 300; font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.1;
+        font-weight: 300;
+        font-size: clamp(3.5rem, 11vw, 9.5rem);
+        line-height: 1; letter-spacing: .04em;
+        text-transform: uppercase; color: var(--warm-white);
+        text-shadow: 0 0 60px rgba(200,112,40,.25);
+        animation: fadeUp .9s ease .1s both;
     }
     .base-shop-title em { font-style: italic; color: #D4A040; }
+    .base-shop-actions {
+        position: relative; z-index: 1;
+        margin-top: 48px; display: flex; gap: 16px; flex-wrap: wrap;
+        justify-content: center;
+        animation: fadeUp .8s ease .3s both;
+    }
+    .base-shop-btn {
+        display: inline-block; padding: 13px 36px;
+        font-family: 'Inter', sans-serif;
+        font-size: .7rem; letter-spacing: .22em; text-transform: uppercase;
+        text-decoration: none; transition: all .25s; cursor: pointer;
+        font-weight: 400;
+    }
+    .base-shop-btn-primary {
+        background: var(--red); color: var(--bg); border: 1px solid var(--red);
+    }
+    .base-shop-btn-primary:hover { background: #A05820; border-color: #A05820; transform: translateY(-2px); }
+    .base-shop-btn-outline {
+        background: transparent; color: var(--warm-white);
+        border: 1px solid rgba(228,192,122,.25);
+    }
+    .base-shop-btn-outline:hover { border-color: var(--warm-white); transform: translateY(-2px); }
+    .base-shop-scroll {
+        position: absolute; bottom: 36px; left: 50%;
+        display: flex; flex-direction: column; align-items: center; gap: 10px;
+        animation: fadeUpCenter .8s ease .5s both;
+        pointer-events: none;
+    }
+    .base-shop-scroll span {
+        font-size: .6rem; letter-spacing: .25em;
+        color: var(--gray); text-transform: uppercase; white-space: nowrap;
+    }
+    .base-shop-scroll-line {
+        width: 1px; height: 40px;
+        background: linear-gradient(to bottom, var(--red), transparent);
+        animation: scrollPulse 1.8s ease infinite;
+    }
 
     /* wrapper override — full width */
     body.shop .wrapper {
@@ -2556,7 +2646,7 @@
         .hamburger { display: flex !important; }
         .mobile-menu { display: flex; }
         body#shopTopPage .itemList { grid-template-columns: repeat(2,1fr) !important; }
-        .base-shop-header { padding: 28px 16px 20px; }
+        .base-shop-header { min-height: 540px; }
         body.shop #mainFooter {
             padding: 20px 16px !important;
             flex-direction: column; align-items: flex-start;
@@ -2684,8 +2774,18 @@
     {block:ShopPublic}
         {block:NoIndexPageCategory}{block:NoIndexPageSearch}
         <div class="base-shop-header">
+            <div class="base-shop-hero-bg"></div>
             <p class="base-shop-label">Official Store</p>
+            <div class="base-shop-rule"></div>
             <h1 class="base-shop-title"><em>Dadaïsme</em></h1>
+            <div class="base-shop-actions">
+                <a href="https://sgvqs.github.io/wataru-offical/index-amber.html#live" class="base-shop-btn base-shop-btn-primary">Live</a>
+                <a href="https://sgvqs.github.io/wataru-offical/index-amber.html" class="base-shop-btn base-shop-btn-outline">Artist Site</a>
+            </div>
+            <div class="base-shop-scroll">
+                <span>Scroll</span>
+                <div class="base-shop-scroll-line"></div>
+            </div>
         </div>
         {/block:NoIndexPageSearch}{/block:NoIndexPageCategory}
         {block:AppsBlogArticleIsPinned}{block:NoIndexPageCategory}{block:NoIndexPageSearch}
@@ -3062,6 +3162,21 @@ fjs.parentNode.insertBefore(js, fjs);
 
 <script>
 // ロゴの inline style を上書き（BASE が style="color:#FFFFFF" を直接出力するため CSS では効かない）
+// scroll → header border
+(function() {
+    var header = document.getElementById('mainHeader');
+    if (!header) return;
+    var kv = document.querySelector('.base-shop-header');
+    if (kv && 'IntersectionObserver' in window) {
+        new IntersectionObserver(function(entries) {
+            header.classList.toggle('scrolled', !entries[0].isIntersecting);
+        }, { threshold: 0.05 }).observe(kv);
+    } else {
+        // KVなしのページ（contact/privacy/lawなど）は常にborderを出す
+        header.classList.add('scrolled');
+    }
+})();
+
 document.addEventListener('DOMContentLoaded', function() {
   var logoText = document.querySelector('#logo .logoText');
   if (logoText) {
