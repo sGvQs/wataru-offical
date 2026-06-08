@@ -297,15 +297,42 @@
       border-bottom: 1px solid rgba(228,192,122,.05);
     }
     .music-header { max-width: 1200px; margin: 0 auto 48px; }
-    .music-grid {
-      max-width: 1200px; margin: 0 auto;
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr));
-      gap: 1px; background: var(--border);
+    .music-carousel-wrap { position: relative; max-width: 1200px; margin: 0 auto; }
+    .music-carousel-outer { overflow: hidden; }
+    .music-carousel {
+      display: flex; gap: 2px;
+      transition: transform .45s cubic-bezier(.25,.46,.45,.94);
+      will-change: transform; user-select: none;
+      touch-action: pan-y;
     }
+    .music-carousel.dragging { transition: none; cursor: grabbing; }
+    .carousel-nav {
+      display: flex; align-items: center; justify-content: center;
+      gap: 16px; margin-top: 20px;
+    }
+    .carousel-btn {
+      width: 36px; height: 36px;
+      background: none; border: 1px solid var(--border);
+      color: var(--cream); font-size: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: all .2s; flex-shrink: 0;
+    }
+    .carousel-btn:hover { background: var(--red); border-color: var(--red); color: var(--warm-white); }
+    .carousel-btn:disabled { opacity: .25; pointer-events: none; }
+    .carousel-dots { display: flex; gap: 6px; align-items: center; }
+    .carousel-dot {
+      width: 18px; height: 2px; background: var(--border);
+      border: none; padding: 0; cursor: pointer;
+      transition: background .25s, width .25s;
+    }
+    .carousel-dot.active { background: var(--red); width: 30px; }
     .music-card {
-      position: relative; aspect-ratio: 1;
+      flex: 0 0 calc(25% - 1.5px);
+      aspect-ratio: 1; position: relative;
       background: var(--bg3); overflow: hidden; cursor: pointer;
     }
+    @media (max-width: 900px) { .music-card { flex: 0 0 calc(50% - 1px); } }
+    @media (max-width: 560px) { .music-card { flex: 0 0 82%; } }
     .music-card-bg { position: absolute; inset: 0; transition: transform .5s ease; }
     .music-card:hover .music-card-bg { transform: scale(1.04); }
     .music-card-color { width: 100%; height: 100%; }
@@ -318,20 +345,30 @@
     .music-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; line-height: 1.2; color: var(--warm-white); }
     .music-title-jp { font-family: 'Noto Serif JP', serif; font-size: 1.1rem; font-weight: 300; }
     .music-type { font-size: .65rem; color: var(--red); letter-spacing: .1em; margin-top: 5px; }
+    .music-new-tag { display: inline-block; font-size: .55rem; letter-spacing: .15em; color: var(--bg); background: var(--red); padding: 2px 6px; border-radius: 2px; margin-bottom: 6px; text-transform: uppercase; font-weight: 500; }
     .music-play {
       position: absolute; top: 16px; right: 16px;
       width: 40px; height: 40px;
       border: 1px solid rgba(228,192,122,.3);
       display: flex; align-items: center; justify-content: center;
-      opacity: 0; transition: opacity .3s;
+      opacity: 0; transition: opacity .3s, background .2s, border-color .2s;
+      cursor: pointer;
     }
-    .music-card:hover .music-play { opacity: 1; }
+    .music-card:hover .music-play,
+    .music-card.playing .music-play { opacity: 1; }
+    .music-card.playing .music-play { background: var(--red); border-color: var(--red); }
     .play-icon {
       width: 0; height: 0; border-style: solid;
       border-width: 7px 0 7px 13px;
       border-color: transparent transparent transparent var(--warm-white);
       margin-left: 2px;
     }
+    .music-card.playing .play-icon {
+      width: 10px; height: 12px; border: none; margin-left: 0;
+      background: linear-gradient(to right, var(--warm-white) 0%, var(--warm-white) 35%, transparent 35%, transparent 65%, var(--warm-white) 65%, var(--warm-white) 100%);
+    }
+    .music-progress { position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--border); }
+    .music-progress-bar { height: 100%; width: 0%; background: var(--red); transition: width .5s linear; }
 
     /* ── LIVE ── */
     .live-header { max-width: 1200px; margin: 0 auto 48px; }
@@ -390,30 +427,6 @@
     .video-info { padding: 16px 20px; border-top: 1px solid var(--border); }
     .video-info-title { font-size: .9rem; font-weight: 400; margin-bottom: 4px; }
     .video-info-meta { font-size: .72rem; color: var(--gray); }
-
-    /* ── SHOP BANNER ── */
-    .shop-banner {
-      display: grid; grid-template-columns: 1fr 1fr; min-height: 440px;
-      border-top: 1px solid rgba(228,192,122,.05);
-      border-bottom: 1px solid rgba(228,192,122,.05);
-    }
-    .shop-panel { position: relative; overflow: hidden; cursor: pointer; text-decoration: none; display: block; }
-    .shop-panel-bg { position: absolute; inset: 0; transition: transform .6s ease; }
-    .shop-panel:hover .shop-panel-bg { transform: scale(1.03); }
-    .shop-panel--apparel .shop-panel-bg { background: linear-gradient(160deg, #241A06 0%, #5A4418 50%, #3A2C10 100%); }
-    .shop-panel--music .shop-panel-bg { background: linear-gradient(160deg, #1C1206 0%, #5A3810 50%, #2A1E08 100%); }
-    .shop-panel-divider { position: absolute; top: 0; bottom: 0; right: 0; width: 1px; background: rgba(228,192,122,.06); }
-    .shop-panel-content {
-      position: relative; z-index: 2; height: 100%;
-      display: flex; flex-direction: column; justify-content: flex-end; padding: 48px;
-      background: linear-gradient(to top, rgba(19,14,7,.7) 0%, transparent 60%);
-    }
-    .shop-panel-tag { font-size: .58rem; letter-spacing: .35em; text-transform: uppercase; color: var(--gray); margin-bottom: 12px; }
-    .shop-panel-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 300; line-height: 1.15; margin-bottom: 24px; }
-    .shop-panel-arrow { display: flex; align-items: center; gap: 14px; font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; color: var(--cream); transition: gap .3s, color .3s; }
-    .shop-panel:hover .shop-panel-arrow { gap: 22px; color: var(--warm-white); }
-    .shop-panel-arrow-line { display: inline-block; width: 32px; height: 1px; background: var(--red); transition: width .3s; }
-    .shop-panel:hover .shop-panel-arrow-line { width: 48px; }
 
     /* ── CONTACT ── */
     .contact-inner { max-width: 680px; margin: 0 auto; text-align: center; }
@@ -502,15 +515,14 @@
       .mobile-menu { display: flex; }
       section { padding: 80px 24px; }
       .about { grid-template-columns: 1fr; gap: 48px; }
-      .music-grid { grid-template-columns: repeat(2,1fr); }
+
       .live-item { grid-template-columns: 80px 1fr; }
       .live-ticket { display: none; }
       .video-grid { grid-template-columns: 1fr; }
       .video-card:first-child { grid-row: auto; }
       .contact-grid { grid-template-columns: 1fr; }
       .contact-field:last-of-type { grid-column: 1; }
-      .shop-banner { grid-template-columns: 1fr; }
-      .shop-panel-content { padding: 32px 24px; }
+
       footer { flex-direction: column; align-items: flex-start; }
     }
   </style>
@@ -579,57 +591,51 @@
 
   <section id="music">
     <div class="music-header reveal"><p class="section-label">Discography</p><h2 class="section-title">Music</h2></div>
-    <div class="music-grid">
-      <div class="music-card reveal">
-        <div class="music-card-bg"><div class="music-card-color" style="background:linear-gradient(160deg,#3A3210 0%,#7A6A28 45%,#A09040 100%)"></div></div>
-        <div class="music-card-overlay">
-          <div class="music-year">2024</div>
-          <div class="music-title music-title-jp">夢の続き</div>
-          <div class="music-type">Single · Music Video</div>
+    <div class="music-carousel-wrap reveal">
+      <div class="music-carousel-outer">
+        <div class="music-carousel" id="musicCarousel">
+          <div class="music-card" data-audio="music/kodo-no-kioku.mp3">
+            <div class="music-card-bg"><div class="music-card-color" style="background:linear-gradient(160deg,#1A1808 0%,#3A3418 55%,#2A2C14 100%)"></div></div>
+            <div class="music-card-overlay">
+              <div class="music-new-tag">New</div>
+              <div class="music-title music-title-jp">鼓動の記憶</div>
+              <div class="music-type">Single</div>
+            </div>
+            <div class="music-play"><div class="play-icon"></div></div>
+            <div class="music-progress"><div class="music-progress-bar"></div></div>
+          </div>
+          <div class="music-card" data-audio="music/yume-no-tsuzuki.mp3">
+            <div class="music-card-bg"><div class="music-card-color" style="background:linear-gradient(160deg,#3A3210 0%,#7A6A28 45%,#A09040 100%)"></div></div>
+            <div class="music-card-overlay">
+              <div class="music-title music-title-jp">夢の続き</div>
+              <div class="music-type">Single · Music Video</div>
+            </div>
+            <div class="music-play"><div class="play-icon"></div></div>
+            <div class="music-progress"><div class="music-progress-bar"></div></div>
+          </div>
+          <div class="music-card" data-audio="music/action.mp3">
+            <div class="music-card-bg"><div class="music-card-color" style="background:linear-gradient(160deg,#2A1206 0%,#7A3010 50%,#4A2008 100%)"></div></div>
+            <div class="music-card-overlay">
+              <div class="music-title">Action</div>
+              <div class="music-type">Single · Music Video</div>
+            </div>
+            <div class="music-play"><div class="play-icon"></div></div>
+            <div class="music-progress"><div class="music-progress-bar"></div></div>
+          </div>
+          <div class="music-card">
+            <div class="music-card-bg"><div class="music-card-color" style="background:linear-gradient(160deg,#1A1810 0%,#3A3820 50%,#282A18 100%)"></div></div>
+            <div class="music-card-overlay">
+              <div class="music-title">—</div>
+              <div class="music-type">New Work</div>
+            </div>
+          </div>
         </div>
-        <div class="music-play"><div class="play-icon"></div></div>
       </div>
-      <div class="music-card reveal">
-        <div class="music-card-bg"><div class="music-card-color" style="background:linear-gradient(160deg,#2A1206 0%,#7A3010 50%,#4A2008 100%)"></div></div>
-        <div class="music-card-overlay">
-          <div class="music-year">2024</div>
-          <div class="music-title">Action</div>
-          <div class="music-type">Single · Music Video</div>
-        </div>
-        <div class="music-play"><div class="play-icon"></div></div>
+      <div class="carousel-nav">
+        <button class="carousel-btn" id="carouselPrev" aria-label="前へ">←</button>
+        <div class="carousel-dots" id="carouselDots"></div>
+        <button class="carousel-btn" id="carouselNext" aria-label="次へ">→</button>
       </div>
-      <div class="music-card reveal">
-        <div class="music-card-bg"><div class="music-card-color" style="background:linear-gradient(160deg,#1A1808 0%,#3A3418 55%,#2A2C14 100%)"></div></div>
-        <div class="music-card-overlay">
-          <div class="music-year">2024</div>
-          <div class="music-title music-title-jp">鼓動の記憶</div>
-          <div class="music-type">Single</div>
-        </div>
-        <div class="music-play"><div class="play-icon"></div></div>
-      </div>
-      <div class="music-card reveal">
-        <div class="music-card-bg"><div class="music-card-color" style="background:linear-gradient(160deg,#1A1810 0%,#3A3820 50%,#282A18 100%)"></div></div>
-        <div class="music-card-overlay">
-          <div class="music-year">Coming Soon</div>
-          <div class="music-title">—</div>
-          <div class="music-type">New Work</div>
-        </div>
-        <div class="music-play"><div class="play-icon"></div></div>
-      </div>
-    </div>
-    <div class="yt-video-list reveal">
-      <a href="https://www.youtube.com/watch?v=-1tqiagGcOs" target="_blank" rel="noopener noreferrer" class="yt-video-item">
-        <div><div class="yt-video-title">夢の続き</div><div class="yt-video-meta">Official Music Video · 2024</div></div>
-        <span class="yt-video-arrow">↗</span>
-      </a>
-      <a href="https://www.youtube.com/watch?v=w6aXc4DSuE8" target="_blank" rel="noopener noreferrer" class="yt-video-item">
-        <div><div class="yt-video-title">Action</div><div class="yt-video-meta">Official Music Video · 2024</div></div>
-        <span class="yt-video-arrow">↗</span>
-      </a>
-      <a href="https://www.youtube.com/watch?v=QLrjHk4FV-I" target="_blank" rel="noopener noreferrer" class="yt-video-item">
-        <div><div class="yt-video-title">鼓動の記憶</div><div class="yt-video-meta">Lyric Video · 2024</div></div>
-        <span class="yt-video-arrow">↗</span>
-      </a>
     </div>
   </section>
 
@@ -658,26 +664,6 @@
       </div>
     </div>
   </section>
-
-  <div class="shop-banner">
-    <a href="shop.html" class="shop-panel shop-panel--apparel transition-link">
-      <div class="shop-panel-bg"></div>
-      <div class="shop-panel-divider"></div>
-      <div class="shop-panel-content">
-        <div class="shop-panel-tag">Dadaïsme Store — Apparel</div>
-        <div class="shop-panel-title">Wear<br />the Story.</div>
-        <div class="shop-panel-arrow"><span class="shop-panel-arrow-line"></span>Shop Apparel</div>
-      </div>
-    </a>
-    <a href="shop.html#music" class="shop-panel shop-panel--music transition-link">
-      <div class="shop-panel-bg"></div>
-      <div class="shop-panel-content">
-        <div class="shop-panel-tag">Dadaïsme Store — Music</div>
-        <div class="shop-panel-title">Own<br />the Record.</div>
-        <div class="shop-panel-arrow"><span class="shop-panel-arrow-line"></span>Shop CD</div>
-      </div>
-    </a>
-  </div>
 
   <section id="contact">
     <div class="contact-inner">
@@ -721,6 +707,101 @@
   <script>
     const nav = document.getElementById('main-nav');
     if (nav) window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+    const audio = new Audio();
+    let currentCard = null;
+    document.querySelectorAll('.music-card[data-audio]').forEach(card => {
+      card.querySelector('.music-play').addEventListener('click', () => {
+        if (currentCard === card) {
+          if (audio.paused) { audio.play(); card.classList.add('playing'); }
+          else { audio.pause(); card.classList.remove('playing'); }
+          return;
+        }
+        if (currentCard) { currentCard.classList.remove('playing'); currentCard.querySelector('.music-progress-bar').style.width = '0%'; }
+        audio.src = card.dataset.audio;
+        audio.play();
+        card.classList.add('playing');
+        currentCard = card;
+      });
+    });
+    audio.addEventListener('timeupdate', () => {
+      if (!currentCard || !audio.duration) return;
+      const pct = (audio.currentTime / audio.duration) * 100;
+      currentCard.querySelector('.music-progress-bar').style.width = pct + '%';
+    });
+    audio.addEventListener('ended', () => {
+      if (currentCard) { currentCard.classList.remove('playing'); currentCard.querySelector('.music-progress-bar').style.width = '0%'; currentCard = null; }
+    });
+
+    (function() {
+      const track = document.getElementById('musicCarousel');
+      if (!track) return;
+      const cards = Array.from(track.querySelectorAll('.music-card'));
+      const prevBtn = document.getElementById('carouselPrev');
+      const nextBtn = document.getElementById('carouselNext');
+      const dotsEl = document.getElementById('carouselDots');
+      let idx = 0;
+      function visibleCount() {
+        if (window.innerWidth <= 560) return 1;
+        if (window.innerWidth <= 900) return 2;
+        return 4;
+      }
+      function maxIdx() { return Math.max(0, cards.length - visibleCount()); }
+      function cardOffset() { return cards[0] ? cards[0].offsetWidth + 2 : 0; }
+      function buildDots() {
+        dotsEl.innerHTML = '';
+        const m = maxIdx();
+        if (m === 0) { dotsEl.style.display = 'none'; return; }
+        dotsEl.style.display = 'flex';
+        for (let i = 0; i <= m; i++) {
+          const d = document.createElement('button');
+          d.className = 'carousel-dot' + (i === idx ? ' active' : '');
+          d.addEventListener('click', () => slideTo(i));
+          dotsEl.appendChild(d);
+        }
+      }
+      function slideTo(n) {
+        idx = Math.min(Math.max(0, n), maxIdx());
+        track.style.transform = 'translateX(' + (-idx * cardOffset()) + 'px)';
+        prevBtn.disabled = idx === 0;
+        nextBtn.disabled = idx >= maxIdx();
+        dotsEl.querySelectorAll('.carousel-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+      }
+      prevBtn.addEventListener('click', () => slideTo(idx - 1));
+      nextBtn.addEventListener('click', () => slideTo(idx + 1));
+      let sx = 0, sy = 0, stx = 0, isHoriz = null;
+      function dragStart(x, y) { sx = x; sy = y; stx = -idx * cardOffset(); isHoriz = null; }
+      function dragMove(x, y) {
+        const dx = x - sx, dy = y - sy;
+        if (isHoriz === null && Math.abs(dx) + Math.abs(dy) > 4)
+          isHoriz = Math.abs(dx) >= Math.abs(dy);
+        if (!isHoriz) return false;
+        track.classList.add('dragging');
+        track.style.transform = 'translateX(' + (stx + dx) + 'px)';
+        return true;
+      }
+      function dragEnd(x) {
+        if (!isHoriz) return;
+        track.classList.remove('dragging');
+        const dx = x - sx, thr = Math.min(cardOffset() * 0.2, 50);
+        if (dx < -thr) slideTo(idx + 1);
+        else if (dx > thr) slideTo(idx - 1);
+        else slideTo(idx);
+      }
+      track.addEventListener('touchstart', e => dragStart(e.touches[0].clientX, e.touches[0].clientY), { passive: true });
+      track.addEventListener('touchmove', e => { if (dragMove(e.touches[0].clientX, e.touches[0].clientY)) e.preventDefault(); }, { passive: false });
+      track.addEventListener('touchend', e => dragEnd(e.changedTouches[0].clientX));
+      track.addEventListener('mousedown', e => {
+        if (e.target.closest('.music-play')) return;
+        dragStart(e.clientX, e.clientY);
+        const mm = e2 => dragMove(e2.clientX, e2.clientY);
+        const mu = e2 => { dragEnd(e2.clientX); document.removeEventListener('mousemove', mm); document.removeEventListener('mouseup', mu); };
+        document.addEventListener('mousemove', mm);
+        document.addEventListener('mouseup', mu);
+      });
+      buildDots(); slideTo(0);
+      window.addEventListener('resize', () => { buildDots(); slideTo(Math.min(idx, maxIdx())); });
+    })();
+
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobile-menu');
     if (hamburger && mobileMenu) {
