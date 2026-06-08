@@ -2038,7 +2038,7 @@
         align-items: center;
         justify-content: space-between;
         padding: 0 48px !important;
-        height: 56px;
+        height: 72px;
         margin: 0 !important;
         max-width: none;
         gap: 0;
@@ -2074,14 +2074,14 @@
     }
     body.shop #shopHeader nav ul {
         justify-content: center !important;
-        gap: 32px !important;
+        gap: 36px !important;
         flex-wrap: nowrap !important;
         width: auto;
         align-items: center;
     }
     body.shop #shopHeader nav ul li {
         width: auto !important; height: auto !important;
-        border: none !important; line-height: 56px;
+        border: none !important; line-height: 72px;
     }
     body.shop #shopHeader nav ul li:hover {
         border-bottom: none !important; height: auto !important;
@@ -2644,30 +2644,9 @@
         <h1><a href="{IndexPageURL}" id="logo">{LogoTag}</a></h1>
         <nav>
             <ul>
+                <li><a class="mainHeaderNavColor" href="https://sgvqs.github.io/wataru-offical/index-amber.html#music">MUSIC</a></li>
+                <li><a class="mainHeaderNavColor" href="https://sgvqs.github.io/wataru-offical/index-amber.html#live">LIVE</a></li>
                 <li><a class="mainHeaderNavColor" href="https://sgvqs.github.io/wataru-offical/index-amber.html">HOME</a></li>
-                <li><a class="mainHeaderNavColor" href="https://sgvqs.github.io/wataru-offical/index-amber.html#about">ABOUT</a></li>
-                {block:AppsBlog}
-                    <li><a class="mainHeaderNavColor" href="{BlogPageURL}">BLOG</a></li>
-                {/block:AppsBlog}
-                {block:AppsItemCategory}
-                    <li>
-                        <div id="category-menu">
-                            <span class="mainHeaderNavColor">category</span>
-                            <div class="category-list">
-                                {AppsItemCategoryCategoriesTag}
-                            </div>
-                        </div>
-                    </li>
-                {/block:AppsItemCategory}
-                {block:AppsCommunity}
-                    <li><a class="mainHeaderNavColor" href="{CommunityPageURL}">COMMUNITY</a></li>
-                {/block:AppsCommunity}
-                {block:AppsMembership}
-                    <li><a class="mainHeaderNavColor" href="{MembershipPageURL}">MEMBERSHIP</a></li>
-                    <li><a class="mainHeaderNavColor" href="{MembershipMyPageURL}">MYPAGE</a></li>
-                {/block:AppsMembership}
-                <li><a class="mainHeaderNavColor" href="{ContactPageURL}">CONTACT</a></li>
-                <li><a class="mainHeaderNavColor base-nav-site-link" href="https://sgvqs.github.io/wataru-offical/index-amber.html">← Artist Site</a></li>
                 {block:AppsSearch}
                     <li class="column itemSearch">
                         <form id="x_itemSearchForm" class="itemSearch__form" action="{SearchPageURL}" method="get">
@@ -2694,10 +2673,9 @@
     </div>
 </header>
 <div class="mobile-menu" id="mobile-menu">
+    <a href="https://sgvqs.github.io/wataru-offical/index-amber.html#music" class="menu-anchor">Music</a>
+    <a href="https://sgvqs.github.io/wataru-offical/index-amber.html#live" class="menu-anchor">Live</a>
     <a href="https://sgvqs.github.io/wataru-offical/index-amber.html" class="menu-anchor">Home</a>
-    <a href="https://sgvqs.github.io/wataru-offical/index-amber.html#about" class="menu-anchor">About</a>
-    {block:AppsBlog}<a href="{BlogPageURL}" class="menu-anchor">Blog</a>{/block:AppsBlog}
-    <a href="{ContactPageURL}" class="menu-anchor">Contact</a>
 </div>
 {block:IndexPage}
     {block:NotShopPublic}
@@ -3058,6 +3036,7 @@
 <footer id="mainFooter" class="wrapper clearfix">
     <div class="footerMenu">
         <ul class="clearfix">
+            <li><a class="footerNav" href="{ContactPageURL}">CONTACT</a></li>
             <li><a class="footerNav" href="{PrivacyPageURL}">{lang:Privacy}</a></li>
             <li><a class="footerNav" href="{LawPageURL}">{lang:Law}</a></li>
             {block:AppsMembership}
