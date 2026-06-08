@@ -1749,7 +1749,6 @@
 
         .main #about,
         .main .inquirySection {
-            width: 100%;
             padding: 0;
         }
     }
@@ -2205,6 +2204,114 @@
     }
     body#shopTopPage .item .itemImg a .soldout_cover {
         background-color: rgba(19,14,7,.82) !important;
+    }
+
+    /* ── CONTACT PAGE ── */
+    section.inquirySection {
+        background: var(--bg2);
+        max-width: 720px;
+        padding: 56px 64px !important;
+        border: 1px solid var(--border);
+    }
+    .inquirySection h1 {
+        font-family: 'Cormorant Garamond', serif !important;
+        font-weight: 300 !important;
+        font-size: clamp(2rem, 4vw, 2.8rem) !important;
+        letter-spacing: .2em !important;
+        color: var(--warm-white) !important;
+        text-transform: uppercase;
+        margin: 0 0 8px !important;
+        line-height: 1.1 !important;
+    }
+    .inquirySection > p {
+        color: var(--gray) !important;
+        font-size: .82rem !important;
+        letter-spacing: .05em;
+        margin-bottom: 40px !important;
+        line-height: 1.8;
+    }
+    .inquirySection dl dt {
+        color: var(--cream) !important;
+        font-size: .72rem !important;
+        letter-spacing: .14em !important;
+        text-transform: uppercase;
+        margin: 20px 0 8px !important;
+        font-weight: 400;
+    }
+    .inquirySection dl dt span {
+        color: var(--red) !important;
+        font-size: .65rem !important;
+        margin-left: 6px;
+    }
+    .inquirySection dl dd input,
+    .inquirySection dl dd textarea {
+        background: var(--bg3) !important;
+        border: 1px solid var(--border) !important;
+        color: var(--warm-white) !important;
+        border-radius: 0 !important;
+        padding: 10px 14px !important;
+        font-family: 'Inter', sans-serif !important;
+        font-size: .85rem !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        transition: border-color .2s;
+        outline: none;
+    }
+    .inquirySection dl dd input:focus,
+    .inquirySection dl dd textarea:focus {
+        border-color: var(--red) !important;
+    }
+    .inquirySection dl dd input::placeholder,
+    .inquirySection dl dd textarea::placeholder {
+        color: var(--gray2) !important;
+    }
+    .inquirySection dl dd textarea {
+        height: 140px !important;
+        resize: vertical;
+    }
+    .inquirySection dl dd.error { color: var(--red) !important; font-size: .72rem; margin-top: 4px; }
+    .inquirySection .control-panel {
+        margin-top: 32px !important;
+        text-align: center !important;
+    }
+    .inquirySection .control-panel input#buttonLeave {
+        background: var(--red) !important;
+        color: var(--bg) !important;
+        border: none !important;
+        padding: 14px 0 !important;
+        width: 280px !important;
+        font-size: .78rem !important;
+        letter-spacing: .2em !important;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: opacity .2s;
+        font-family: 'Inter', sans-serif !important;
+    }
+    .inquirySection .control-panel input#buttonLeave:hover { opacity: .75 !important; }
+
+    /* confirm / complete pages */
+    #inquiryConfirmSection,
+    #inquiryCompleteSection {
+        background: var(--bg2);
+        max-width: 720px;
+        margin: 56px auto 80px !important;
+        padding: 56px 64px !important;
+        border: 1px solid var(--border);
+        color: var(--cream) !important;
+    }
+    #inquiryConfirmSection p,
+    #inquiryCompleteSection p { color: var(--cream) !important; }
+    #inquiryConfirmSection dd { color: var(--warm-white) !important; }
+    #inquiryCompleteSection a {
+        background: var(--red) !important;
+        color: var(--bg) !important;
+        letter-spacing: .18em !important;
+    }
+
+    @media (max-width: 768px) {
+        section.inquirySection,
+        #inquiryConfirmSection,
+        #inquiryCompleteSection { padding: 32px 20px !important; margin: 32px 0 !important; }
     }
 
     /* footer redesign */
