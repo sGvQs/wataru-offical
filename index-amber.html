@@ -379,7 +379,7 @@
     .music-progress-bar { height: 100%; width: 0%; background: var(--red); transition: width .5s linear; }
     .music-waveform {
       display: flex; align-items: flex-end; gap: 3px;
-      height: 18px; margin-top: 10px;
+      height: 18px; margin-bottom: 10px;
       opacity: 0; transition: opacity .35s;
     }
     .music-card.playing .music-waveform { opacity: 1; }
@@ -633,9 +633,9 @@
             <div class="music-card-bg"><div class="music-card-color" style="background:linear-gradient(160deg,#1A1808 0%,#3A3418 55%,#2A2C14 100%)"></div></div>
             <div class="music-new-tag">New</div>
             <div class="music-card-overlay">
+              <div class="music-waveform"><span></span><span></span><span></span><span></span><span></span></div>
               <div class="music-title music-title-jp">鼓動の記憶</div>
               <div class="music-type">Single</div>
-              <div class="music-waveform"><span></span><span></span><span></span><span></span><span></span></div>
             </div>
             <div class="music-play"><div class="play-icon"></div></div>
             <div class="music-progress"><div class="music-progress-bar"></div></div>
@@ -643,9 +643,9 @@
           <div class="music-card" data-audio="music/yume-no-tsuzuki.mp3">
             <div class="music-card-bg"><div class="music-card-color" style="background:linear-gradient(160deg,#3A3210 0%,#7A6A28 45%,#A09040 100%)"></div></div>
             <div class="music-card-overlay">
+              <div class="music-waveform"><span></span><span></span><span></span><span></span><span></span></div>
               <div class="music-title music-title-jp">夢の続き</div>
               <div class="music-type">Single · Music Video</div>
-              <div class="music-waveform"><span></span><span></span><span></span><span></span><span></span></div>
             </div>
             <div class="music-play"><div class="play-icon"></div></div>
             <div class="music-progress"><div class="music-progress-bar"></div></div>
@@ -653,9 +653,9 @@
           <div class="music-card" data-audio="music/action.mp3">
             <div class="music-card-bg"><div class="music-card-color" style="background:linear-gradient(160deg,#2A1206 0%,#7A3010 50%,#4A2008 100%)"></div></div>
             <div class="music-card-overlay">
+              <div class="music-waveform"><span></span><span></span><span></span><span></span><span></span></div>
               <div class="music-title">Action</div>
               <div class="music-type">Single · Music Video</div>
-              <div class="music-waveform"><span></span><span></span><span></span><span></span><span></span></div>
             </div>
             <div class="music-play"><div class="play-icon"></div></div>
             <div class="music-progress"><div class="music-progress-bar"></div></div>
@@ -714,11 +714,6 @@
         <div class="contact-field"><label class="contact-label" for="cm">Message</label><textarea id="cm" class="contact-input contact-textarea" placeholder="Tell us about your inquiry..."></textarea></div>
       </form>
       <button class="btn btn-primary reveal" style="width:100%;letter-spacing:.22em;">Send Message</button>
-      <div class="social-bar reveal">
-        <a href="#" class="social-link">IG</a><a href="#" class="social-link">X</a>
-        <a href="#" class="social-link">YT</a><a href="#" class="social-link">SP</a>
-        <a href="#" class="social-link">SC</a><a href="#" class="social-link">TK</a>
-      </div>
     </div>
   </section>
 
