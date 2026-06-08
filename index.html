@@ -450,6 +450,29 @@
       height: 100%; width: 0%; background: var(--red);
       transition: width .5s linear;
     }
+    .music-waveform {
+      display: flex; align-items: flex-end; gap: 3px;
+      height: 18px; margin-top: 10px;
+      opacity: 0; transition: opacity .35s;
+    }
+    .music-card.playing .music-waveform { opacity: 1; }
+    .music-waveform span {
+      display: block; width: 3px;
+      background: var(--red); border-radius: 2px;
+      transform-origin: bottom;
+      animation: waveBar .9s ease-in-out infinite alternate;
+      animation-play-state: paused;
+    }
+    .music-card.playing .music-waveform span { animation-play-state: running; }
+    .music-waveform span:nth-child(1) { height: 10px; animation-duration: .7s; }
+    .music-waveform span:nth-child(2) { height: 16px; animation-duration: .5s; animation-delay: .1s; }
+    .music-waveform span:nth-child(3) { height:  8px; animation-duration: .85s; animation-delay: .2s; }
+    .music-waveform span:nth-child(4) { height: 14px; animation-duration: .6s;  animation-delay: .05s; }
+    .music-waveform span:nth-child(5) { height: 10px; animation-duration: .75s; animation-delay: .15s; }
+    @keyframes waveBar {
+      0%   { transform: scaleY(.2); }
+      100% { transform: scaleY(1); }
+    }
 
     /* ── LIVE ── */
     .live-header { max-width: 1200px; margin: 0 auto 48px; }
@@ -729,6 +752,7 @@
               <div class="music-new-tag">New</div>
               <div class="music-title music-title-jp">鼓動の記憶</div>
               <div class="music-type">Single</div>
+              <div class="music-waveform"><span></span><span></span><span></span><span></span><span></span></div>
             </div>
             <div class="music-play"><div class="play-icon"></div></div>
             <div class="music-progress"><div class="music-progress-bar"></div></div>
@@ -741,6 +765,7 @@
             <div class="music-card-overlay">
               <div class="music-title music-title-jp">夢の続き</div>
               <div class="music-type">Single · Music Video</div>
+              <div class="music-waveform"><span></span><span></span><span></span><span></span><span></span></div>
             </div>
             <div class="music-play"><div class="play-icon"></div></div>
             <div class="music-progress"><div class="music-progress-bar"></div></div>
@@ -753,6 +778,7 @@
             <div class="music-card-overlay">
               <div class="music-title">Action</div>
               <div class="music-type">Single · Music Video</div>
+              <div class="music-waveform"><span></span><span></span><span></span><span></span><span></span></div>
             </div>
             <div class="music-play"><div class="play-icon"></div></div>
             <div class="music-progress"><div class="music-progress-bar"></div></div>
