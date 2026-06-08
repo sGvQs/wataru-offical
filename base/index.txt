@@ -1995,6 +1995,211 @@
             margin: 0 0 12px 0 !important;
         }
     }
+
+    /* ── SHOP-AMBER DESIGN ELEMENTS ── */
+
+    /* film grain */
+    body::before {
+        content: '';
+        position: fixed; inset: -50%;
+        width: 200%; height: 200%;
+        z-index: 998; pointer-events: none;
+        opacity: .04;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+        animation: grain .35s steps(1) infinite;
+        mix-blend-mode: screen;
+    }
+    @keyframes grain {
+        0%  { transform: translate(0,0); }
+        25% { transform: translate(-2%,-3%); }
+        50% { transform: translate(3%,2%); }
+        75% { transform: translate(-3%,1%); }
+        100%{ transform: translate(1%,-2%); }
+    }
+    /* vignette */
+    body::after {
+        content: '';
+        position: fixed; inset: 0;
+        z-index: 997; pointer-events: none;
+        background: radial-gradient(ellipse 100% 100% at 50% 50%, transparent 55%, rgba(19,14,7,.5) 100%);
+    }
+    /* scrollbar */
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--red); }
+    html, body { overflow-x: hidden; }
+
+    /* announcement bar */
+    .base-announcement {
+        background: var(--red);
+        text-align: center; padding: 8px 16px;
+        font-size: .65rem; letter-spacing: .22em;
+        text-transform: uppercase; color: var(--bg);
+        position: relative; z-index: 110;
+    }
+
+    /* sticky nav */
+    header#mainHeader {
+        position: sticky !important; top: 0; z-index: 100;
+        background: rgba(19,14,7,.96) !important;
+        -webkit-backdrop-filter: blur(16px);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--border) !important;
+        margin: 0 !important;
+        width: 100% !important;
+        box-sizing: border-box;
+    }
+    body.shop #shopHeader {
+        display: flex !important;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 48px !important;
+        height: 56px;
+        margin: 0 !important;
+        max-width: none;
+    }
+    body.shop #shopHeader h1 { margin: 0 !important; }
+    body.shop #shopHeader h1 a#logo {
+        color: var(--warm-white); text-decoration: none;
+    }
+    body.shop #shopHeader nav {
+        border: none !important; margin: 0 !important; flex: 1;
+    }
+    body.shop #shopHeader nav ul {
+        justify-content: flex-end !important;
+        gap: 28px; flex-wrap: nowrap !important; width: auto;
+    }
+    body.shop #shopHeader nav ul li {
+        width: auto !important; height: auto !important;
+        border: none !important; line-height: 56px;
+    }
+    body.shop #shopHeader nav ul li:hover {
+        border-bottom: none !important; height: auto !important;
+    }
+
+    /* shop title header */
+    .base-shop-header {
+        padding: 48px 48px 32px;
+        background: var(--bg2);
+        border-bottom: 1px solid var(--border);
+    }
+    .base-shop-label {
+        font-size: .6rem; letter-spacing: .35em;
+        color: var(--red); text-transform: uppercase; margin-bottom: 12px;
+    }
+    .base-shop-title {
+        font-family: 'Cormorant Garamond', serif;
+        font-weight: 300; font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.1;
+    }
+    .base-shop-title em { font-style: italic; color: #D4A040; }
+
+    /* wrapper override — full width */
+    body.shop .wrapper {
+        width: 100% !important; max-width: none !important;
+        padding: 0 !important; margin: 0 !important;
+    }
+
+    /* product grid → CSS Grid */
+    body#shopTopPage .itemList {
+        display: grid !important;
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 1px !important;
+        background: var(--border) !important;
+        width: 100% !important; padding: 0 !important;
+        overflow: hidden; margin: 0 !important;
+    }
+    body#shopTopPage .item {
+        background: var(--bg3) !important;
+        float: none !important; width: auto !important;
+        margin: 0 !important; padding: 0 !important;
+        display: flex !important; flex-direction: column; position: relative;
+    }
+    body#shopTopPage .item .itemImg {
+        aspect-ratio: 3 / 4; height: auto !important;
+        line-height: normal !important; overflow: hidden;
+        width: 100% !important; max-width: none; position: relative;
+    }
+    body#shopTopPage .item .itemImg img.image-resize {
+        position: absolute; inset: 0;
+        width: 100%; height: 100%; object-fit: cover;
+        transition: transform .5s ease;
+        max-height: none !important; max-width: none !important;
+    }
+    body#shopTopPage .item:hover .itemImg img.image-resize { transform: scale(1.03); }
+    body#shopTopPage .item .itemImg::after {
+        content: 'View';
+        position: absolute; bottom: 0; left: 0; right: 0;
+        background: rgba(19,14,7,.93);
+        border-top: 1px solid var(--border);
+        padding: 13px; text-align: center;
+        font-size: .68rem; letter-spacing: .2em; text-transform: uppercase;
+        color: var(--warm-white);
+        transform: translateY(100%); transition: transform .3s;
+    }
+    body#shopTopPage .item:hover .itemImg::after { transform: translateY(0); }
+    body#shopTopPage .item .itemTitle {
+        padding: 14px 16px 4px; margin: 0 !important; text-align: left !important;
+    }
+    body#shopTopPage .item a .itemTitle h2 {
+        width: auto !important;
+        font-family: 'Cormorant Garamond', serif; font-size: .95rem !important;
+    }
+    body#shopTopPage .item .itemDetail { padding: 2px 16px 16px; }
+    body#shopTopPage .item .itemDetail .itemPrice {
+        text-align: left !important; font-size: .88rem !important;
+        letter-spacing: .06em !important; color: var(--cream);
+    }
+    body#shopTopPage .item .itemImg a .soldout_cover {
+        background-color: rgba(19,14,7,.82) !important;
+    }
+
+    /* footer redesign */
+    body.shop #mainFooter {
+        background: var(--bg2) !important;
+        display: flex !important;
+        align-items: center; justify-content: space-between;
+        flex-wrap: wrap; gap: 16px;
+        padding: 32px 48px !important; margin: 0 !important;
+        border-top: 1px solid rgba(228,192,122,.08) !important;
+        width: 100% !important; max-width: none !important;
+    }
+    body.shop #mainFooter .footerMenu { width: 100%; }
+    body.shop #mainFooter .footerMenu ul {
+        flex-wrap: nowrap !important; gap: 24px; justify-content: center !important;
+    }
+    body.shop #mainFooter .footerMenu ul li {
+        font-size: .68rem !important; letter-spacing: .15em;
+        text-transform: uppercase; margin: 0 !important;
+        width: auto !important; margin-right: 0 !important;
+    }
+    body.shop #mainFooter .footerMenu ul li a.footerNav {
+        color: var(--gray); text-decoration: none; transition: color .2s;
+    }
+    body.shop #mainFooter .footerMenu ul li a.footerNav:hover { color: var(--warm-white); }
+    .base-footer-copy {
+        width: 100%; text-align: center;
+        font-size: .65rem; letter-spacing: .1em; color: var(--gray2);
+        padding-top: 16px; border-top: 1px solid var(--border);
+        margin-top: 8px;
+    }
+
+    /* responsive */
+    @media (min-width: 769px) {
+        body.shop .wrapper { width: 100% !important; }
+        body#shopTopPage .itemList { width: 100% !important; }
+    }
+    @media (max-width: 768px) {
+        body.shop #shopHeader { padding: 0 16px !important; }
+        body#shopTopPage .itemList { grid-template-columns: repeat(2,1fr) !important; }
+        .base-shop-header { padding: 28px 16px 20px; }
+        body.shop #mainFooter {
+            padding: 20px 16px !important;
+            flex-direction: column; align-items: flex-start;
+        }
+        body.shop #mainFooter .footerMenu ul {
+            flex-wrap: wrap !important; justify-content: flex-start !important;
+        }
+    }
     </style>
 
     {block:IndexPage}
@@ -2045,6 +2250,7 @@
     {/block:AppsBlog}
 </head>
 <body id="{block:IndexPage}shopTopPage{/block:IndexPage}{block:ItemPage}shopDetailPage{/block:ItemPage}" class="shop template">
+<div class="base-announcement">Official Store &nbsp;·&nbsp; 全国送料無料 &nbsp;·&nbsp; 数量限定</div>
 {block:AppsInformationBanner}
     {AppsInformationBannerTag}
     <script type="text/javascript">
@@ -2123,6 +2329,12 @@
         <p style="text-align: center;">{lang:NotShopPublicMessage}</p>
     {/block:NotShopPublic}
     {block:ShopPublic}
+        {block:NoIndexPageCategory}{block:NoIndexPageSearch}
+        <div class="base-shop-header">
+            <p class="base-shop-label">Official Store</p>
+            <h1 class="base-shop-title"><em>Dadaïsme</em></h1>
+        </div>
+        {/block:NoIndexPageSearch}{/block:NoIndexPageCategory}
         {block:AppsBlogArticleIsPinned}{block:NoIndexPageCategory}{block:NoIndexPageSearch}
             <div class="pinnedBlog">
                 <p class="pinnedBlog_title mainHeaderNavColor">
@@ -2474,6 +2686,7 @@
               <li><a class="footerNav" href="https://thebase.com/pages/shop_membership_term">会員規約</a></li>
             {/block:AppsMembership}
         </ul>
+        <div class="base-footer-copy">© 2026 Dadaïsme. All rights reserved.</div>
     </div>
 </footer>
 <input id="base_url" type="hidden" value="{ShopURL}">
