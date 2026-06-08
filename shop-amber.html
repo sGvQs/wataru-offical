@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Store — WATARU TAKAHASHI</title>
+  <title>Store — WATARU TAKAHASHI [Amber]</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Serif+JP:wght@300;400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -11,16 +11,17 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:         #0c0a08;
-      --bg2:        #110f0c;
-      --bg3:        #1c1916;
-      --warm-white: #ede8df;
-      --cream:      #b5a48d;
-      --gray:       #7a6f63;
-      --gray2:      #3d3830;
-      --red:        #c4251b;
-      --red-dim:    rgba(196,37,27,.1);
-      --gold:       #a07840;
+      --bg:         #130E07;
+      --bg2:        #1A1409;
+      --bg3:        #241C0E;
+      --warm-white: #E4C07A;
+      --cream:      #A07830;
+      --gray:       #7A5E28;
+      --gray2:      #3A2C10;
+      --border:     #2E2210;
+      --red:        #C87028;
+      --red-dim:    rgba(200,112,40,.12);
+      --gold:       #D4A040;
       --nav-h:      56px;
     }
 
@@ -33,22 +34,29 @@
       overflow-x: hidden;
     }
 
-    /* Film grain */
     body::before {
       content: '';
       position: fixed; inset: -50%;
       width: 200%; height: 200%;
       z-index: 998; pointer-events: none;
-      opacity: .03;
+      opacity: .04;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
-      animation: grain .4s steps(1) infinite;
+      animation: grain .35s steps(1) infinite;
+      mix-blend-mode: screen;
     }
     @keyframes grain {
       0%  { transform: translate(0,0); }
       25% { transform: translate(-2%,-3%); }
-      50% { transform: translate(2%,3%); }
+      50% { transform: translate(3%,2%); }
       75% { transform: translate(-3%,1%); }
-      100%{ transform: translate(1%,-1%); }
+      100%{ transform: translate(1%,-2%); }
+    }
+
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      z-index: 997; pointer-events: none;
+      background: radial-gradient(ellipse 100% 100% at 50% 50%, transparent 55%, rgba(19,14,7,.5) 100%);
     }
 
     ::-webkit-scrollbar { width: 3px; }
@@ -58,12 +66,9 @@
     /* ── ANNOUNCEMENT BAR ── */
     .announcement {
       background: var(--red);
-      text-align: center;
-      padding: 8px 16px;
-      font-size: .65rem;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      color: var(--warm-white);
+      text-align: center; padding: 8px 16px;
+      font-size: .65rem; letter-spacing: .22em;
+      text-transform: uppercase; color: var(--bg);
       position: relative; z-index: 110;
     }
 
@@ -71,12 +76,11 @@
     nav#main-nav {
       position: sticky; top: 0; z-index: 100;
       height: var(--nav-h);
-      background: rgba(12,10,8,.95);
+      background: rgba(19,14,7,.95);
       backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--gray2);
+      border-bottom: 1px solid var(--border);
       display: flex; align-items: center;
-      justify-content: space-between;
-      padding: 0 48px;
+      justify-content: space-between; padding: 0 48px;
     }
     .nav-logo {
       font-family: 'Cormorant Garamond', serif;
@@ -85,10 +89,7 @@
       line-height: 1.35; color: var(--warm-white);
       text-decoration: none; position: relative; z-index: 110;
     }
-    .nav-links {
-      display: flex; gap: 32px;
-      list-style: none; align-items: center;
-    }
+    .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
     .nav-links a {
       font-size: .72rem; letter-spacing: .18em;
       text-transform: uppercase; color: var(--gray);
@@ -107,24 +108,20 @@
     .cart-badge {
       display: inline-flex; align-items: center; justify-content: center;
       width: 17px; height: 17px; border-radius: 50%;
-      background: var(--red); color: var(--warm-white);
+      background: var(--red); color: var(--bg);
       font-size: .58rem; font-weight: 500;
     }
 
     /* ── HAMBURGER ── */
     .hamburger {
-      display: none; flex-direction: column;
-      justify-content: center; gap: 5px;
-      width: 36px; height: 36px;
-      background: none; border: none;
-      cursor: pointer; padding: 4px;
+      display: none; flex-direction: column; justify-content: center;
+      gap: 5px; width: 36px; height: 36px;
+      background: none; border: none; cursor: pointer; padding: 4px;
       position: relative; z-index: 110;
     }
     .hamburger span {
-      display: block; width: 100%; height: 1px;
-      background: var(--warm-white);
-      transition: transform .3s, opacity .3s;
-      transform-origin: center;
+      display: block; width: 100%; height: 1px; background: var(--warm-white);
+      transition: transform .3s, opacity .3s; transform-origin: center;
     }
     .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
     .hamburger.open span:nth-child(2) { opacity: 0; }
@@ -133,7 +130,7 @@
     /* ── MOBILE MENU ── */
     .mobile-menu {
       display: none; position: fixed; inset: 0; z-index: 105;
-      background: rgba(12,10,8,.97);
+      background: rgba(19,14,7,.98);
       flex-direction: column; align-items: center; justify-content: center;
       gap: 36px; opacity: 0; pointer-events: none; transition: opacity .3s;
     }
@@ -150,104 +147,73 @@
     .breadcrumb {
       padding: 14px 48px; font-size: .65rem;
       letter-spacing: .12em; color: var(--gray);
-      border-bottom: 1px solid var(--gray2);
-      background: var(--bg2);
+      border-bottom: 1px solid var(--border); background: var(--bg2);
     }
     .breadcrumb a { color: var(--gray); text-decoration: none; }
     .breadcrumb a:hover { color: var(--warm-white); }
     .breadcrumb span { margin: 0 8px; }
 
     /* ── SHOP HEADER ── */
-    .shop-header {
-      padding: 56px 48px 40px;
-      background: var(--bg2);
-      border-bottom: 1px solid var(--gray2);
-    }
+    .shop-header { padding: 56px 48px 40px; background: var(--bg2); border-bottom: 1px solid var(--border); }
     .shop-header-inner { max-width: 1280px; margin: 0 auto; }
     .shop-label { font-size: .6rem; letter-spacing: .35em; color: var(--red); text-transform: uppercase; margin-bottom: 12px; }
-    .shop-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300; font-size: clamp(2.4rem, 4vw, 3.8rem);
-      line-height: 1.1; margin-bottom: 6px;
-    }
-    .shop-title em { font-style: italic; color: var(--cream); }
+    .shop-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(2.4rem, 4vw, 3.8rem); line-height: 1.1; margin-bottom: 6px; }
+    .shop-title em { font-style: italic; color: var(--gold); }
     .shop-subtitle { font-size: .8rem; color: var(--gray); letter-spacing: .08em; }
 
     /* ── CATEGORY TABS ── */
     .category-bar {
       position: sticky; top: var(--nav-h); z-index: 90;
-      background: rgba(12,10,8,.96);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--gray2);
-      display: flex; align-items: center;
-      padding: 0 48px; gap: 0;
-      overflow-x: auto;
+      background: rgba(19,14,7,.96); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; padding: 0 48px; gap: 0; overflow-x: auto;
     }
     .category-tab {
       padding: 16px 24px; font-size: .68rem;
       letter-spacing: .18em; text-transform: uppercase;
       color: var(--gray); background: none; border: none;
       border-bottom: 2px solid transparent;
-      cursor: pointer; white-space: nowrap;
-      transition: color .2s, border-color .2s;
+      cursor: pointer; white-space: nowrap; transition: color .2s, border-color .2s;
     }
     .category-tab.active, .category-tab:hover { color: var(--warm-white); }
     .category-tab.active { border-bottom-color: var(--red); }
     .category-spacer { flex: 1; }
     .category-sort {
       font-size: .68rem; letter-spacing: .12em;
-      background: none;
-      border: 1px solid var(--gray2); padding: 7px 14px;
-      cursor: pointer; color: var(--cream);
-      font-family: 'Inter', sans-serif; white-space: nowrap;
+      background: none; border: 1px solid var(--border); padding: 7px 14px;
+      cursor: pointer; color: var(--cream); font-family: 'Inter', sans-serif; white-space: nowrap;
     }
 
     /* ── PRODUCT GRID ── */
     .shop-main { padding: 40px 48px 80px; max-width: 1280px; margin: 0 auto; }
     .product-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px; background: var(--gray2);
-      margin-bottom: 60px;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; background: var(--border); margin-bottom: 60px;
     }
-    .product-card {
-      background: var(--bg3);
-      display: flex; flex-direction: column;
-      position: relative; overflow: hidden;
-    }
-    .product-img {
-      aspect-ratio: 3/4; position: relative;
-      overflow: hidden; cursor: pointer;
-    }
+    .product-card { background: var(--bg3); display: flex; flex-direction: column; position: relative; overflow: hidden; }
+    .product-img { aspect-ratio: 3/4; position: relative; overflow: hidden; cursor: pointer; }
     .product-img-fill { width: 100%; height: 100%; transition: transform .5s ease; }
     .product-card:hover .product-img-fill { transform: scale(1.03); }
-    .product-img-overlay {
-      position: absolute; inset: 0;
-      background: rgba(12,10,8,.04); pointer-events: none;
-    }
+    .product-img-overlay { position: absolute; inset: 0; background: rgba(19,14,7,.04); pointer-events: none; }
     .product-quick {
       position: absolute; bottom: 0; left: 0; right: 0;
-      background: rgba(12,10,8,.92);
-      border-top: 1px solid var(--gray2);
+      background: rgba(19,14,7,.93); border-top: 1px solid var(--border);
       padding: 13px; text-align: center;
-      font-size: .68rem; letter-spacing: .2em;
-      text-transform: uppercase; color: var(--warm-white);
-      cursor: pointer; transform: translateY(100%);
+      font-size: .68rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--warm-white); cursor: pointer; transform: translateY(100%);
       transition: transform .3s, background .2s;
     }
-    .product-quick:hover { background: var(--red); }
+    .product-quick:hover { background: var(--red); color: var(--bg); }
     .product-card:hover .product-quick { transform: translateY(0); }
     .product-sold-badge {
       position: absolute; top: 14px; right: 14px;
       background: var(--gray2); color: var(--gray);
-      font-size: .58rem; letter-spacing: .18em;
-      text-transform: uppercase; padding: 4px 10px;
+      font-size: .58rem; letter-spacing: .18em; text-transform: uppercase; padding: 4px 10px;
     }
     .product-new-badge {
       position: absolute; top: 14px; left: 14px;
-      background: var(--red); color: var(--warm-white);
-      font-size: .58rem; letter-spacing: .18em;
-      text-transform: uppercase; padding: 4px 10px;
+      background: var(--red); color: var(--bg);
+      font-size: .58rem; letter-spacing: .18em; text-transform: uppercase; padding: 4px 10px;
     }
     .product-info { padding: 18px 18px 22px; flex: 1; }
     .product-tag { font-size: .58rem; letter-spacing: .2em; color: var(--gray); text-transform: uppercase; margin-bottom: 6px; }
@@ -257,47 +223,23 @@
     .product-swatches { display: flex; gap: 5px; margin-top: 10px; }
     .swatch {
       width: 12px; height: 12px; border-radius: 50%;
-      border: 1px solid var(--gray2); cursor: pointer;
-      transition: border-color .2s;
+      border: 1px solid var(--border); cursor: pointer; transition: border-color .2s;
     }
     .swatch:hover, .swatch.active { border-color: var(--warm-white); }
 
     /* ── MUSIC SECTION ── */
-    .section-divider {
-      border: none; border-top: 1px solid var(--gray2);
-      margin: 56px 0 40px;
-    }
-    .product-section-label {
-      font-size: .6rem; letter-spacing: .35em;
-      text-transform: uppercase; color: var(--red);
-      margin-bottom: 10px;
-    }
-    .product-section-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300; font-size: clamp(1.8rem, 3vw, 2.8rem);
-      line-height: 1.15; margin-bottom: 32px;
-    }
-    .product-section-title em { font-style: italic; color: var(--cream); }
+    .section-divider { border: none; border-top: 1px solid var(--border); margin: 56px 0 40px; }
+    .product-section-label { font-size: .6rem; letter-spacing: .35em; text-transform: uppercase; color: var(--red); margin-bottom: 10px; }
+    .product-section-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(1.8rem, 3vw, 2.8rem); line-height: 1.15; margin-bottom: 32px; }
+    .product-section-title em { font-style: italic; color: var(--gold); }
 
-    .music-product-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px; background: var(--gray2);
-    }
-    .music-product-card {
-      background: var(--bg3); overflow: hidden; cursor: pointer;
-      display: flex; flex-direction: column;
-    }
-    .music-product-img {
-      aspect-ratio: 1; position: relative; overflow: hidden;
-    }
+    .music-product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); }
+    .music-product-card { background: var(--bg3); overflow: hidden; cursor: pointer; display: flex; flex-direction: column; }
+    .music-product-img { aspect-ratio: 1; position: relative; overflow: hidden; }
     .music-product-fill { width: 100%; height: 100%; transition: transform .5s ease; }
     .music-product-card:hover .music-product-fill { transform: scale(1.04); }
     .music-product-info { padding: 16px 18px 20px; flex: 1; }
-    .music-product-track {
-      font-size: .8rem; font-weight: 300;
-      color: var(--gray); margin-bottom: 4px;
-    }
+    .music-product-track { font-size: .8rem; font-weight: 300; color: var(--gray); margin-bottom: 4px; }
     .music-title-jp { font-family: 'Noto Serif JP', serif; }
     .music-product-name { font-size: .88rem; font-weight: 400; margin-bottom: 8px; }
     .music-product-price { font-size: .9rem; }
@@ -305,11 +247,9 @@
 
     /* ── SHIPPING NOTICE ── */
     .shipping-notice {
-      background: var(--bg3);
-      border: 1px solid var(--gray2);
+      background: var(--bg3); border: 1px solid var(--border);
       padding: 28px 32px; margin-bottom: 40px;
-      display: flex; gap: 32px; align-items: flex-start;
-      flex-wrap: wrap;
+      display: flex; gap: 32px; align-items: flex-start; flex-wrap: wrap;
     }
     .shipping-notice-item { flex: 1; min-width: 180px; }
     .shipping-notice-icon { font-size: 1rem; color: var(--red); margin-bottom: 8px; }
@@ -318,38 +258,29 @@
 
     /* ── FOOTER ── */
     footer {
-      background: var(--bg2);
-      border-top: 1px solid rgba(237,232,223,.05);
-      padding: 40px 48px;
-      display: flex; align-items: center;
+      background: var(--bg2); border-top: 1px solid rgba(228,192,122,.05);
+      padding: 40px 48px; display: flex; align-items: center;
       justify-content: space-between; flex-wrap: wrap; gap: 16px;
     }
     .footer-logo {
       font-family: 'Cormorant Garamond', serif;
       font-weight: 400; font-size: .85rem;
       letter-spacing: .25em; text-transform: uppercase;
-      line-height: 1.4; color: var(--warm-white);
-      text-decoration: none;
+      line-height: 1.4; color: var(--warm-white); text-decoration: none;
     }
     .footer-nav { display: flex; gap: 24px; }
-    .footer-nav a {
-      font-size: .68rem; letter-spacing: .15em;
-      color: var(--gray); text-decoration: none;
-      text-transform: uppercase; transition: color .2s;
-    }
+    .footer-nav a { font-size: .68rem; letter-spacing: .15em; color: var(--gray); text-decoration: none; text-transform: uppercase; transition: color .2s; }
     .footer-nav a:hover { color: var(--warm-white); }
-    .footer-copy { font-size: .68rem; color: var(--gray2); letter-spacing: .08em; }
+    .footer-copy { font-size: .68rem; color: var(--border); letter-spacing: .08em; }
 
     /* ── PAGE TRANSITION ── */
     #page-transition {
       position: fixed; inset: 0; z-index: 9999;
-      background: var(--bg);
-      pointer-events: none; opacity: 1;
+      background: var(--bg); pointer-events: none; opacity: 1;
       transition: opacity .4s ease;
     }
     #page-transition.out { opacity: 0; pointer-events: none; }
 
-    /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       nav#main-nav { padding: 0 16px; }
       .nav-links { display: none; }
@@ -371,27 +302,23 @@
 
   <!-- THEME SWITCHER -->
   <div style="position:fixed;bottom:24px;right:24px;z-index:999;display:flex;flex-direction:column;gap:8px;align-items:flex-end;">
-    <a href="shop.html" style="background:rgba(12,10,8,.9);color:#c4251b;font-family:'Inter',sans-serif;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;padding:8px 14px;text-decoration:none;border:1px solid #c4251b;backdrop-filter:blur(8px);">Dark ←</a>
-    <a href="shop-light.html" style="background:rgba(12,10,8,.85);color:#ede8df;font-family:'Inter',sans-serif;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;padding:8px 14px;text-decoration:none;border:1px solid rgba(237,232,223,.2);backdrop-filter:blur(8px);">Light</a>
-    <a href="shop-amber.html" style="background:rgba(12,10,8,.85);color:#ede8df;font-family:'Inter',sans-serif;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;padding:8px 14px;text-decoration:none;border:1px solid rgba(237,232,223,.2);backdrop-filter:blur(8px);">Amber</a>
+    <a href="shop.html" style="background:rgba(19,14,7,.9);color:#E4C07A;font-family:'Inter',sans-serif;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;padding:8px 14px;text-decoration:none;border:1px solid rgba(228,192,122,.2);">Dark</a>
+    <a href="shop-light.html" style="background:rgba(19,14,7,.9);color:#E4C07A;font-family:'Inter',sans-serif;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;padding:8px 14px;text-decoration:none;border:1px solid rgba(228,192,122,.2);">Light</a>
+    <a href="shop-amber.html" style="background:rgba(19,14,7,.9);color:#C87028;font-family:'Inter',sans-serif;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;padding:8px 14px;text-decoration:none;border:1px solid #C87028;">Amber ←</a>
   </div>
 
-  <!-- ANNOUNCEMENT -->
-  <div class="announcement">
-    全国送料無料 &nbsp;·&nbsp; New Drop 随時更新中 &nbsp;·&nbsp; 数量限定
-  </div>
+  <div class="announcement">全国送料無料 &nbsp;·&nbsp; New Drop 随時更新中 &nbsp;·&nbsp; 数量限定</div>
 
-  <!-- NAV -->
   <nav id="main-nav">
-    <a href="index.html" class="nav-logo transition-link">WATARU<br>TAKAHASHI</a>
+    <a href="index-amber.html" class="nav-logo transition-link">WATARU<br>TAKAHASHI</a>
     <ul class="nav-links">
-      <li><a href="index.html#about" class="transition-link">About</a></li>
-      <li><a href="index.html#music" class="transition-link">Music</a></li>
-      <li><a href="index.html#live" class="transition-link">Live</a></li>
-      <li><a href="shop.html" class="active">Store</a></li>
+      <li><a href="index-amber.html#about" class="transition-link">About</a></li>
+      <li><a href="index-amber.html#music" class="transition-link">Music</a></li>
+      <li><a href="index-amber.html#live" class="transition-link">Live</a></li>
+      <li><a href="shop-amber.html" class="active">Store</a></li>
     </ul>
     <div class="nav-icons">
-      <a class="nav-icon-btn transition-link" href="index.html">← Site</a>
+      <a class="nav-icon-btn transition-link" href="index-amber.html">← Site</a>
       <button class="nav-icon-btn">Cart <span class="cart-badge">0</span></button>
     </div>
     <button class="hamburger" id="hamburger" aria-label="メニュー">
@@ -399,20 +326,17 @@
     </button>
   </nav>
 
-  <!-- MOBILE MENU -->
   <div class="mobile-menu" id="mobile-menu">
-    <a href="index.html" class="transition-link">← Back to Site</a>
+    <a href="index-amber.html" class="transition-link">← Back to Site</a>
     <a href="#apparel" class="menu-anchor">Apparel</a>
     <a href="#music" class="menu-anchor">Music</a>
   </div>
 
-  <!-- BREADCRUMB -->
   <div class="breadcrumb">
-    <a href="index.html" class="transition-link">Wataru Takahashi</a>
+    <a href="index-amber.html" class="transition-link">Wataru Takahashi</a>
     <span>›</span> Store
   </div>
 
-  <!-- SHOP HEADER -->
   <div class="shop-header">
     <div class="shop-header-inner">
       <p class="shop-label">Official Store</p>
@@ -421,7 +345,6 @@
     </div>
   </div>
 
-  <!-- CATEGORY TABS -->
   <div class="category-bar">
     <button class="category-tab active" data-filter="all">All</button>
     <button class="category-tab" data-filter="apparel">Apparel</button>
@@ -435,18 +358,15 @@
     </select>
   </div>
 
-  <!-- SHOP MAIN -->
   <div class="shop-main">
 
-    <!-- APPAREL -->
     <p class="product-section-label" id="apparel">Apparel</p>
     <h2 class="product-section-title">Wear the <em>Story.</em></h2>
 
     <div class="product-grid">
-
       <div class="product-card" data-category="apparel">
         <div class="product-img">
-          <div class="product-img-fill" style="background:linear-gradient(160deg,#1a1208,#3d2e14 50%,#2a1e0a)"></div>
+          <div class="product-img-fill" style="background:linear-gradient(160deg,#2A2010,#6A5820 50%,#4A3C18)"></div>
           <div class="product-img-overlay"></div>
           <div class="product-new-badge">New</div>
           <div class="product-quick">Quick Add</div>
@@ -457,14 +377,14 @@
           <div class="product-price">¥ 12,000</div>
           <div class="product-swatches">
             <div class="swatch active" style="background:#1a1a1a" title="Black"></div>
-            <div class="swatch" style="background:#c4251b" title="Red"></div>
+            <div class="swatch" style="background:#C87028" title="Amber"></div>
           </div>
         </div>
       </div>
 
       <div class="product-card" data-category="apparel">
         <div class="product-img">
-          <div class="product-img-fill" style="background:linear-gradient(160deg,#0f1208,#2a2a18 50%,#1e1c0e)"></div>
+          <div class="product-img-fill" style="background:linear-gradient(160deg,#201808,#504020 50%,#382C10)"></div>
           <div class="product-img-overlay"></div>
           <div class="product-quick">Quick Add</div>
         </div>
@@ -473,7 +393,7 @@
           <div class="product-name">W.T. Logo Tee</div>
           <div class="product-price">¥ 6,500</div>
           <div class="product-swatches">
-            <div class="swatch active" style="background:#ede8df" title="Cream"></div>
+            <div class="swatch active" style="background:#E4C07A" title="Amber"></div>
             <div class="swatch" style="background:#1a1a1a" title="Black"></div>
           </div>
         </div>
@@ -481,7 +401,7 @@
 
       <div class="product-card" data-category="apparel">
         <div class="product-img">
-          <div class="product-img-fill" style="background:linear-gradient(160deg,#100e0a,#2a2218 50%,#1a1410)"></div>
+          <div class="product-img-fill" style="background:linear-gradient(160deg,#1C1608,#403418 50%,#2C2410)"></div>
           <div class="product-img-overlay"></div>
           <div class="product-quick">Quick Add</div>
         </div>
@@ -498,7 +418,7 @@
 
       <div class="product-card" data-category="apparel">
         <div class="product-img">
-          <div class="product-img-fill" style="background:linear-gradient(160deg,#0a0c10,#1a2030 50%,#12181e)"></div>
+          <div class="product-img-fill" style="background:linear-gradient(160deg,#14120A,#302A18 50%,#1E1C10)"></div>
           <div class="product-img-overlay"></div>
           <div class="product-sold-badge">Sold Out</div>
         </div>
@@ -508,10 +428,8 @@
           <div class="product-price product-price-sold">¥ 28,000</div>
         </div>
       </div>
-
     </div>
 
-    <!-- MUSIC -->
     <hr class="section-divider" />
     <p class="product-section-label" id="music">CD · Vinyl</p>
     <h2 class="product-section-title">Own the <em>Record.</em></h2>
@@ -535,10 +453,9 @@
     </div>
 
     <div class="music-product-grid">
-
       <div class="music-product-card" data-category="music">
         <div class="music-product-img">
-          <div class="music-product-fill" style="background:linear-gradient(160deg,#1a1a0a,#3d3c18 45%,#5c5228)"></div>
+          <div class="music-product-fill" style="background:linear-gradient(160deg,#3A3210,#7A6A28 45%,#A09040)"></div>
         </div>
         <div class="music-product-info">
           <div class="music-product-track music-title-jp">夢の続き</div>
@@ -550,7 +467,7 @@
 
       <div class="music-product-card" data-category="music">
         <div class="music-product-img">
-          <div class="music-product-fill" style="background:linear-gradient(160deg,#1a0806,#6b1208 50%,#3d0a06)"></div>
+          <div class="music-product-fill" style="background:linear-gradient(160deg,#2A1206,#7A3010 50%,#4A2008)"></div>
         </div>
         <div class="music-product-info">
           <div class="music-product-track">Action</div>
@@ -562,7 +479,7 @@
 
       <div class="music-product-card" data-category="music">
         <div class="music-product-img">
-          <div class="music-product-fill" style="background:linear-gradient(160deg,#0f0e0c,#2a2218 55%,#1a1610)"></div>
+          <div class="music-product-fill" style="background:linear-gradient(160deg,#1A1808,#3A3418 55%,#2A2C14)"></div>
         </div>
         <div class="music-product-info">
           <div class="music-product-track music-title-jp">鼓動の記憶</div>
@@ -574,7 +491,7 @@
 
       <div class="music-product-card" data-category="music">
         <div class="music-product-img">
-          <div class="music-product-fill" style="background:linear-gradient(160deg,#100e0a,#2a2218,#1a1410)"></div>
+          <div class="music-product-fill" style="background:linear-gradient(160deg,#1A1808,#3A3418,#201E10)"></div>
         </div>
         <div class="music-product-info">
           <div class="music-product-track music-title-jp">鼓動の記憶</div>
@@ -583,19 +500,17 @@
           <div class="music-product-format">12" Vinyl · Limited</div>
         </div>
       </div>
-
     </div>
 
   </div>
 
-  <!-- FOOTER -->
   <footer>
-    <a href="index.html" class="footer-logo transition-link">WATARU<br>TAKAHASHI</a>
+    <a href="index-amber.html" class="footer-logo transition-link">WATARU<br>TAKAHASHI</a>
     <div class="footer-nav">
-      <a href="index.html" class="transition-link">Artist Site</a>
-      <a href="index.html#music" class="transition-link">Music</a>
-      <a href="index.html#live" class="transition-link">Live</a>
-      <a href="index.html#contact" class="transition-link">Contact</a>
+      <a href="index-amber.html" class="transition-link">Artist Site</a>
+      <a href="index-amber.html#music" class="transition-link">Music</a>
+      <a href="index-amber.html#live" class="transition-link">Live</a>
+      <a href="index-amber.html#contact" class="transition-link">Contact</a>
     </div>
     <div class="footer-copy">© 2026 Wataru Takahashi. All rights reserved.</div>
   </footer>
@@ -604,9 +519,7 @@
 
   <script>
     const overlay = document.getElementById('page-transition');
-    window.addEventListener('DOMContentLoaded', () => {
-      requestAnimationFrame(() => overlay.classList.add('out'));
-    });
+    window.addEventListener('DOMContentLoaded', () => { requestAnimationFrame(() => overlay.classList.add('out')); });
     window.addEventListener('pageshow', e => { if (e.persisted) overlay.classList.add('out'); });
 
     const hamburger = document.getElementById('hamburger');
@@ -618,9 +531,7 @@
         document.body.style.overflow = open ? 'hidden' : '';
       });
       mobileMenu.querySelectorAll('.menu-anchor').forEach(a => a.addEventListener('click', () => {
-        hamburger.classList.remove('open');
-        mobileMenu.classList.remove('open');
-        document.body.style.overflow = '';
+        hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); document.body.style.overflow = '';
       }));
     }
 
@@ -630,8 +541,7 @@
         tab.classList.add('active');
         const filter = tab.dataset.filter;
         document.querySelectorAll('[data-category]').forEach(card => {
-          const match = filter === 'all' || card.dataset.category === filter;
-          card.style.display = match ? '' : 'none';
+          card.style.display = (filter === 'all' || card.dataset.category === filter) ? '' : 'none';
         });
       });
     });
