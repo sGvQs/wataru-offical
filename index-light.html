@@ -343,6 +343,10 @@
       z-index: 2; transition: transform .3s, border-color .3s;
     }
     .video-card:hover .video-play-btn { transform: scale(1.08); border-color: var(--fg); }
+    .yt-thumb-link { display: block; position: absolute; inset: 0; }
+    .yt-thumb-link img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+    .video-card:hover .yt-thumb-link img { transform: scale(1.04); }
+    .yt-thumb-link:hover .video-play-btn { background: var(--red); border-color: var(--red); transform: scale(1.1); }
     .video-info { padding: 16px 20px; border-top: 1px solid var(--border); }
     .video-info-title { font-size: .9rem; font-weight: 400; margin-bottom: 4px; color: var(--fg); }
     .video-info-meta { font-size: .72rem; color: var(--gray); }
@@ -470,12 +474,9 @@
   <nav id="main-nav">
     <a href="#" class="nav-logo">WATARU<br>TAKAHASHI</a>
     <ul class="nav-links">
-      <li><a href="#about">About</a></li>
       <li><a href="#music">Music</a></li>
       <li><a href="#live">Live</a></li>
-      <li><a href="#video">Video</a></li>
-      <li><a href="shop.html" class="transition-link">Store</a></li>
-      <li><a href="#contact" class="nav-cta">Contact</a></li>
+      <li><a href="shop-light.html" class="transition-link">Store</a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="メニュー">
       <span></span><span></span><span></span>
@@ -483,12 +484,9 @@
   </nav>
 
   <div class="mobile-menu" id="mobile-menu">
-    <a href="#about" class="menu-anchor">About</a>
     <a href="#music" class="menu-anchor">Music</a>
     <a href="#live" class="menu-anchor">Live</a>
-    <a href="#video" class="menu-anchor">Video</a>
-    <a href="shop.html" class="transition-link">Store</a>
-    <a href="#contact" class="menu-anchor">Contact</a>
+    <a href="shop-light.html" class="transition-link">Store</a>
   </div>
 
   <section class="hero" id="hero">
@@ -496,10 +494,10 @@
     <p class="hero-eyebrow">Rapper &amp; Artist — Yokohama</p>
     <div class="hero-rule"></div>
     <h1 class="hero-name">WATARU<br><em>TAKAHASHI</em></h1>
-    <p class="hero-jp">ラッパー &nbsp;·&nbsp; アーティスト &nbsp;·&nbsp; 横浜</p>
     <div class="hero-actions">
       <a href="#music" class="btn btn-primary">Music</a>
       <a href="#live" class="btn btn-outline">Live</a>
+      <a href="shop-light.html" class="btn btn-outline transition-link">Store</a>
     </div>
     <div class="hero-scroll">
       <span>Scroll</span>
@@ -601,24 +599,30 @@
     <div class="video-grid">
       <div class="video-card reveal">
         <div class="video-thumb">
-          <div class="video-gradient" style="background:linear-gradient(160deg,#C8BA90,#7A6A35,#4A4020)"></div>
-          <div class="video-play-btn"><div class="play-icon"></div></div>
+          <a href="https://www.youtube.com/watch?v=-1tqiagGcOs" target="_blank" rel="noopener noreferrer" class="yt-thumb-link">
+            <img src="https://img.youtube.com/vi/-1tqiagGcOs/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/-1tqiagGcOs/hqdefault.jpg'" alt="夢の続き" loading="lazy">
+            <div class="video-play-btn"><div class="play-icon"></div></div>
+          </a>
         </div>
         <div class="video-info"><div class="video-info-title">夢の続き — Official Music Video</div><div class="video-info-meta">2024 · Wataru Takahashi</div></div>
       </div>
       <div class="video-card reveal">
         <div class="video-thumb">
-          <div class="video-gradient" style="background:linear-gradient(160deg,#C87060,#9A2A1A,#4A1008)"></div>
-          <div class="video-play-btn"><div class="play-icon"></div></div>
+          <a href="https://www.youtube.com/watch?v=w6aXc4DSuE8" target="_blank" rel="noopener noreferrer" class="yt-thumb-link">
+            <img src="https://img.youtube.com/vi/w6aXc4DSuE8/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/w6aXc4DSuE8/hqdefault.jpg'" alt="Action" loading="lazy">
+            <div class="video-play-btn"><div class="play-icon"></div></div>
+          </a>
         </div>
-        <div class="video-info"><div class="video-info-title">Action — Official Music Video</div><div class="video-info-meta">2024 · Dir. Shota Tsuji</div></div>
+        <div class="video-info"><div class="video-info-title">Action — Official Music Video</div><div class="video-info-meta">2024 · Wataru Takahashi</div></div>
       </div>
       <div class="video-card reveal">
         <div class="video-thumb">
-          <div class="video-gradient" style="background:linear-gradient(160deg,#5A5448,#3A3530,#1A1510)"></div>
-          <div class="video-play-btn"><div class="play-icon"></div></div>
+          <a href="https://www.youtube.com/watch?v=QLrjHk4FV-I" target="_blank" rel="noopener noreferrer" class="yt-thumb-link">
+            <img src="https://img.youtube.com/vi/QLrjHk4FV-I/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/QLrjHk4FV-I/hqdefault.jpg'" alt="鼓動の記憶" loading="lazy">
+            <div class="video-play-btn"><div class="play-icon"></div></div>
+          </a>
         </div>
-        <div class="video-info"><div class="video-info-title">鼓動の記憶 — Lyric Video</div><div class="video-info-meta">2024</div></div>
+        <div class="video-info"><div class="video-info-title">鼓動の記憶 — Lyric Video</div><div class="video-info-meta">2024 · Wataru Takahashi</div></div>
       </div>
     </div>
   </section>
