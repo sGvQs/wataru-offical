@@ -2206,11 +2206,71 @@
         background-color: rgba(19,14,7,.82) !important;
     }
 
+    /* ── PRIVACY PAGE ── */
+    #privacy {
+        background: var(--bg2) !important;
+        color: var(--cream) !important;
+        margin: 56px auto 80px !important;
+        padding: 48px 64px !important;
+        border: 1px solid var(--border);
+    }
+    #privacy h2 {
+        font-family: 'Cormorant Garamond', serif !important;
+        font-weight: 300 !important;
+        font-size: clamp(1.6rem, 3vw, 2.2rem) !important;
+        letter-spacing: .18em !important;
+        color: var(--warm-white) !important;
+        text-transform: uppercase;
+        margin: 0 0 32px !important;
+        padding-bottom: 16px !important;
+        border-bottom: 1px solid var(--border) !important;
+    }
+    #privacy .privacy_intro {
+        color: var(--gray) !important;
+        font-size: .84rem !important;
+        line-height: 1.9 !important;
+        margin-bottom: 32px !important;
+    }
+    #privacy dl dt {
+        font-family: 'Inter', sans-serif !important;
+        font-size: .72rem !important;
+        letter-spacing: .14em !important;
+        text-transform: uppercase;
+        color: var(--cream) !important;
+        margin: 28px 0 8px !important;
+        font-weight: 500 !important;
+        padding-top: 16px !important;
+        border-top: 1px solid var(--border) !important;
+    }
+    #privacy dl dd {
+        color: var(--gray) !important;
+        font-size: .83rem !important;
+        line-height: 1.85 !important;
+        margin: 0 0 4px !important;
+        padding-left: 0 !important;
+    }
+    #privacy dl dd ul {
+        padding-left: 1em !important;
+        margin: 8px 0 !important;
+    }
+    #privacy dl dd ul li {
+        color: var(--gray) !important;
+        font-size: .82rem !important;
+        line-height: 1.8 !important;
+        margin-bottom: 4px !important;
+    }
+    #privacy dl dd a {
+        color: var(--red) !important;
+        word-break: break-all;
+    }
+    @media (max-width: 768px) {
+        #privacy { padding: 32px 20px !important; margin: 32px 16px !important; }
+    }
+
     /* ── LAW PAGE (特定商取引法) ── */
     #law {
         background: var(--bg2) !important;
         color: var(--cream) !important;
-        max-width: 720px;
         margin: 56px auto 80px !important;
         padding: 48px 64px !important;
         border: 1px solid var(--border);
@@ -2281,7 +2341,6 @@
     /* ── CONTACT PAGE ── */
     section.inquirySection {
         background: var(--bg2);
-        max-width: 720px;
         padding: 56px 64px !important;
         border: 1px solid var(--border);
     }
@@ -2365,7 +2424,6 @@
     #inquiryConfirmSection,
     #inquiryCompleteSection {
         background: var(--bg2);
-        max-width: 720px;
         margin: 56px auto 80px !important;
         padding: 56px 64px !important;
         border: 1px solid var(--border);
