@@ -2028,14 +2028,10 @@
         background: rgba(242,236,227,.94) !important;
         -webkit-backdrop-filter: blur(16px);
         backdrop-filter: blur(16px);
-        border-bottom: 1px solid rgba(200,191,176,0) !important;
-        transition: border-bottom-color .4s ease !important;
+        border-bottom: 1px solid rgba(200,191,176,1) !important;
         margin: 0 !important;
         width: 100% !important;
         box-sizing: border-box;
-    }
-    header#mainHeader.scrolled {
-        border-bottom-color: rgba(200,191,176,1) !important;
     }
     body.shop #shopHeader {
         display: flex !important;
@@ -2139,11 +2135,7 @@
         text-align: center; overflow: hidden;
         border-bottom: 1px solid var(--border);
     }
-    .base-shop-header::before {
-        content: '';
-        position: absolute; top: 0; left: 0; right: 0;
-        height: 2px; background: var(--red); z-index: 2;
-    }
+
     .base-shop-hero-bg {
         position: absolute; inset: -40%;
         width: 180%; height: 180%;
@@ -2287,53 +2279,46 @@
 
     /* ── NO ITEMS STATE ── */
     .no-items-state {
-        position: relative;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 160px 24px;
-        gap: 20px;
-        overflow: hidden;
+        padding: 120px 24px;
     }
-    .no-items-state::before {
-        content: '';
-        position: absolute;
-        inset: -40%;
-        width: 180%; height: 180%;
-        background:
-            radial-gradient(ellipse 90% 50% at 50% 90%, rgba(181,32,26,.1) 0%, transparent 55%),
-            radial-gradient(ellipse 50% 40% at 10% 70%, rgba(122,92,46,.07) 0%, transparent 50%);
-        animation: noItemsFloat 7s ease-in-out infinite alternate;
-        pointer-events: none;
-        z-index: 0;
-    }
-    @keyframes noItemsFloat {
-        0%   { transform: translate(0, 0) scale(1); }
-        20%  { transform: translate(-10%, 6%) scale(1.12); }
-        40%  { transform: translate(8%, -8%) scale(1.06); }
-        60%  { transform: translate(-6%, 10%) scale(1.15); }
-        80%  { transform: translate(10%, -5%) scale(1.08); }
-        100% { transform: translate(-8%, 4%) scale(1.1); }
+    .no-items-rule {
+        width: 1px;
+        height: 48px;
+        background: var(--border);
+        margin-bottom: 24px;
     }
     .no-items-label {
-        position: relative; z-index: 1;
-        font-family: 'Cormorant Garamond', serif !important;
+        font-family: 'Inter', sans-serif !important;
+        font-style: normal !important;
+        font-size: 9px !important;
+        font-weight: 400 !important;
+        letter-spacing: .35em;
+        text-transform: uppercase;
+        color: var(--red) !important;
+        margin: 0 0 14px !important;
+    }
+    .no-items-title {
+        font-family: 'Cormorant Garamond', serif;
         font-style: italic;
         font-weight: 300;
-        font-size: 1.1rem;
-        letter-spacing: .35em;
-        color: var(--gray) !important;
-        text-transform: lowercase;
-        margin: 0 !important;
+        font-size: 36px;
+        letter-spacing: .15em;
+        color: var(--warm-white);
+        margin: 0 0 16px;
+        line-height: 1;
     }
     .no-items-text {
-        position: relative; z-index: 1;
         font-family: 'Inter', sans-serif !important;
-        font-size: .72rem !important;
-        letter-spacing: .2em;
-        color: var(--gray2) !important;
-        text-transform: uppercase;
+        font-size: 11px !important;
+        letter-spacing: .08em;
+        color: var(--gray) !important;
+        text-transform: none !important;
+        text-align: center;
+        line-height: 1.7;
         margin: 0 !important;
     }
 
@@ -2868,7 +2853,9 @@
         {/block:HasItems}
         {block:NoItems}
             <div class="no-items-state">
-                <p class="no-items-label">— sold out —</p>
+                <div class="no-items-rule"></div>
+                <p class="no-items-label">Coming Soon</p>
+                <p class="no-items-title">New Collection</p>
                 <p class="no-items-text">{lang:NoItemsMessage}</p>
             </div>
         {/block:NoItems}
@@ -3166,20 +3153,6 @@ fjs.parentNode.insertBefore(js, fjs);
 
 <script>
 // ロゴの inline style を上書き（BASE が style="color:#FFFFFF" を直接出力するため CSS では効かない）
-// scroll → header border
-(function() {
-    var header = document.getElementById('mainHeader');
-    if (!header) return;
-    var kv = document.querySelector('.base-shop-header');
-    if (kv && 'IntersectionObserver' in window) {
-        new IntersectionObserver(function(entries) {
-            header.classList.toggle('scrolled', !entries[0].isIntersecting);
-        }, { threshold: 0.05 }).observe(kv);
-    } else {
-        // KVなしのページ（contact/privacy/lawなど）は常にborderを出す
-        header.classList.add('scrolled');
-    }
-})();
 
 document.addEventListener('DOMContentLoaded', function() {
   var logoText = document.querySelector('#logo .logoText');
