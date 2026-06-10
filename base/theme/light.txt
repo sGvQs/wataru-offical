@@ -3085,8 +3085,10 @@
             <div class="base-shop-rule"></div>
             <h1 class="base-shop-title"><em>Dadaïsme</em></h1>
             <div class="base-shop-actions">
-                <a href="#categoryTabs" class="base-shop-btn base-shop-btn-primary nav-filter-link" data-tab-target="cd">CD</a>
+                <a href="#categoryTabs" class="base-shop-btn base-shop-btn-outline nav-filter-link" data-tab-target="cd">CD</a>
                 <a href="#categoryTabs" class="base-shop-btn base-shop-btn-outline nav-filter-link" data-tab-target="apparel">Apparel</a>
+                <a href="#categoryTabs" class="base-shop-btn base-shop-btn-outline nav-filter-link" data-tab-target="event">Event</a>
+                <a href="https://sgvqs.github.io/wataru-offical/index.html" class="base-shop-btn base-shop-btn-primary">Home</a>
             </div>
             <div class="base-shop-scroll">
                 <span>Scroll</span>
@@ -3545,10 +3547,19 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    function initFromHash() {
+        var hash = window.location.hash.replace('#', '').toLowerCase();
+        if (hash === 'cd' || hash === 'apparel') {
+            var tab = document.querySelector('.category-tab[data-filter="' + hash + '"]');
+            if (tab) tab.click();
+        }
+    }
+
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initCategoryFilter);
+        document.addEventListener('DOMContentLoaded', function() { initCategoryFilter(); initFromHash(); });
     } else {
         initCategoryFilter();
+        initFromHash();
     }
 
     document.addEventListener('click', function(e) {
