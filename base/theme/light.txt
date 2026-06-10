@@ -3453,9 +3453,10 @@
 <footer id="mainFooter" class="wrapper clearfix">
     <div class="footerMenu">
         <ul class="clearfix">
-            <li><a class="footerNav" href="{ContactPageURL}">お問合せ</a></li>
+            <li><a class="footerNav" href="https://sgvqs.github.io/wataru-offical/index-light.html">公式サイト</a></li>
             <li><a class="footerNav" href="{PrivacyPageURL}">{lang:Privacy}</a></li>
             <li><a class="footerNav" href="{LawPageURL}">{lang:Law}</a></li>
+            <li><a class="footerNav" href="{ContactPageURL}">お問い合わせ</a></li>
             {block:AppsMembership}
               <li><a class="footerNav" href="https://thebase.com/pages/shop_membership_term">会員規約</a></li>
             {/block:AppsMembership}
