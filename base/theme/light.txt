@@ -2142,6 +2142,7 @@
         align-items: center; justify-content: center;
         text-align: center; overflow: hidden;
         border-bottom: 1px solid var(--border);
+        padding: 0 20px;
     }
 
     @keyframes heroFloat {
@@ -3069,9 +3070,9 @@
     </div>
 </header>
 <div class="mobile-menu" id="mobile-menu">
-    <a href="https://sgvqs.github.io/wataru-offical/index.html#music" class="menu-anchor">Music</a>
-    <a href="https://sgvqs.github.io/wataru-offical/index.html#event" class="menu-anchor">Event</a>
     <a href="https://sgvqs.github.io/wataru-offical/index.html" class="menu-anchor">Home</a>
+    <a href="https://sgvqs.github.io/wataru-offical/index.html#event" class="menu-anchor">Event</a>
+    <a href="https://www.youtube.com/@dadaisme77" target="_blank" rel="noopener noreferrer" class="menu-anchor">YouTube</a>
 </div>
 {block:IndexPage}
     {block:NotShopPublic}
