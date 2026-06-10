@@ -2006,10 +2006,11 @@
         z-index: 997; pointer-events: none;
         background: radial-gradient(ellipse 100% 100% at 50% 50%, transparent 55%, rgba(200,191,176,.35) 100%);
     }
-    /* scrollbar */
-    ::-webkit-scrollbar { width: 3px; }
+    /* scrollbar — native standard */
+    html { scrollbar-color: var(--red) var(--bg); scrollbar-width: thin; }
+    ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--red); }
+    ::-webkit-scrollbar-thumb { background: var(--red); border-radius: 0; }
     html, body { overflow-x: hidden; }
 
     /* announcement bar */
