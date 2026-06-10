@@ -1213,7 +1213,7 @@
         text-decoration: underline;
     }
 
-    body#shopDetailPage #itemAttention .attention.deliveryShortestDay {
+    body#shopDetailPage #itemAttention .attention.deeventryShortestDay {
         border: 1px solid #11BEAE;
         border-radius: 2px;
         color: #11BEAE;
@@ -2721,7 +2721,7 @@
 
     /* responsive */
     @media (min-width: 769px) {
-        .nav-music, .nav-live { display: none !important; }
+        .nav-music, .nav-event { display: none !important; }
         body.shop .wrapper { width: 100% !important; }
         body#shopTopPage .itemList { width: 100% !important; }
     }
@@ -3050,7 +3050,7 @@
             <nav>
                 <ul>
                     <li class="nav-music"><a class="mainHeaderNavColor" href="https://sgvqs.github.io/wataru-offical/index.html#music">MUSIC</a></li>
-                    <li class="nav-live"><a class="mainHeaderNavColor" href="https://sgvqs.github.io/wataru-offical/index.html#live">LIVE</a></li>
+                    <li class="nav-event"><a class="mainHeaderNavColor" href="https://sgvqs.github.io/wataru-offical/index.html#event"> EVENT</a></li>
                     <li><a class="mainHeaderNavColor" href="https://sgvqs.github.io/wataru-offical/index.html">HOME</a></li>
                     {block:AppsSearch}
                         <li class="column itemSearch">
@@ -3070,7 +3070,7 @@
 </header>
 <div class="mobile-menu" id="mobile-menu">
     <a href="https://sgvqs.github.io/wataru-offical/index.html#music" class="menu-anchor">Music</a>
-    <a href="https://sgvqs.github.io/wataru-offical/index.html#live" class="menu-anchor">Live</a>
+    <a href="https://sgvqs.github.io/wataru-offical/index.html#event" class="menu-anchor">Event</a>
     <a href="https://sgvqs.github.io/wataru-offical/index.html" class="menu-anchor">Home</a>
 </div>
 {block:IndexPage}

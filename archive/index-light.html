@@ -371,30 +371,30 @@
       100% { transform: scaleY(1); }
     }
 
-    /* ── LIVE ── */
-    .live-header { max-width: 1200px; margin: 0 auto 48px; }
-    .live-list { max-width: 1200px; margin: 0 auto; }
-    .live-item {
+    /* ──  EVENT ── */
+    .event-header { max-width: 1200px; margin: 0 auto 48px; }
+    .event-list { max-width: 1200px; margin: 0 auto; }
+    .event-item {
       display: grid; grid-template-columns: 120px 1fr auto;
       gap: 32px; align-items: center; padding: 28px 0;
       border-bottom: 1px solid var(--border);
       transition: border-color .25s; cursor: pointer;
     }
-    .live-item:first-child { border-top: 1px solid var(--border); }
-    .live-item:hover { border-bottom-color: var(--red); }
-    .live-date { font-family: 'Cormorant Garamond', serif; }
-    .live-date .day { font-size: 2.8rem; font-weight: 300; line-height: 1; color: var(--red); }
-    .live-date .month-year { font-size: .65rem; color: var(--gray); letter-spacing: .12em; text-transform: uppercase; margin-top: 3px; }
-    .live-info-title { font-size: 1rem; font-weight: 400; margin-bottom: 5px; color: var(--fg); }
-    .live-info-venue { font-size: .78rem; color: var(--gray); letter-spacing: .04em; }
-    .live-tag { display: inline-block; padding: 3px 9px; font-size: .58rem; letter-spacing: .15em; text-transform: uppercase; border: 1px solid var(--red); color: var(--red); margin-left: 12px; }
-    .live-ticket {
+    .event-item:first-child { border-top: 1px solid var(--border); }
+    .event-item:hover { border-bottom-color: var(--red); }
+    .event-date { font-family: 'Cormorant Garamond', serif; }
+    .event-date .day { font-size: 2.8rem; font-weight: 300; line-height: 1; color: var(--red); }
+    .event-date .month-year { font-size: .65rem; color: var(--gray); letter-spacing: .12em; text-transform: uppercase; margin-top: 3px; }
+    .event-info-title { font-size: 1rem; font-weight: 400; margin-bottom: 5px; color: var(--fg); }
+    .event-info-venue { font-size: .78rem; color: var(--gray); letter-spacing: .04em; }
+    .event-tag { display: inline-block; padding: 3px 9px; font-size: .58rem; letter-spacing: .15em; text-transform: uppercase; border: 1px solid var(--red); color: var(--red); margin-left: 12px; }
+    .event-ticket {
       border: 1px solid var(--border); color: var(--fg2);
       padding: 9px 24px; font-size: .68rem; letter-spacing: .15em;
       text-transform: uppercase; background: transparent;
       cursor: pointer; transition: all .2s; text-decoration: none;
     }
-    .live-ticket:hover { border-color: var(--fg); color: var(--fg); }
+    .event-ticket:hover { border-color: var(--fg); color: var(--fg); }
 
     /* ── VIDEO ── */
     #video { background: var(--bg2); border-top: 1px solid var(--border); }
@@ -520,8 +520,8 @@
       #music .carousel-nav { padding: 0 24px; }
       .about { grid-template-columns: 1fr; gap: 48px; }
 
-      .live-item { grid-template-columns: 80px 1fr; }
-      .live-ticket { display: none; }
+      .event-item { grid-template-columns: 80px 1fr; }
+      .event-ticket { display: none; }
       .video-grid { grid-template-columns: 1fr; }
       .video-card:first-child { grid-row: auto; }
       .contact-grid { grid-template-columns: 1fr; }
@@ -544,7 +544,7 @@
     <a href="#" class="nav-logo">Dadaïsme</a>
     <ul class="nav-links">
       <li><a href="#music">Music</a></li>
-      <li><a href="#live">Live</a></li>
+      <li><a href="#event">Event</a></li>
       <li><a href="shop-light.html" class="transition-link">Store</a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="メニュー">
@@ -554,7 +554,7 @@
 
   <div class="mobile-menu" id="mobile-menu">
     <a href="#music" class="menu-anchor">Music</a>
-    <a href="#live" class="menu-anchor">Live</a>
+    <a href="#event" class="menu-anchor">Event</a>
     <a href="shop-light.html" class="transition-link">Store</a>
     <a href="https://www.youtube.com/@dadaisme77" target="_blank" rel="noopener noreferrer">YouTube</a>
   </div>
@@ -563,7 +563,7 @@
     <div class="hero-bg"></div>
     <h1 class="hero-name"><em>Dadaïsme</em></h1>
     <div class="hero-actions">
-      <a href="#live" class="btn btn-primary">Live</a>
+      <a href="#event" class="btn btn-primary">Event</a>
       <a href="shop-light.html" class="btn btn-outline transition-link">Store</a>
     </div>
     <a href="https://www.youtube.com/@dadaisme77" target="_blank" rel="noopener noreferrer" class="yt-watch-link">Watch on YouTube</a>
@@ -647,28 +647,28 @@
     </div>
   </section>
 
-  <section id="live">
-    <div class="live-header reveal"><p class="section-label">Schedule</p><h2 class="section-title">Live</h2></div>
-    <div class="live-list">
-      <div class="live-item reveal">
-        <div class="live-date"><div class="day">21</div><div class="month-year">Jun 2026</div></div>
-        <div class="live-info"><div class="live-info-title">Dadaïsme ONE-MAN LIVE 2026 <span class="live-tag">Headliner</span></div><div class="live-info-venue">Shibuya O-EAST — Tokyo</div></div>
-        <a href="#" class="live-ticket">Tickets</a>
+  <section id="event">
+    <div class="event-header reveal"><p class="section-label">Schedule</p><h2 class="section-title">Event</h2></div>
+    <div class="event-list">
+      <div class="event-item reveal">
+        <div class="event-date"><div class="day">21</div><div class="month-year">Jun 2026</div></div>
+        <div class="event-info"><div class="event-info-title">Dadaïsme ONE-MAN  EVENT 2026 <span class="event-tag">Headliner</span></div><div class="event-info-venue">Shibuya O-EAST — Tokyo</div></div>
+        <a href="#" class="event-ticket">Tickets</a>
       </div>
-      <div class="live-item reveal">
-        <div class="live-date"><div class="day">05</div><div class="month-year">Jul 2026</div></div>
-        <div class="live-info"><div class="live-info-title">NEON UNDERGROUND Vol.12</div><div class="live-info-venue">Contact — Tokyo</div></div>
-        <a href="#" class="live-ticket">Tickets</a>
+      <div class="event-item reveal">
+        <div class="event-date"><div class="day">05</div><div class="month-year">Jul 2026</div></div>
+        <div class="event-info"><div class="event-info-title">NEON UNDERGROUND Vol.12</div><div class="event-info-venue">Contact — Tokyo</div></div>
+        <a href="#" class="event-ticket">Tickets</a>
       </div>
-      <div class="live-item reveal">
-        <div class="live-date"><div class="day">19</div><div class="month-year">Jul 2026</div></div>
-        <div class="live-info"><div class="live-info-title">OSAKA HIP-HOP SUMMIT <span class="live-tag">Festival</span></div><div class="live-info-venue">Zepp Osaka Bayside — Osaka</div></div>
-        <a href="#" class="live-ticket">Tickets</a>
+      <div class="event-item reveal">
+        <div class="event-date"><div class="day">19</div><div class="month-year">Jul 2026</div></div>
+        <div class="event-info"><div class="event-info-title">OSAKA HIP-HOP SUMMIT <span class="event-tag">Festival</span></div><div class="event-info-venue">Zepp Osaka Bayside — Osaka</div></div>
+        <a href="#" class="event-ticket">Tickets</a>
       </div>
-      <div class="live-item reveal">
-        <div class="live-date"><div class="day">02</div><div class="month-year">Aug 2026</div></div>
-        <div class="live-info"><div class="live-info-title">CIRCUIT LIVE — Seoul</div><div class="live-info-venue">KT&amp;G Sangsangmadang — Seoul, Korea</div></div>
-        <a href="#" class="live-ticket">Tickets</a>
+      <div class="event-item reveal">
+        <div class="event-date"><div class="day">02</div><div class="month-year">Aug 2026</div></div>
+        <div class="event-info"><div class="event-info-title">CIRCUIT  EVENT — Seoul</div><div class="event-info-venue">KT&amp;G Sangsangmadang — Seoul, Korea</div></div>
+        <a href="#" class="event-ticket">Tickets</a>
       </div>
     </div>
   </section>
@@ -700,7 +700,7 @@
     <div class="footer-nav">
       <a href="shop.html" class="transition-link">Store</a>
       <a href="#about">About</a><a href="#music">Music</a>
-      <a href="#live">Live</a><a href="#contact">Contact</a>
+      <a href="#event">Event</a><a href="#contact">Contact</a>
     </div>
     <div class="footer-copy">© 2026 Dadaïsme. All rights reserved.</div>
   </footer>

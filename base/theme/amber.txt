@@ -1213,7 +1213,7 @@
         text-decoration: underline;
     }
 
-    body#shopDetailPage #itemAttention .attention.deliveryShortestDay {
+    body#shopDetailPage #itemAttention .attention.deeventryShortestDay {
         border: 1px solid #11BEAE;
         border-radius: 2px;
         color: #11BEAE;
@@ -2723,7 +2723,7 @@
         <nav>
             <ul>
                 <li><a class="mainHeaderNavColor" href="https://sgvqs.github.io/wataru-offical/index-amber.html#music">MUSIC</a></li>
-                <li><a class="mainHeaderNavColor" href="https://sgvqs.github.io/wataru-offical/index-amber.html#live">LIVE</a></li>
+                <li><a class="mainHeaderNavColor" href="https://sgvqs.github.io/wataru-offical/index-amber.html#event"> EVENT</a></li>
                 <li><a class="mainHeaderNavColor" href="https://sgvqs.github.io/wataru-offical/index-amber.html">HOME</a></li>
                 {block:AppsSearch}
                     <li class="column itemSearch">
@@ -2752,7 +2752,7 @@
 </header>
 <div class="mobile-menu" id="mobile-menu">
     <a href="https://sgvqs.github.io/wataru-offical/index-amber.html#music" class="menu-anchor">Music</a>
-    <a href="https://sgvqs.github.io/wataru-offical/index-amber.html#live" class="menu-anchor">Live</a>
+    <a href="https://sgvqs.github.io/wataru-offical/index-amber.html#event" class="menu-anchor">Event</a>
     <a href="https://sgvqs.github.io/wataru-offical/index-amber.html" class="menu-anchor">Home</a>
 </div>
 {block:IndexPage}
@@ -2767,7 +2767,7 @@
             <div class="base-shop-rule"></div>
             <h1 class="base-shop-title"><em>Dadaïsme</em></h1>
             <div class="base-shop-actions">
-                <a href="https://sgvqs.github.io/wataru-offical/index-amber.html#live" class="base-shop-btn base-shop-btn-primary">Live</a>
+                <a href="https://sgvqs.github.io/wataru-offical/index-amber.html#event" class="base-shop-btn base-shop-btn-primary">Event</a>
                 <a href="https://sgvqs.github.io/wataru-offical/index-amber.html" class="base-shop-btn base-shop-btn-outline">Artist Site</a>
             </div>
             <div class="base-shop-scroll">
