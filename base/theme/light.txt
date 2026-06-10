@@ -2022,6 +2022,7 @@
     }
 
     /* sticky nav */
+    html { overflow-y: scroll; }
     header#mainHeader {
         position: sticky !important; top: 0; z-index: 200;
         background: rgba(242,236,227,.94) !important;
@@ -2069,7 +2070,7 @@
     body.shop #shopHeader h1 img { height: 24px; width: auto; vertical-align: middle; }
     /* nav links */
     body.shop #shopHeader nav {
-        border: none !important; margin: 0 0 0 auto !important;
+        border: none !important; margin: 0 !important;
     }
     body.shop #shopHeader nav ul {
         justify-content: center !important;
@@ -2102,8 +2103,8 @@
     }
     /* right: header-right wrapper (hamburger + icons) */
     .header-right {
-        display: flex; align-items: center; gap: 16px; flex-shrink: 0;
-        margin-left: 32px;
+        display: flex; align-items: center; gap: 32px; flex-shrink: 0;
+        margin-left: auto;
     }
     .base-nav-icons {
         display: flex; align-items: center; gap: 32px; flex-shrink: 0;
@@ -2694,9 +2695,9 @@
     @media (max-width: 768px) {
         body.shop #shopHeader { padding: 0 16px !important; }
         body.shop #shopHeader nav { display: none !important; }
-        .header-right { margin-left: auto; }
         .hamburger { display: flex !important; }
         .mobile-menu { display: flex; }
+        .header-right { gap: 20px; }
         .base-nav-icons { gap: 20px; }
         body#shopTopPage .itemList { grid-template-columns: repeat(2,1fr) !important; }
         .base-shop-header { min-height: 540px; }
@@ -2985,21 +2986,6 @@
 <header id="mainHeader" class="wrapper">
     <div id="shopHeader">
         <h1><a href="{IndexPageURL}" id="logo">{LogoTag}</a></h1>
-        <nav>
-            <ul>
-                <li><a class="mainHeaderNavColor" href="https://sgvqs.github.io/wataru-offical/index-amber.html#music">MUSIC</a></li>
-                <li><a class="mainHeaderNavColor" href="https://sgvqs.github.io/wataru-offical/index-amber.html#live">LIVE</a></li>
-                <li><a class="mainHeaderNavColor" href="https://sgvqs.github.io/wataru-offical/index-amber.html">HOME</a></li>
-                {block:AppsSearch}
-                    <li class="column itemSearch">
-                        <form id="x_itemSearchForm" class="itemSearch__form" action="{SearchPageURL}" method="get">
-                            <input class="itemSearch__field" type="text" name="q" placeholder="SEARCH" value="{IndexPageSearch}">
-                            <button class="itemSearch__btn" type="submit"><span id="x_iconSearch" class="mainHeaderNavColor si-search"></span></button>
-                        </form>
-                    </li>
-                {/block:AppsSearch}
-            </ul>
-        </nav>
         {block:AppsItemCategory}{block:IndexPageCategory}
             <h2 class="categoryTitle01">{IndexPageCategory}</h2>
             {block:HasAppsItemCategoryChildCategories}
@@ -3011,9 +2997,6 @@
             {/block:HasAppsItemCategoryChildCategories}
         {/block:IndexPageCategory}{/block:AppsItemCategory}
         <div class="header-right">
-            <button class="hamburger" id="hamburger" aria-label="メニュー">
-                <span></span><span></span><span></span>
-            </button>
             <div class="base-nav-icons">
                 <a href="https://thebase.com?from=susum-base-shop&amp;p=shop" target="_blank">
                     <img src="/img/shop/base.png" alt="BASE" height="20">
@@ -3031,6 +3014,24 @@
                     </div>
                 </a>
             </div>
+            <nav>
+                <ul>
+                    <li><a class="mainHeaderNavColor" href="https://sgvqs.github.io/wataru-offical/index-amber.html#music">MUSIC</a></li>
+                    <li><a class="mainHeaderNavColor" href="https://sgvqs.github.io/wataru-offical/index-amber.html#live">LIVE</a></li>
+                    <li><a class="mainHeaderNavColor" href="https://sgvqs.github.io/wataru-offical/index-amber.html">HOME</a></li>
+                    {block:AppsSearch}
+                        <li class="column itemSearch">
+                            <form id="x_itemSearchForm" class="itemSearch__form" action="{SearchPageURL}" method="get">
+                                <input class="itemSearch__field" type="text" name="q" placeholder="SEARCH" value="{IndexPageSearch}">
+                                <button class="itemSearch__btn" type="submit"><span id="x_iconSearch" class="mainHeaderNavColor si-search"></span></button>
+                            </form>
+                        </li>
+                    {/block:AppsSearch}
+                </ul>
+            </nav>
+            <button class="hamburger" id="hamburger" aria-label="メニュー">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </div>
 </header>
@@ -3461,16 +3462,15 @@ document.addEventListener('DOMContentLoaded', function() {
   var hamburger = document.getElementById('hamburger');
   var mobileMenu = document.getElementById('mobile-menu');
   if (!hamburger || !mobileMenu) return;
+
   hamburger.addEventListener('click', function() {
     var open = hamburger.classList.toggle('open');
     mobileMenu.classList.toggle('open', open);
-    document.body.style.overflow = open ? 'hidden' : '';
   });
   mobileMenu.querySelectorAll('.menu-anchor').forEach(function(a) {
     a.addEventListener('click', function() {
       hamburger.classList.remove('open');
       mobileMenu.classList.remove('open');
-      document.body.style.overflow = '';
     });
   });
 })();
