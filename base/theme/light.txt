@@ -2148,13 +2148,21 @@
         border-bottom: 1px solid var(--border);
     }
 
+    @keyframes heroFloat {
+        0%   { transform: translate(-8%, -12%) scale(1)    rotate(-6deg); }
+        50%  { transform: translate(6%,   6%) scale(1.18)  rotate(3deg);  }
+        100% { transform: translate(-5%,  14%) scale(1.1)  rotate(-3deg); }
+    }
     .base-shop-hero-bg {
         position: absolute; inset: -40%;
         width: 180%; height: 180%;
         background:
-            radial-gradient(ellipse 90% 50% at 50% 90%, rgba(181,32,26,.1) 0%, transparent 55%),
-            radial-gradient(ellipse 50% 40% at 10% 70%, rgba(122,92,46,.07) 0%, transparent 50%);
-        animation: heroFloat 7s ease-in-out infinite alternate;
+            radial-gradient(ellipse 80%  55% at 50% 85%, rgba(181,32,26,.30) 0%, transparent 55%),
+            radial-gradient(ellipse 55%  45% at 15% 65%, rgba(181,32,26,.18) 0%, transparent 50%),
+            radial-gradient(ellipse 50%  40% at 80% 40%, rgba(122,92,46,.14) 0%, transparent 50%),
+            radial-gradient(ellipse 70%  50% at 70% 15%, rgba(181,32,26,.22) 0%, transparent 52%),
+            radial-gradient(ellipse 50%  40% at 20% 20%, rgba(181,32,26,.15) 0%, transparent 50%);
+        animation: heroFloat 9s ease-in-out infinite alternate;
         pointer-events: none;
     }
     .base-shop-hero-bg::after {
@@ -2660,6 +2668,7 @@
         padding: 32px 0 !important; margin: 0 !important;
         border-top: 1px solid rgba(200,191,176,.4) !important;
         width: 100% !important; max-width: none !important;
+        box-sizing: border-box !important;
     }
     body.shop #mainFooter .footerMenu { width: 100%; }
     body.shop #mainFooter .footerMenu ul {
@@ -3444,7 +3453,7 @@
 <footer id="mainFooter" class="wrapper clearfix">
     <div class="footerMenu">
         <ul class="clearfix">
-            <li><a class="footerNav" href="{ContactPageURL}">CONTACT</a></li>
+            <li><a class="footerNav" href="{ContactPageURL}">お問合せ</a></li>
             <li><a class="footerNav" href="{PrivacyPageURL}">{lang:Privacy}</a></li>
             <li><a class="footerNav" href="{LawPageURL}">{lang:Law}</a></li>
             {block:AppsMembership}
