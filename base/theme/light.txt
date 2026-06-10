@@ -2235,6 +2235,31 @@
         padding: 0 !important; margin: 0 !important;
     }
 
+    /* category tabs */
+    .category-tabs {
+        display: flex; align-items: flex-end; gap: 0;
+        padding: 40px 48px 0;
+        border-bottom: 1px solid var(--border);
+    }
+    .category-tab {
+        background: none; border: none; cursor: pointer;
+        font-family: 'Inter', sans-serif !important;
+        font-size: .68rem; letter-spacing: .22em; text-transform: uppercase;
+        color: var(--gray); padding: 0 0 14px; margin-right: 28px;
+        border-bottom: 1px solid transparent;
+        position: relative; top: 1px;
+        transition: color .2s, border-color .2s;
+    }
+    .category-tab:hover { color: var(--warm-white); }
+    .category-tab.active {
+        color: var(--warm-white);
+        border-bottom-color: var(--warm-white);
+    }
+    @media (max-width: 768px) {
+        .category-tabs { padding: 28px 16px 0; }
+        .category-tab { margin-right: 20px; font-size: .65rem; }
+    }
+
     /* product grid (#mainContent と .itemList は同一要素) */
     body#shopTopPage .itemList {
         display: grid !important;
@@ -2267,6 +2292,9 @@
         margin: 0 !important; padding: 0 !important;
         display: flex !important; flex-direction: column;
         position: relative; cursor: pointer;
+    }
+    body#shopTopPage .item.item-hidden {
+        display: none !important;
     }
     body#shopTopPage .item .itemImg {
         aspect-ratio: 3 / 4; height: auto !important;
@@ -3075,9 +3103,14 @@
         {/block:IndexPageSearch}
 
         {block:HasItems}
+            <div class="category-tabs" id="categoryTabs">
+                <button class="category-tab active" data-filter="all">All</button>
+                <button class="category-tab" data-filter="cd">CD</button>
+                <button class="category-tab" data-filter="apparel">Apparel</button>
+            </div>
             <section id="mainContent" class="itemList clearfix">
                 {block:Items}
-                <div class="item part">
+                <div class="item part" data-title="{ItemTitle}">
                     <div class="itemImg">
                         <a href="{ItemPageURL}">
                             {block:AppsItemLabel}
@@ -3474,6 +3507,44 @@ document.addEventListener('DOMContentLoaded', function() {
       mobileMenu.classList.remove('open');
     });
   });
+})();
+
+(function() {
+    function initCategoryFilter() {
+        var tabs = document.querySelectorAll('.category-tab');
+        var items = document.querySelectorAll('#mainContent .item');
+        if (!tabs.length || !items.length) return;
+
+        items.forEach(function(item) {
+            var h2 = item.querySelector('.itemTitle h2');
+            var title = h2 ? h2.textContent.toLowerCase() : '';
+            if (title.indexOf('cd') !== -1) {
+                item.dataset.category = 'cd';
+            } else if (title.indexOf('tee') !== -1 || title.indexOf('hoodie') !== -1) {
+                item.dataset.category = 'apparel';
+            } else {
+                item.dataset.category = 'other';
+            }
+        });
+
+        tabs.forEach(function(tab) {
+            tab.addEventListener('click', function() {
+                var filter = this.dataset.filter;
+                tabs.forEach(function(t) { t.classList.remove('active'); });
+                this.classList.add('active');
+                items.forEach(function(item) {
+                    var match = filter === 'all' || item.dataset.category === filter;
+                    item.classList.toggle('item-hidden', !match);
+                });
+            });
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initCategoryFilter);
+    } else {
+        initCategoryFilter();
+    }
 })();
 </script>
 </body>
