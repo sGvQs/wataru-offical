@@ -1278,7 +1278,6 @@
     }
 
     body#shopDetailPage .itemDescription {
-        margin: 60px 7px 24px 0;
         color: var(--cream);
     }
 
@@ -2222,20 +2221,38 @@
         padding: 0 !important; margin: 0 !important;
     }
 
-    /* product grid → CSS Grid */
+    /* product grid (#mainContent と .itemList は同一要素) */
     body#shopTopPage .itemList {
         display: grid !important;
-        grid-template-columns: repeat(4, 1fr) !important;
-        gap: 1px !important;
-        background: var(--border) !important;
-        width: 100% !important; padding: 0 !important;
-        overflow: hidden; margin: 0 !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 16px !important;
+        background: var(--bg) !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        padding: 32px 16px 64px !important;
+        margin: 0 !important;
+        overflow: visible;
+    }
+    @media (min-width: 600px) {
+        body#shopTopPage .itemList {
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 20px !important;
+            padding: 48px 32px 80px !important;
+        }
+    }
+    @media (min-width: 960px) {
+        body#shopTopPage .itemList {
+            grid-template-columns: repeat(4, 1fr) !important;
+            gap: 24px !important;
+            padding: 60px 48px 100px !important;
+        }
     }
     body#shopTopPage .item {
-        background: var(--bg3) !important;
+        background: var(--bg) !important;
         float: none !important; width: auto !important;
         margin: 0 !important; padding: 0 !important;
-        display: flex !important; flex-direction: column; position: relative;
+        display: flex !important; flex-direction: column;
+        position: relative; cursor: pointer;
     }
     body#shopTopPage .item .itemImg {
         aspect-ratio: 3 / 4; height: auto !important;
@@ -2245,33 +2262,66 @@
     body#shopTopPage .item .itemImg img.image-resize {
         position: absolute; inset: 0;
         width: 100%; height: 100%; object-fit: cover;
-        transition: transform .5s ease;
+        transition: transform .7s cubic-bezier(.25,.46,.45,.94);
         max-height: none !important; max-width: none !important;
     }
-    body#shopTopPage .item:hover .itemImg img.image-resize { transform: scale(1.03); }
+    body#shopTopPage .item:hover .itemImg img.image-resize { transform: scale(1.05); }
+
+    /* hover overlay */
     body#shopTopPage .item .itemImg::after {
+        content: '';
+        position: absolute; inset: 0;
+        background: linear-gradient(
+            to top,
+            rgba(242,236,227,.88) 0%,
+            rgba(242,236,227,.5)  35%,
+            transparent           65%
+        );
+        opacity: 0; transition: opacity .4s ease;
+        pointer-events: none;
+    }
+    body#shopTopPage .item:hover .itemImg::after { opacity: 1; }
+
+    /* hover "VIEW" label */
+    body#shopTopPage .item .itemImg a::after {
         content: 'View';
-        position: absolute; bottom: 0; left: 0; right: 0;
-        background: linear-gradient(to top, rgba(242,236,227,.97) 0%, rgba(242,236,227,.7) 60%, transparent 100%);
-        border-top: none;
-        padding: 13px; text-align: center;
-        font-size: .68rem; letter-spacing: .2em; text-transform: uppercase;
+        position: absolute; bottom: 16px; left: 0; right: 0;
+        text-align: center;
+        font-family: 'Inter', sans-serif;
+        font-size: .6rem; letter-spacing: .28em; text-transform: uppercase;
         color: var(--warm-white);
-        transform: translateY(100%); transition: transform .3s;
+        opacity: 0; transform: translateY(6px);
+        transition: opacity .35s ease, transform .35s ease;
+        z-index: 2;
     }
-    body#shopTopPage .item:hover .itemImg::after { transform: translateY(0); }
+    body#shopTopPage .item:hover .itemImg a::after {
+        opacity: 1; transform: translateY(0);
+    }
+
+    /* card info */
     body#shopTopPage .item .itemTitle {
-        padding: 14px 16px 4px; margin: 0 !important; text-align: left !important;
+        padding: 16px 16px 3px; margin: 0 !important; text-align: left !important;
     }
+    body#shopTopPage .item a { color: var(--warm-white) !important; }
     body#shopTopPage .item a .itemTitle h2 {
-        width: auto !important;
-        font-family: 'Cormorant Garamond', serif; font-size: .95rem !important;
+        width: auto !important; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+        font-family: 'Inter', sans-serif !important;
+        font-size: .78rem !important; font-weight: 300 !important;
+        letter-spacing: .05em !important; color: var(--warm-white);
     }
-    body#shopTopPage .item .itemDetail { padding: 2px 16px 16px; }
+    body#shopTopPage .item .itemDetail { padding: 4px 16px 18px; }
     body#shopTopPage .item .itemDetail .itemPrice {
-        text-align: left !important; font-size: .88rem !important;
-        letter-spacing: .06em !important; color: var(--cream);
+        text-align: left !important;
+        font-family: 'Cormorant Garamond', serif !important;
+        font-size: 1rem !important; font-weight: 300 !important;
+        letter-spacing: .05em !important; color: var(--cream) !important;
     }
+
+    /* hover — カード下線 */
+    body#shopTopPage .item:hover .itemImg { border: none !important; padding: 0 !important; }
+    body#shopTopPage .item:hover a { color: var(--warm-white) !important; }
+
+    /* soldout */
     body#shopTopPage .item .itemImg a .soldout_cover {
         background-color: rgba(242,236,227,.92) !important;
         opacity: 1 !important;
@@ -2642,6 +2692,206 @@
         }
         body.shop #mainFooter .footerMenu ul {
             flex-wrap: wrap !important; justify-content: flex-start !important;
+        }
+    }
+
+    /* ── SHOP DETAIL PAGE — purchase section refinement ── */
+
+    /* price */
+    body#shopDetailPage .itemPrice h2 {
+        margin: 0 0 28px !important;
+        gap: 0 !important;
+    }
+    body#shopDetailPage .itemPrice h2 .price__mainValue {
+        font-family: 'Cormorant Garamond', serif !important;
+        font-size: 2rem !important;
+        font-weight: 300 !important;
+        letter-spacing: .06em !important;
+        color: var(--warm-white) !important;
+    }
+    body#shopDetailPage .itemPrice h2 .price__tax {
+        font-size: .7rem !important;
+        color: var(--gray) !important;
+        letter-spacing: .08em;
+        margin-left: 6px;
+    }
+
+    /* label */
+    body#shopDetailPage #purchase_form label,
+    body#shopDetailPage #purchase_form .purchaseElement label {
+        color: var(--cream) !important;
+        font-size: .7rem !important;
+        letter-spacing: .18em !important;
+        text-transform: uppercase;
+        margin: 20px 0 8px !important;
+    }
+
+    /* select */
+    body#shopDetailPage #purchase_form #itemSelect select.itemOption__select,
+    body#shopDetailPage #purchase_form #itemSelect #valiationSelect,
+    body#shopDetailPage #purchase_form #itemSelect #amountSelect,
+    body#shopDetailPage #purchase_form select {
+        background-color: var(--bg) !important;
+        border: 1px solid var(--border) !important;
+        color: var(--warm-white) !important;
+        border-radius: 0 !important;
+        padding: 10px 32px 10px 12px !important;
+        font-size: .84rem !important;
+        letter-spacing: .05em !important;
+        height: auto !important;
+        transition: border-color .2s ease !important;
+    }
+    body#shopDetailPage #purchase_form select:focus {
+        outline: none !important;
+        border-color: var(--cream) !important;
+    }
+
+    /* attention */
+    body#shopDetailPage #itemAttention {
+        font-size: .72rem !important;
+        color: var(--gray) !important;
+        line-height: 1.8 !important;
+        margin-bottom: 20px !important;
+        padding: 12px 0 !important;
+        border-top: 1px solid var(--border) !important;
+    }
+
+    /* cart button */
+    body#shopDetailPage #purchase_form .purchaseButton {
+        margin: 24px 0 0 !important;
+    }
+    body#shopDetailPage #purchase_form .purchaseButton .purchaseButton__btn {
+        background: var(--warm-white) !important;
+        color: var(--bg) !important;
+        border: none !important;
+        border-radius: 0 !important;
+        font-family: 'Inter', sans-serif !important;
+        font-size: .7rem !important;
+        font-weight: 500 !important;
+        letter-spacing: .25em !important;
+        text-transform: uppercase !important;
+        padding: 18px 0 !important;
+        transition: background .25s ease, color .25s ease !important;
+    }
+    body#shopDetailPage #purchase_form .purchaseButton .purchaseButton__btn:hover {
+        background: var(--cream) !important;
+        color: var(--bg) !important;
+        opacity: 1 !important;
+    }
+    body#shopDetailPage #purchase_form .purchaseButton .purchaseButton__btn--outOfStock {
+        background: var(--border) !important;
+        color: var(--gray) !important;
+    }
+
+    /* share / report */
+    body#shopDetailPage .shareButtons {
+        display: none !important;
+    }
+    body#shopDetailPage #reportBtn a#openIllegalReport {
+        display: inline-block !important;
+        font-size: .68rem !important;
+        letter-spacing: .2em !important;
+        text-transform: uppercase !important;
+        color: var(--gray) !important;
+        font-family: 'Inter', sans-serif !important;
+        border: 1px solid var(--border) !important;
+        padding: 8px 16px !important;
+        transition: border-color .2s ease, color .2s ease !important;
+    }
+    body#shopDetailPage #reportBtn a#openIllegalReport:hover {
+        border-color: var(--cream) !important;
+        color: var(--cream) !important;
+    }
+
+    /* ── SHOP DETAIL PAGE — layout ── */
+    body#shopDetailPage #mainContent {
+        background: var(--bg) !important;
+        width: 100% !important;
+        max-width: none !important;
+        box-sizing: border-box !important;
+        padding: 40px 20px 80px !important;
+        margin: 0 !important;
+    }
+    body#shopDetailPage header h1.itemTitle {
+        font-size: clamp(1.3rem, 4vw, 1.9rem) !important;
+        margin-bottom: 40px !important;
+        padding-bottom: 20px !important;
+        border-bottom: 1px solid var(--border) !important;
+    }
+    body#shopDetailPage #mainContent .item {
+        float: none !important;
+        width: 100% !important;
+        margin: 0 !important;
+    }
+    body#shopDetailPage .itemImg {
+        height: auto !important;
+        aspect-ratio: 1 / 1;
+        max-height: 80vw;
+    }
+    body#shopDetailPage #slideImg .imgBox {
+        border-radius: 0 !important;
+    }
+    body#shopDetailPage #mainContent .purchase {
+        margin: 32px 0 0 !important;
+        width: 100% !important;
+        padding: 28px 0 !important;
+        box-sizing: border-box !important;
+    }
+    body#shopDetailPage .itemDescription {
+        font-size: .84rem !important;
+        line-height: 1.9 !important;
+        color: var(--gray) !important;
+        letter-spacing: .04em;
+    }
+    /* desktop: two-column side by side */
+    @media (min-width: 769px) {
+        body#shopDetailPage #mainContent {
+            max-width: 1100px !important;
+            margin: 0 auto !important;
+            padding: 60px 60px 100px !important;
+            width: 100% !important;
+        }
+        body#shopDetailPage #mainContent .item {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            gap: 60px !important;
+            float: none !important;
+            width: 100% !important;
+            align-items: start;
+        }
+        body#shopDetailPage .itemImg {
+            height: auto !important;
+            max-height: none;
+            aspect-ratio: auto;
+        }
+        body#shopDetailPage #mainContent .item .itemImgSlide {
+            float: none !important;
+            width: 100% !important;
+        }
+        body#shopDetailPage #mainContent .item .bx-wrapper {
+            float: none !important;
+            width: 100% !important;
+        }
+        body#shopDetailPage #slideImg .imgBox {
+            width: 100% !important;
+            height: auto !important;
+            line-height: normal !important;
+        }
+        body#shopDetailPage #slideImg .imgBox img {
+            max-width: 100% !important;
+            max-height: none !important;
+            width: 100% !important;
+            object-fit: cover !important;
+        }
+        body#shopDetailPage #mainContent .purchase {
+            margin: 0 !important;
+            width: 100% !important;
+            padding: 0 !important;
+            border: none !important;
+        }
+        body#shopDetailPage header h1.itemTitle {
+            font-size: clamp(1.4rem, 2vw, 2rem) !important;
+            margin-bottom: 48px !important;
         }
     }
     </style>
