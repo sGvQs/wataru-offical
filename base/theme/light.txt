@@ -3053,9 +3053,9 @@
             </div>
             <nav>
                 <ul>
-                    <li class="nav-music"><a class="mainHeaderNavColor" href="https://sgvqs.github.io/wataru-offical/index-amber.html#music">MUSIC</a></li>
-                    <li class="nav-live"><a class="mainHeaderNavColor" href="https://sgvqs.github.io/wataru-offical/index-amber.html#live">LIVE</a></li>
-                    <li><a class="mainHeaderNavColor" href="https://sgvqs.github.io/wataru-offical/index-amber.html">HOME</a></li>
+                    <li class="nav-music"><a class="mainHeaderNavColor" href="https://sgvqs.github.io/wataru-offical/index.html#music">MUSIC</a></li>
+                    <li class="nav-live"><a class="mainHeaderNavColor" href="https://sgvqs.github.io/wataru-offical/index.html#live">LIVE</a></li>
+                    <li><a class="mainHeaderNavColor" href="https://sgvqs.github.io/wataru-offical/index.html">HOME</a></li>
                     {block:AppsSearch}
                         <li class="column itemSearch">
                             <form id="x_itemSearchForm" class="itemSearch__form" action="{SearchPageURL}" method="get">
@@ -3453,7 +3453,7 @@
 <footer id="mainFooter" class="wrapper clearfix">
     <div class="footerMenu">
         <ul class="clearfix">
-            <li><a class="footerNav" href="https://sgvqs.github.io/wataru-offical/index-light.html">公式サイト</a></li>
+            <li><a class="footerNav" href="https://sgvqs.github.io/wataru-offical/index.html">公式サイト</a></li>
             <li><a class="footerNav" href="{PrivacyPageURL}">{lang:Privacy}</a></li>
             <li><a class="footerNav" href="{LawPageURL}">{lang:Law}</a></li>
             <li><a class="footerNav" href="{ContactPageURL}">お問い合わせ</a></li>
