@@ -3047,6 +3047,7 @@
     <a href="https://sgvqs.github.io/wataru-offical/index.html" class="menu-anchor">Home</a>
     <a href="https://sgvqs.github.io/wataru-offical/index.html#event" class="menu-anchor">Event</a>
     <a href="https://www.youtube.com/@dadaisme77" target="_blank" rel="noopener noreferrer" class="menu-anchor">YouTube</a>
+    <a href="https://www.instagram.com/_spring045_" target="_blank" rel="noopener noreferrer" class="menu-anchor">Instagram</a>
 </div>
 {block:IndexPage}
     {block:NotShopPublic}
