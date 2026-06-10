@@ -2689,6 +2689,7 @@
 
     /* responsive */
     @media (min-width: 769px) {
+        .nav-music, .nav-live { display: none !important; }
         body.shop .wrapper { width: 100% !important; }
         body#shopTopPage .itemList { width: 100% !important; }
     }
@@ -3016,8 +3017,8 @@
             </div>
             <nav>
                 <ul>
-                    <li><a class="mainHeaderNavColor" href="https://sgvqs.github.io/wataru-offical/index-amber.html#music">MUSIC</a></li>
-                    <li><a class="mainHeaderNavColor" href="https://sgvqs.github.io/wataru-offical/index-amber.html#live">LIVE</a></li>
+                    <li class="nav-music"><a class="mainHeaderNavColor" href="https://sgvqs.github.io/wataru-offical/index-amber.html#music">MUSIC</a></li>
+                    <li class="nav-live"><a class="mainHeaderNavColor" href="https://sgvqs.github.io/wataru-offical/index-amber.html#live">LIVE</a></li>
                     <li><a class="mainHeaderNavColor" href="https://sgvqs.github.io/wataru-offical/index-amber.html">HOME</a></li>
                     {block:AppsSearch}
                         <li class="column itemSearch">
