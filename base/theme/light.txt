@@ -2100,10 +2100,13 @@
     body.shop #shopHeader nav ul li a.active {
         color: var(--warm-white) !important;
     }
-    /* right: nav icons */
+    /* right: header-right wrapper (hamburger + icons) */
+    .header-right {
+        display: flex; align-items: center; gap: 16px; flex-shrink: 0;
+        margin-left: 32px;
+    }
     .base-nav-icons {
         display: flex; align-items: center; gap: 32px; flex-shrink: 0;
-        margin-left: 32px;
     }
     .base-nav-site-link {
         font-family: 'Inter', sans-serif;
@@ -2689,22 +2692,12 @@
         body#shopTopPage .itemList { width: 100% !important; }
     }
     @media (max-width: 768px) {
-        body.shop #shopHeader { padding: 0 16px !important; justify-content: space-between !important; }
+        body.shop #shopHeader { padding: 0 16px !important; }
         body.shop #shopHeader nav { display: none !important; }
-        .base-nav-icons { display: none !important; }
-        .hamburger { display: flex !important; margin-left: auto; }
+        .header-right { margin-left: auto; }
+        .hamburger { display: flex !important; }
         .mobile-menu { display: flex; }
-        .mobile-menu-icons {
-            display: flex; align-items: center; gap: 28px;
-            padding-top: 28px; margin-top: 4px;
-            border-top: 1px solid var(--border);
-        }
-        .mobile-menu-icons a {
-            display: flex; align-items: center; opacity: .6; transition: opacity .2s;
-        }
-        .mobile-menu-icons a:hover { opacity: 1; }
-        .mobile-menu-icons a img { height: 20px; width: auto; display: block; }
-        .mobile-menu-icons .cart { position: relative; }
+        .base-nav-icons { gap: 20px; }
         body#shopTopPage .itemList { grid-template-columns: repeat(2,1fr) !important; }
         .base-shop-header { min-height: 540px; }
         body.shop #mainFooter {
@@ -3007,23 +3000,6 @@
                 {/block:AppsSearch}
             </ul>
         </nav>
-        <div class="base-nav-icons">
-            <a href="https://thebase.com?from=susum-base-shop&amp;p=shop" target="_blank">
-                <img src="/img/shop/base.png" alt="BASE" height="20">
-            </a>
-            <a class="cart" href="https://susum.base.shop/cart/add/susum-base-shop">
-                <img src="/img/shop/cart.png" alt="cart" height="22">
-                <div class="cart-badge" style="display:none;">
-                    <div class="cart-qty" style="display:none;"></div>
-                    <script>
-                    document.addEventListener("DOMContentLoaded",function(){
-                        var qty=window.localStorage&&localStorage.getItem("cartQty")||"0";
-                        if(qty!=="0"){document.querySelectorAll(".cart-qty").forEach(function(el){el.textContent=qty;el.style.display="block";});}
-                    });
-                    </script>
-                </div>
-            </a>
-        </div>
         {block:AppsItemCategory}{block:IndexPageCategory}
             <h2 class="categoryTitle01">{IndexPageCategory}</h2>
             {block:HasAppsItemCategoryChildCategories}
@@ -3034,26 +3010,34 @@
                 </ul>
             {/block:HasAppsItemCategoryChildCategories}
         {/block:IndexPageCategory}{/block:AppsItemCategory}
-        <button class="hamburger" id="hamburger" aria-label="メニュー">
-            <span></span><span></span><span></span>
-        </button>
+        <div class="header-right">
+            <button class="hamburger" id="hamburger" aria-label="メニュー">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="base-nav-icons">
+                <a href="https://thebase.com?from=susum-base-shop&amp;p=shop" target="_blank">
+                    <img src="/img/shop/base.png" alt="BASE" height="20">
+                </a>
+                <a class="cart" href="https://susum.base.shop/cart/add/susum-base-shop">
+                    <img src="/img/shop/cart.png" alt="cart" height="22">
+                    <div class="cart-badge" style="display:none;">
+                        <div class="cart-qty" style="display:none;"></div>
+                        <script>
+                        document.addEventListener("DOMContentLoaded",function(){
+                            var qty=window.localStorage&&localStorage.getItem("cartQty")||"0";
+                            if(qty!=="0"){document.querySelectorAll(".cart-qty").forEach(function(el){el.textContent=qty;el.style.display="block";});}
+                        });
+                        </script>
+                    </div>
+                </a>
+            </div>
+        </div>
     </div>
 </header>
 <div class="mobile-menu" id="mobile-menu">
     <a href="https://sgvqs.github.io/wataru-offical/index-amber.html#music" class="menu-anchor">Music</a>
     <a href="https://sgvqs.github.io/wataru-offical/index-amber.html#live" class="menu-anchor">Live</a>
     <a href="https://sgvqs.github.io/wataru-offical/index-amber.html" class="menu-anchor">Home</a>
-    <div class="mobile-menu-icons">
-        <a href="https://thebase.com?from=susum-base-shop&amp;p=shop" target="_blank">
-            <img src="/img/shop/base.png" alt="BASE" height="20">
-        </a>
-        <a class="cart" href="https://susum.base.shop/cart/add/susum-base-shop">
-            <img src="/img/shop/cart.png" alt="cart" height="22">
-            <div class="cart-badge" style="display:none;">
-                <div class="cart-qty" style="display:none;"></div>
-            </div>
-        </a>
-    </div>
 </div>
 {block:IndexPage}
     {block:NotShopPublic}
