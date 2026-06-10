@@ -3073,9 +3073,9 @@
     </div>
 </header>
 <div class="mobile-menu" id="mobile-menu">
-    <a href="https://sgvqs.github.io/wataru-offical/index-amber.html#music" class="menu-anchor">Music</a>
-    <a href="https://sgvqs.github.io/wataru-offical/index-amber.html#live" class="menu-anchor">Live</a>
-    <a href="https://sgvqs.github.io/wataru-offical/index-amber.html" class="menu-anchor">Home</a>
+    <a href="https://sgvqs.github.io/wataru-offical/index.html#music" class="menu-anchor">Music</a>
+    <a href="https://sgvqs.github.io/wataru-offical/index.html#live" class="menu-anchor">Live</a>
+    <a href="https://sgvqs.github.io/wataru-offical/index.html" class="menu-anchor">Home</a>
 </div>
 {block:IndexPage}
     {block:NotShopPublic}
