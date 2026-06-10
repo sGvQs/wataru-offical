@@ -1,0 +1,15 @@
+<div id="baseMenu"> <ul class="clearfix"> <li class="base"><a target="_blank" href="https://thebase.com?from=susum-base-shop&amp;p=shop"><img src="/img/shop/base.png" alt="ネットショップを開設するならBASE" title="BASE" height="30"></a></li> <li class="cart"> <a href="https://susum.base.shop/cart/add/susum-base-shop"> <img src="/img/shop/cart.png" alt="shopping cart" height="30"> <div class="cart-badge" style="display: none;"> 
+			<div class="cart-qty" style="display: none;"></div>
+			<script>
+			document.addEventListener("DOMContentLoaded", function() {
+				const cartQty = window.localStorage && localStorage.getItem("cartQty") || "0";
+				if (typeof cartQty === "string" && cartQty !== "0") {
+					const cartQtyElements = document.querySelectorAll(".cart-qty");
+					cartQtyElements.forEach(element => {
+						element.textContent = cartQty;
+						element.style.display = "block";
+					});
+				}
+			});
+			</script>
+		 </div> </a> </li> </ul> </div>
