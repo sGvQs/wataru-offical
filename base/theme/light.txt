@@ -2006,11 +2006,6 @@
         z-index: 997; pointer-events: none;
         background: radial-gradient(ellipse 100% 100% at 50% 50%, transparent 55%, rgba(200,191,176,.35) 100%);
     }
-    /* scrollbar — native standard */
-    html { scrollbar-color: var(--red) var(--bg); scrollbar-width: thin; }
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--red); border-radius: 0; }
     html, body { overflow-x: hidden; }
 
     /* announcement bar */
@@ -3571,6 +3566,20 @@ document.addEventListener('DOMContentLoaded', function() {
         if (hamburger) hamburger.classList.remove('open');
         if (mobileMenu) mobileMenu.classList.remove('open');
     });
+})();
+</script>
+<script>
+(function(){
+    var css = '*{scrollbar-width:none!important;-ms-overflow-style:none!important;}' +
+              '*::-webkit-scrollbar{display:none!important;width:0!important;height:0!important;}';
+    function injectStyle(){
+        var s = document.getElementById('__no-scrollbar__');
+        if(!s){ s = document.createElement('style'); s.id = '__no-scrollbar__'; document.head.appendChild(s); }
+        s.textContent = css;
+    }
+    injectStyle();
+    /* BASE が後から注入しても上書き維持 */
+    new MutationObserver(injectStyle).observe(document.head, { childList: true });
 })();
 </script>
 </body>
