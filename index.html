@@ -457,23 +457,29 @@
 
     /* ── FOOTER ── */
     footer {
-      background: var(--bg2); border-top: 1px solid var(--border);
-      padding: 40px 48px; display: flex; align-items: center;
-      justify-content: space-between; flex-wrap: wrap; gap: 16px;
+      background: var(--bg2); border-top: 1px solid rgba(200,191,176,.4);
+      padding: 32px 48px; display: flex; flex-direction: column;
+      align-items: center; gap: 0;
     }
     .footer-logo {
       font-family: 'Cormorant Garamond', serif;
       font-weight: 400; font-size: .85rem;
       letter-spacing: .25em; text-transform: uppercase;
       line-height: 1.4; color: var(--fg); text-decoration: none;
+      margin-bottom: 20px;
     }
-    .footer-nav { display: flex; gap: 24px; }
+    .footer-nav { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
     .footer-nav a {
       font-size: .68rem; letter-spacing: .15em; color: var(--gray);
       text-decoration: none; text-transform: uppercase; transition: color .2s;
     }
     .footer-nav a:hover { color: var(--fg); }
-    .footer-copy { font-size: .68rem; color: var(--gray2); letter-spacing: .08em; }
+    .footer-copy {
+      width: 100%; text-align: center;
+      font-size: .65rem; letter-spacing: .1em; color: var(--gray2);
+      padding-top: 16px; border-top: 1px solid var(--border);
+      margin-top: 20px;
+    }
 
     /* ── YOUTUBE LINKS ── */
     .yt-watch-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 20px; font-size: .65rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gray); text-decoration: none; transition: color .2s; animation: fadeUp .8s ease .4s both; }
@@ -527,7 +533,8 @@
       .contact-grid { grid-template-columns: 1fr; }
       .contact-field:last-of-type { grid-column: 1; }
 
-      footer { flex-direction: column; align-items: flex-start; }
+      footer { padding: 32px 20px; }
+      .footer-nav { gap: 16px; }
     }
   </style>
 </head>
