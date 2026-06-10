@@ -3422,6 +3422,8 @@
     <div class="footerMenu">
         <ul class="clearfix">
             <li><a class="footerNav" href="https://sgvqs.github.io/wataru-offical/index.html">公式サイト</a></li>
+            <li><a class="footerNav" href="https://www.youtube.com/@dadaisme77" target="_blank" rel="noopener noreferrer">YouTube</a></li>
+            <li><a class="footerNav" href="https://www.instagram.com/_spring045_" target="_blank" rel="noopener noreferrer">Instagram</a></li>
             <li><a class="footerNav" href="{PrivacyPageURL}">{lang:Privacy}</a></li>
             <li><a class="footerNav" href="{LawPageURL}">{lang:Law}</a></li>
             <li><a class="footerNav" href="{ContactPageURL}">お問い合わせ</a></li>
