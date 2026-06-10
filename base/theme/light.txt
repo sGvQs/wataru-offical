@@ -3089,8 +3089,8 @@
             <div class="base-shop-rule"></div>
             <h1 class="base-shop-title"><em>Dadaïsme</em></h1>
             <div class="base-shop-actions">
-                <a href="https://sgvqs.github.io/wataru-offical/index-amber.html#live" class="base-shop-btn base-shop-btn-primary">Live</a>
-                <a href="https://sgvqs.github.io/wataru-offical/index-amber.html" class="base-shop-btn base-shop-btn-outline">Artist Site</a>
+                <a href="#categoryTabs" class="base-shop-btn base-shop-btn-primary nav-filter-link" data-tab-target="cd">CD</a>
+                <a href="#categoryTabs" class="base-shop-btn base-shop-btn-outline nav-filter-link" data-tab-target="apparel">Apparel</a>
             </div>
             <div class="base-shop-scroll">
                 <span>Scroll</span>
@@ -3553,6 +3553,22 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         initCategoryFilter();
     }
+
+    document.addEventListener('click', function(e) {
+        var link = e.target.closest('.nav-filter-link');
+        if (!link) return;
+        e.preventDefault();
+        var target = link.dataset.tabTarget;
+        var tab = document.querySelector('.category-tab[data-filter="' + target + '"]');
+        var tabs = document.getElementById('categoryTabs');
+        if (tab) tab.click();
+        if (tabs) tabs.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // close mobile menu if open
+        var hamburger = document.getElementById('hamburger');
+        var mobileMenu = document.getElementById('mobile-menu');
+        if (hamburger) hamburger.classList.remove('open');
+        if (mobileMenu) mobileMenu.classList.remove('open');
+    });
 })();
 </script>
 </body>
