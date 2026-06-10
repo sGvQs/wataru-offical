@@ -3081,12 +3081,11 @@
         {block:NoIndexPageCategory}{block:NoIndexPageSearch}
         <div class="base-shop-header">
             <div class="base-shop-hero-bg"></div>
-            <div class="base-shop-rule"></div>
             <h1 class="base-shop-title"><em>Dadaïsme</em></h1>
             <div class="base-shop-actions">
                 <a href="#categoryTabs" class="base-shop-btn base-shop-btn-outline nav-filter-link" data-tab-target="cd">CD</a>
                 <a href="#categoryTabs" class="base-shop-btn base-shop-btn-outline nav-filter-link" data-tab-target="apparel">Apparel</a>
-                <a href="#categoryTabs" class="base-shop-btn base-shop-btn-outline nav-filter-link" data-tab-target="event">Event</a>
+                <a href="https://sgvqs.github.io/wataru-offical/index.html#event" class="base-shop-btn base-shop-btn-outline">Event</a>
                 <a href="https://sgvqs.github.io/wataru-offical/index.html" class="base-shop-btn base-shop-btn-primary">Home</a>
             </div>
         </div>
@@ -3544,10 +3543,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function initFromHash() {
         var hash = window.location.hash.replace('#', '').toLowerCase();
-        if (hash === 'cd' || hash === 'apparel') {
+        if (hash !== 'cd' && hash !== 'apparel') return;
+        /* BASE がアイテムを非同期描画するため少し待つ */
+        setTimeout(function() {
+            initCategoryFilter();
             var tab = document.querySelector('.category-tab[data-filter="' + hash + '"]');
+            var tabsEl = document.getElementById('categoryTabs');
             if (tab) tab.click();
-        }
+            if (tabsEl) setTimeout(function() {
+                tabsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 80);
+        }, 400);
     }
 
     if (document.readyState === 'loading') {
