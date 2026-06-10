@@ -2296,53 +2296,27 @@
         margin: 0 !important; padding: 0 !important;
         display: flex !important; flex-direction: column;
         position: relative; cursor: pointer;
+        transition: transform .4s cubic-bezier(.25,.46,.45,.94);
+    }
+    body#shopTopPage .item:hover {
+        transform: scale(1.04);
+        z-index: 2;
     }
     body#shopTopPage .item.item-hidden {
         display: none !important;
     }
     body#shopTopPage .item .itemImg {
-        aspect-ratio: 3 / 4; height: auto !important;
+        height: auto !important;
         line-height: normal !important; overflow: hidden;
         width: 100% !important; max-width: none; position: relative;
     }
     body#shopTopPage .item .itemImg img.image-resize {
         position: absolute; inset: 0;
         width: 100%; height: 100%; object-fit: cover;
-        transition: transform .7s cubic-bezier(.25,.46,.45,.94);
+        transition: transform .4s cubic-bezier(.25,.46,.45,.94);
         max-height: none !important; max-width: none !important;
     }
-    body#shopTopPage .item:hover .itemImg img.image-resize { transform: scale(1.05); }
-
-    /* hover overlay */
-    body#shopTopPage .item .itemImg::after {
-        content: '';
-        position: absolute; inset: 0;
-        background: linear-gradient(
-            to top,
-            rgba(242,236,227,.88) 0%,
-            rgba(242,236,227,.5)  35%,
-            transparent           65%
-        );
-        opacity: 0; transition: opacity .4s ease;
-        pointer-events: none;
-    }
-    body#shopTopPage .item:hover .itemImg::after { opacity: 1; }
-
-    /* hover "VIEW" label */
-    body#shopTopPage .item .itemImg a::after {
-        content: 'View';
-        position: absolute; bottom: 16px; left: 0; right: 0;
-        text-align: center;
-        font-family: 'Inter', sans-serif;
-        font-size: .6rem; letter-spacing: .28em; text-transform: uppercase;
-        color: var(--warm-white);
-        opacity: 0; transform: translateY(6px);
-        transition: opacity .35s ease, transform .35s ease;
-        z-index: 2;
-    }
-    body#shopTopPage .item:hover .itemImg a::after {
-        opacity: 1; transform: translateY(0);
-    }
+    body#shopTopPage .item:hover .itemImg img.image-resize { transform: scale(1.06); }
 
     /* card info */
     body#shopTopPage .item .itemTitle {
