@@ -6,7 +6,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="mobile-web-app-capable" content="yes">
-  <title>Dadaïsme — Official [Amber]</title>
+  <title>Dadaïsme — Official [Light]</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Serif+JP:wght@300;400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -14,30 +14,33 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:         #1A1208;
-      --bg2:        #221A0F;
-      --bg3:        #2C2215;
-      --fg:         #F0E4C8;
-      --fg2:        #C8A878;
-      --gray:       #A07848;
-      --gray2:      #604828;
-      --border:     #503C20;
-      --amber:        #D4940C;
-      --amber-dim:    rgba(212,148,12,.15);
-      --accent:       #B5201A;
-      --gold:       #E8B030;
+      --bg:         #F2ECE3;
+      --bg2:        #E8E1D6;
+      --bg3:        #DDD6C8;
+      --fg:         #1A1512;
+      --fg2:        #4A3F33;
+      --gray:       #8A7D6E;
+      --gray2:      #C0B5A5;
+      --border:     #C8BFB0;
+      /* --red:     #B5201A; */  /* original red */
+      --red:        #8B5E0A;
+      --red-dim:    rgba(139,94,10,.07); /* original: rgba(181,32,26,.07) */
+      --gold:       #7A5C2E;
       --nav-h:      72px;
       --safe-top:   env(safe-area-inset-top, 0px);
     }
 
-    html { scroll-behavior: smooth; overflow-x: clip; background: var(--bg); }
+    html { scroll-behavior: smooth; overflow-x: clip; background: var(--bg); transition: background .4s ease; }
+    html.in-hero { background: #0d0a07; }
     body {
       background: var(--bg);
       color: var(--fg);
       font-family: 'Inter', sans-serif;
       font-weight: 300;
       overflow-x: hidden;
+      transition: background .4s ease;
     }
+    body.in-hero { background: #0d0a07; }
 
     /* Subtle paper texture */
     body::before {
@@ -64,7 +67,8 @@
       display: none; align-items: center;
       justify-content: space-between;
       padding: env(safe-area-inset-top) 48px 0;
-      background: var(--bg);
+      background: rgba(242,236,227,.94);
+      backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
     }
     nav#main-nav.scrolled {
@@ -90,11 +94,11 @@
     }
     .nav-links a:hover { color: var(--fg); }
     .nav-cta {
-      border: 1px solid var(--amber) !important;
-      color: var(--amber) !important; padding: 7px 20px;
+      border: 1px solid var(--red) !important;
+      color: var(--red) !important; padding: 7px 20px;
       transition: background .25s, color .25s !important;
     }
-    .nav-cta:hover { background: var(--amber) !important; color: #fff !important; }
+    .nav-cta:hover { background: var(--red) !important; color: #fff !important; }
 
     /* ── HAMBURGER ── */
     .hamburger {
@@ -116,7 +120,7 @@
     /* ── MOBILE MENU ── */
     .mobile-menu {
       display: none; position: fixed; inset: 0; z-index: 105;
-      background: rgba(26,18,8,.98);
+      background: rgba(242,236,227,.98);
       flex-direction: column; align-items: center; justify-content: center;
       gap: 36px; opacity: 0; pointer-events: none; transition: opacity .3s;
     }
@@ -127,7 +131,7 @@
       letter-spacing: .15em; text-transform: uppercase;
       color: var(--fg); text-decoration: none; transition: color .2s;
     }
-    .mobile-menu a:hover { color: var(--amber); }
+    .mobile-menu a:hover { color: var(--red); }
 
     section[id] { scroll-margin-top: calc(var(--nav-h) + var(--safe-top)); }
 
@@ -186,7 +190,7 @@
       margin-bottom: 28px; animation: fadeUp .8s ease both;
     }
     .hero-rule {
-      width: 48px; height: 1px; background: var(--amber);
+      width: 48px; height: 1px; background: var(--red);
       margin: 0 auto 28px; animation: fadeUp .8s ease .05s both;
     }
     .hero-name {
@@ -197,7 +201,7 @@
       text-transform: uppercase; color: var(--fg);
       animation: fadeUp .9s ease .1s both;
     }
-    .hero-name em { font-style: italic; color: var(--amber); }
+    .hero-name em { font-style: italic; color: var(--red); }
     .hero-jp {
       font-family: 'Noto Serif JP', serif; font-weight: 300;
       font-size: .9rem; letter-spacing: .25em; color: var(--gray);
@@ -211,19 +215,6 @@
       color: rgba(255,255,255,.5);
       animation: fadeUp .8s ease .3s both;
     }
-    .hero-store-link {
-      position: relative; z-index: 4;
-      display: inline-block; margin-top: 20px;
-      font-family: 'Inter', sans-serif;
-      font-size: .42rem; letter-spacing: .25em; text-transform: uppercase;
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 700;
-      opacity: .7;
-      transition: opacity .25s;
-      animation: fadeUp .8s ease .45s both;
-    }
-    .hero-store-link:hover { opacity: 1; }
     .hero-actions {
       position: relative; z-index: 2;
       margin-top: 48px; display: flex; gap: 16px; flex-wrap: wrap;
@@ -237,7 +228,7 @@
       text-decoration: none; transition: all .25s; cursor: pointer;
       font-family: 'Inter', sans-serif;
     }
-    .btn-primary { background: var(--accent); color: #fff; border: 1px solid var(--accent); }
+    .btn-primary { background: var(--red); color: #fff; border: 1px solid var(--red); }
     .btn-primary:hover { background: #901a14; border-color: #901a14; transform: translateY(-2px); }
     .btn-outline { background: transparent; color: var(--fg); border: 1px solid var(--border); }
     .btn-outline:hover { border-color: var(--fg); transform: translateY(-2px); }
@@ -258,7 +249,7 @@
     }
     .scroll-line {
       width: 1px; height: 40px;
-      background: linear-gradient(to bottom, var(--amber), transparent);
+      background: linear-gradient(to bottom, var(--red), transparent);
       animation: scrollPulse 1.8s ease infinite;
     }
     @keyframes scrollPulse { 0%,100%{opacity:.3} 50%{opacity:1} }
@@ -267,17 +258,16 @@
     section { padding: 120px 48px; }
     .section-label {
       font-size: .6rem; letter-spacing: .4em;
-      text-transform: uppercase; color: var(--amber); margin-bottom: 14px;
+      text-transform: uppercase; color: var(--red); margin-bottom: 14px;
     }
     .section-title {
       font-family: 'Cormorant Garamond', serif;
       font-weight: 300; font-size: clamp(2.2rem, 4.5vw, 4rem);
       line-height: 1.1; margin-bottom: 56px; letter-spacing: .02em; color: var(--fg);
     }
-    .section-title em { font-style: italic; color: var(--amber); }
+    .section-title em { font-style: italic; color: var(--red); }
 
     /* ── ABOUT ── */
-    #about { display: none; }
     .about {
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 80px; align-items: center; max-width: 1200px; margin: 0 auto;
@@ -307,7 +297,7 @@
     }
     .stat-num {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 2.8rem; font-weight: 300; color: var(--amber); line-height: 1;
+      font-size: 2.8rem; font-weight: 300; color: var(--red); line-height: 1;
     }
     .stat-label { font-size: .65rem; letter-spacing: .15em; color: var(--gray); text-transform: uppercase; margin-top: 6px; }
 
@@ -338,7 +328,7 @@
       display: flex; align-items: center; justify-content: center;
       cursor: pointer; transition: all .2s; flex-shrink: 0;
     }
-    .carousel-btn:hover { background: var(--amber); border-color: var(--amber); color: #fff; }
+    .carousel-btn:hover { background: var(--red); border-color: var(--red); color: #fff; }
     .carousel-btn:disabled { opacity: .25; pointer-events: none; }
     .carousel-dots { display: flex; gap: 8px; align-items: center; }
     .carousel-dot {
@@ -349,7 +339,7 @@
     }
     .carousel-dot.active {
       width: 30px;
-      background: linear-gradient(to bottom, transparent 46%, var(--amber) 46%, var(--amber) 54%, transparent 54%);
+      background: linear-gradient(to bottom, transparent 46%, var(--red) 46%, var(--red) 54%, transparent 54%);
     }
     .music-card {
       flex: 0 0 calc(25% - 1.5px);
@@ -366,14 +356,14 @@
     .music-card-color { width: 100%; height: 100%; }
     .music-card-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(26,18,8,.96) 0%, rgba(26,18,8,.5) 45%, transparent 100%);
+      background: linear-gradient(to top, rgba(242,236,227,.96) 0%, rgba(242,236,227,.5) 45%, transparent 100%);
       display: flex; flex-direction: column; justify-content: flex-end; padding: 24px;
     }
     .music-year { font-size: .6rem; letter-spacing: .2em; color: var(--gray); text-transform: uppercase; margin-bottom: 6px; }
     .music-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; line-height: 1.2; color: var(--fg); }
     .music-title-jp { font-family: 'Noto Serif JP', serif; font-size: 1.1rem; font-weight: 300; }
-    .music-type { font-size: .65rem; color: var(--amber); letter-spacing: .1em; margin-top: 5px; }
-    .music-new-tag { position: absolute; top: 12px; left: 12px; font-size: .5rem; letter-spacing: .15em; color: #fff; background: var(--accent); padding: 2px 5px; border-radius: 1px; text-transform: uppercase; font-weight: 500; z-index: 3; }
+    .music-type { font-size: .65rem; color: var(--red); letter-spacing: .1em; margin-top: 5px; }
+    .music-new-tag { position: absolute; top: 12px; left: 12px; font-size: .5rem; letter-spacing: .15em; color: #fff; background: var(--red); padding: 2px 5px; border-radius: 1px; text-transform: uppercase; font-weight: 500; z-index: 3; }
     .music-play {
       position: absolute; top: 16px; right: 16px;
       width: 40px; height: 40px;
@@ -384,7 +374,7 @@
     }
     .music-card:hover .music-play,
     .music-card.playing .music-play { opacity: 1; }
-    .music-card.playing .music-play { background: var(--amber); border-color: var(--amber); }
+    .music-card.playing .music-play { background: var(--red); border-color: var(--red); }
     .play-icon {
       width: 0; height: 0; border-style: solid;
       border-width: 7px 0 7px 13px;
@@ -396,7 +386,7 @@
       background: linear-gradient(to right, #fff 0%, #fff 35%, transparent 35%, transparent 65%, #fff 65%, #fff 100%);
     }
     .music-progress { position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--border); }
-    .music-progress-bar { height: 100%; width: 0%; background: var(--amber); transition: width .5s linear; }
+    .music-progress-bar { height: 100%; width: 0%; background: var(--red); transition: width .5s linear; }
     .music-waveform {
       display: flex; align-items: flex-end; gap: 3px;
       height: 18px; margin-bottom: 10px;
@@ -405,7 +395,7 @@
     .music-card.playing .music-waveform { opacity: 1; }
     .music-waveform span {
       display: block; width: 3px;
-      background: var(--amber); border-radius: 2px;
+      background: var(--red); border-radius: 2px;
       transform-origin: bottom;
       animation: waveBar .9s ease-in-out infinite alternate;
       animation-play-state: paused;
@@ -422,69 +412,8 @@
     }
 
     /* ──  EVENT ── */
-    .event-header { max-width: 960px; margin: 0 auto 48px; }
-    .event-block { max-width: 960px; margin: 0 auto; }
-    .event-block-label {
-      font-size: .58rem; letter-spacing: .38em; text-transform: uppercase;
-      color: var(--gray); margin-bottom: 24px;
-    }
-    .event-divider { max-width: 960px; margin: 56px auto; border-top: 1px solid var(--border); }
-
-    /* ── UPCOMING FEATURED ── */
-    .poster-featured {
-      display: grid; grid-template-columns: auto 1fr;
-      gap: 48px; align-items: start;
-    }
-    .poster-featured .poster-img-wrap {
-      position: relative;
-      border: 1px solid var(--border);
-    }
-    .poster-featured .poster-img-wrap img {
-      display: block; width: auto; height: auto;
-      max-height: 520px;
-      opacity: 1;
-      transition: transform .4s ease;
-    }
-    .poster-featured:hover .poster-img-wrap img { transform: scale(1.02); }
-    .poster-featured-info { display: flex; flex-direction: column; justify-content: center; gap: 20px; padding-top: 8px; }
-    .poster-featured-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.8rem, 3vw, 2.8rem);
-      font-weight: 300; letter-spacing: .04em; color: var(--fg); line-height: 1.1;
-    }
-    .poster-featured-details { display: flex; flex-direction: column; gap: 8px; }
-    .poster-featured-details dt {
-      font-size: .55rem; letter-spacing: .3em; text-transform: uppercase; color: var(--gray); margin-bottom: 2px;
-    }
-    .poster-featured-details dd { font-size: .85rem; color: var(--fg2); margin: 0 0 10px; }
-
-    /* ── ARCHIVE GRID ── */
-    .poster-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-    .poster-item { position: relative; }
-    .poster-img-wrap {
-      position: relative; overflow: hidden;
-      border: 1px solid var(--border);
-      aspect-ratio: 3 / 4;
-    }
-    .poster-img-wrap img {
-      width: 100%; height: 100%; display: block;
-      object-fit: cover; object-position: center top;
-    }
-    .poster-past-badge {
-      position: absolute; top: 8px; left: 8px;
-      font-size: .46rem; letter-spacing: .2em; text-transform: uppercase;
-      background: rgba(26,18,8,.8); color: var(--gray);
-      padding: 2px 7px;
-    }
-    .poster-meta { margin-top: 10px; display: flex; flex-direction: column; gap: 3px; }
-    .poster-date { font-size: .65rem; letter-spacing: .08em; color: var(--amber); }
-    .poster-venue { font-size: .6rem; color: var(--gray); letter-spacing: .04em; }
-
-    /* ── OLD EVENT (unused, kept for spacing) ── */
+    .event-header { max-width: 1200px; margin: 0 auto 48px; }
+    .event-list { max-width: 1200px; margin: 0 auto; }
     .event-item {
       display: grid; grid-template-columns: 120px 1fr auto;
       gap: 32px; align-items: center; padding: 28px 0;
@@ -492,13 +421,13 @@
       transition: border-color .25s; cursor: pointer;
     }
     .event-item:first-child { border-top: 1px solid var(--border); }
-    .event-item:hover { border-bottom-color: var(--amber); }
+    .event-item:hover { border-bottom-color: var(--red); }
     .event-date { font-family: 'Cormorant Garamond', serif; }
-    .event-date .day { font-size: 2.8rem; font-weight: 300; line-height: 1; color: var(--amber); }
+    .event-date .day { font-size: 2.8rem; font-weight: 300; line-height: 1; color: var(--red); }
     .event-date .month-year { font-size: .65rem; color: var(--gray); letter-spacing: .12em; text-transform: uppercase; margin-top: 3px; }
     .event-info-title { font-size: 1rem; font-weight: 400; margin-bottom: 5px; color: var(--fg); }
     .event-info-venue { font-size: .78rem; color: var(--gray); letter-spacing: .04em; }
-    .event-tag { display: inline-block; padding: 3px 9px; font-size: .58rem; letter-spacing: .15em; text-transform: uppercase; border: 1px solid var(--amber); color: var(--amber); margin-left: 12px; }
+    .event-tag { display: inline-block; padding: 3px 9px; font-size: .58rem; letter-spacing: .15em; text-transform: uppercase; border: 1px solid var(--red); color: var(--red); margin-left: 12px; }
     .event-ticket {
       border: 1px solid var(--border); color: var(--fg2);
       padding: 9px 24px; font-size: .68rem; letter-spacing: .15em;
@@ -535,7 +464,7 @@
     .yt-thumb-link { display: block; position: absolute; inset: 0; }
     .yt-thumb-link img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
     .video-card:hover .yt-thumb-link img { transform: scale(1.04); }
-    .yt-thumb-link:hover .video-play-btn { background: var(--amber); border-color: var(--amber); transform: scale(1.1); }
+    .yt-thumb-link:hover .video-play-btn { background: var(--red); border-color: var(--red); transform: scale(1.1); }
     .video-info { padding: 16px 20px; border-top: 1px solid var(--border); }
     .video-info-title { font-size: .9rem; font-weight: 400; margin-bottom: 4px; color: var(--fg); }
     .video-info-meta { font-size: .72rem; color: var(--gray); }
@@ -553,7 +482,7 @@
       font-size: .88rem; font-family: 'Inter', sans-serif;
       outline: none; transition: border-color .2s; width: 100%;
     }
-    .contact-input:focus { border-color: var(--amber); }
+    .contact-input:focus { border-color: var(--red); }
     .contact-textarea { resize: vertical; min-height: 120px; margin-bottom: 16px; }
     .social-bar {
       display: flex; justify-content: center; gap: 20px;
@@ -564,11 +493,11 @@
       display: flex; align-items: center; justify-content: center;
       text-decoration: none; color: var(--gray); font-size: .7rem; transition: border-color .2s, color .2s;
     }
-    .social-link:hover { border-color: var(--amber); color: var(--amber); }
+    .social-link:hover { border-color: var(--red); color: var(--red); }
 
     /* ── FOOTER ── */
     footer {
-      background: var(--bg2); border-top: 1px solid rgba(80,60,32,.4);
+      background: var(--bg2); border-top: 1px solid rgba(200,191,176,.4);
       padding: 32px 48px; display: flex; flex-direction: column;
       align-items: center; gap: 0;
     }
@@ -598,7 +527,7 @@
     .yt-watch-link::after { content: '↗'; font-size: .8rem; }
     .yt-video-list { max-width: 1200px; margin: 48px auto 0; display: flex; flex-direction: column; border-top: 1px solid var(--border); }
     .yt-video-item { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; border-bottom: 1px solid var(--border); text-decoration: none; color: var(--fg); transition: color .2s; }
-    .yt-video-item:hover { color: var(--amber); }
+    .yt-video-item:hover { color: var(--red); }
     .yt-video-item:hover .yt-video-arrow { transform: translate(3px, -3px); }
     .yt-video-title { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 300; letter-spacing: .06em; }
     .yt-video-meta { font-size: .65rem; letter-spacing: .15em; color: var(--gray); margin-top: 4px; }
@@ -637,9 +566,6 @@
       #music .carousel-nav { padding: 0 24px; }
       .about { grid-template-columns: 1fr; gap: 48px; }
 
-      .poster-featured { grid-template-columns: 1fr; gap: 28px; }
-      .poster-featured .poster-img-wrap img { max-height: none; width: 100%; }
-      .poster-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
       .event-item { grid-template-columns: 80px 1fr; }
       .event-ticket { display: none; }
       .video-grid { grid-template-columns: 1fr; }
@@ -682,7 +608,6 @@
     <div class="hero-overlay"></div>
     <img src="assets/jpg/logo.jpg" alt="Dadaïsme" class="hero-logo">
     <p class="hero-site-label">Dadaïsme — Official Site</p>
-    <a href="https://susum.base.shop/" target="_blank" rel="noopener noreferrer" class="hero-store-link">Official Store →</a>
   </section>
 
   <section id="about">
@@ -708,66 +633,26 @@
 
   <section id="event">
     <div class="event-header reveal"><p class="section-label">Schedule</p><h2 class="section-title">Event</h2></div>
-
-    <div class="event-block">
-      <p class="event-block-label">Upcoming</p>
-      <div class="poster-featured reveal">
-        <div class="poster-img-wrap">
-          <img src="assets/event/20251214.jpg" alt="DADA Vol.11 — 2025.12.14">
-        </div>
-        <div class="poster-featured-info">
-          <div class="poster-featured-title">DADA Vol.11</div>
-          <dl class="poster-featured-details">
-            <dt>Date</dt>
-            <dd>2025.12.14 (SUN)　OPEN 16:00 — LAST</dd>
-            <dt>Venue</dt>
-            <dd><a href="https://www.google.com/maps/search/?api=1&query=神奈川県藤沢市湘南台2丁目3-14+ラーメンショップ一玲" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:3px;">ラーメンショップ 一玲<br>神奈川県藤沢市湘南台2丁目3-14</a></dd>
-            <dt>Entrance</dt>
-            <dd>¥2,000 — 1D　/ ID ¥500</dd>
-            <dt>Live</dt>
-            <dd>Wataru Takahashi / スリル THE スリル</dd>
-            <dt>DJ</dt>
-            <dd>ILLEFFECTS / CROW / TAICHIP / TK</dd>
-          </dl>
-        </div>
+    <div class="event-list">
+      <div class="event-item reveal">
+        <div class="event-date"><div class="day">21</div><div class="month-year">Jun 2026</div></div>
+        <div class="event-info"><div class="event-info-title">Dadaïsme ONE-MAN  EVENT 2026 <span class="event-tag">Headliner</span></div><div class="event-info-venue">Shibuya O-EAST — Tokyo</div></div>
+        <a href="#" class="event-ticket">Tickets</a>
       </div>
-    </div>
-
-    <div class="event-divider"></div>
-
-    <div class="event-block">
-      <p class="event-block-label">Archive</p>
-      <div class="poster-grid">
-        <div class="poster-item reveal">
-          <div class="poster-img-wrap">
-            <img src="assets/event/20250706.jpg" alt="DADA Vol.10.5 — 2025.07.06">
-            <span class="poster-past-badge">Past</span>
-          </div>
-          <div class="poster-meta">
-            <span class="poster-date">2025.07.06</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=神奈川県大和市中央林間7-34-2+Virgin+Flamingo" target="_blank" rel="noopener noreferrer" class="poster-venue" style="text-decoration:underline;text-underline-offset:3px;">Virgin Flamingo — 大和</a>
-          </div>
-        </div>
-        <div class="poster-item reveal">
-          <div class="poster-img-wrap">
-            <img src="assets/event/20250518.jpg" alt="DADA Vol.10 — 2025.05.18">
-            <span class="poster-past-badge">Past</span>
-          </div>
-          <div class="poster-meta">
-            <span class="poster-date">2025.05.18</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=神奈川県大和市中央林間7-34-2+Virgin+Flamingo" target="_blank" rel="noopener noreferrer" class="poster-venue" style="text-decoration:underline;text-underline-offset:3px;">Virgin Flamingo — 大和</a>
-          </div>
-        </div>
-        <div class="poster-item reveal">
-          <div class="poster-img-wrap">
-            <img src="assets/event/20250209.jpg" alt="DADA Vol.9.5 — 2025.02.09">
-            <span class="poster-past-badge">Past</span>
-          </div>
-          <div class="poster-meta">
-            <span class="poster-date">2025.02.09</span>
-            <a href="https://www.google.com/maps/search/?api=1&query=神奈川県藤沢市湘南台2丁目3-14+ラーメンショップ一玲" target="_blank" rel="noopener noreferrer" class="poster-venue" style="text-decoration:underline;text-underline-offset:3px;">ラーメンショップ 一玲 — 藤沢</a>
-          </div>
-        </div>
+      <div class="event-item reveal">
+        <div class="event-date"><div class="day">05</div><div class="month-year">Jul 2026</div></div>
+        <div class="event-info"><div class="event-info-title">NEON UNDERGROUND Vol.12</div><div class="event-info-venue">Contact — Tokyo</div></div>
+        <a href="#" class="event-ticket">Tickets</a>
+      </div>
+      <div class="event-item reveal">
+        <div class="event-date"><div class="day">19</div><div class="month-year">Jul 2026</div></div>
+        <div class="event-info"><div class="event-info-title">OSAKA HIP-HOP SUMMIT <span class="event-tag">Festival</span></div><div class="event-info-venue">Zepp Osaka Bayside — Osaka</div></div>
+        <a href="#" class="event-ticket">Tickets</a>
+      </div>
+      <div class="event-item reveal">
+        <div class="event-date"><div class="day">02</div><div class="month-year">Aug 2026</div></div>
+        <div class="event-info"><div class="event-info-title">CIRCUIT  EVENT — Seoul</div><div class="event-info-venue">KT&amp;G Sangsangmadang — Seoul, Korea</div></div>
+        <a href="#" class="event-ticket">Tickets</a>
       </div>
     </div>
   </section>
@@ -871,6 +756,8 @@
       const updateScroll = () => {
         const pastHero = window.scrollY >= window.innerHeight - 80;
         nav.classList.toggle('scrolled', pastHero);
+        document.body.classList.toggle('in-hero', !pastHero);
+        document.documentElement.classList.toggle('in-hero', !pastHero);
       };
       window.addEventListener('scroll', updateScroll, { passive: true });
       updateScroll();
@@ -1013,6 +900,6 @@
     }
     #theme-toggle:hover { opacity: 1; }
   </style>
-  <a href="light.html" id="theme-toggle">← Light</a>
+  <a href="index.html" id="theme-toggle">Amber →</a>
 </body>
 </html>
