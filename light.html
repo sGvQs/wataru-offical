@@ -173,6 +173,10 @@
       opacity: 0;
     }
     .hero-video.loaded { transition: opacity 1.2s ease; opacity: 1; }
+    .hero-content {
+      position: relative; z-index: 4;
+      display: flex; flex-direction: column; align-items: center;
+    }
     .hero-logo {
       position: relative; z-index: 4;
       width: clamp(220px, 36vw, 400px);
@@ -551,7 +555,8 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
-      .hero { height: 105vh; }
+      .hero { height: 120vh; }
+      .hero-content { transform: translateY(-8vh); }
       nav#main-nav { padding: 0 24px; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
@@ -601,8 +606,10 @@
     <video class="hero-video" autoplay muted loop playsinline>
       <source src="assets/mp4/kvVideo.mp4" type="video/mp4">
     </video>
-    <img src="assets/jpg/logo.jpg" alt="Dadaïsme" class="hero-logo">
-    <p class="hero-site-label">Dadaïsme — Official Site</p>
+    <div class="hero-content">
+      <img src="assets/jpg/logo.jpg" alt="Dadaïsme" class="hero-logo">
+      <p class="hero-site-label">Dadaïsme — Official Site</p>
+    </div>
   </section>
 
   <section id="about">
