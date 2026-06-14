@@ -128,18 +128,37 @@
       align-items: center; justify-content: center;
       text-align: center; overflow: hidden;
     }
+    .hero-bg {
+      position: absolute; inset: -40%;
+      width: 180%; height: 180%;
+      background:
+        radial-gradient(ellipse 80% 55% at 50% 85%, rgba(181,32,26,.30) 0%, transparent 55%),
+        radial-gradient(ellipse 55% 45% at 15% 65%, rgba(181,32,26,.18) 0%, transparent 50%),
+        radial-gradient(ellipse 50% 40% at 80% 40%, rgba(122,92,46,.14) 0%, transparent 50%),
+        radial-gradient(ellipse 70% 50% at 70% 15%, rgba(181,32,26,.22) 0%, transparent 52%),
+        radial-gradient(ellipse 50% 40% at 20% 20%, rgba(181,32,26,.15) 0%, transparent 50%);
+      animation: heroFloat 9s ease-in-out infinite alternate;
+      z-index: 0;
+    }
+    @keyframes heroFloat {
+      0%   { transform: translate(0,0) scale(1); }
+      50%  { transform: translate(6%,6%) scale(1.18) rotate(3deg); }
+      100% { transform: translate(-5%,14%) scale(1.1) rotate(-3deg); }
+    }
     .hero-video {
       position: absolute; inset: 0;
       width: 100vw; height: 100%;
-      object-fit: cover; z-index: 0;
+      object-fit: none; z-index: 1;
+      opacity: 0;
     }
+    .hero-video.loaded { transition: opacity 1.2s ease; opacity: 1; }
     .hero-overlay {
       position: absolute; inset: 0;
       background: rgba(0,0,0,.5);
-      z-index: 1;
+      z-index: 2;
     }
     .hero-logo {
-      position: relative; z-index: 2;
+      position: relative; z-index: 3;
       width: clamp(220px, 36vw, 400px);
       height: auto;
       animation: fadeUp .9s ease .1s both;
@@ -168,7 +187,7 @@
       margin-top: 28px; animation: fadeUp .8s ease .2s both;
     }
     .hero-site-label {
-      position: relative; z-index: 2;
+      position: relative; z-index: 3;
       margin-top: 24px;
       font-family: 'Inter', sans-serif;
       font-size: .5rem; letter-spacing: .4em; text-transform: uppercase;
@@ -561,6 +580,7 @@
   </div>
 
   <section class="hero" id="hero">
+    <div class="hero-bg"></div>
     <video class="hero-video" autoplay muted loop playsinline>
       <source src="assets/mp4/kvVideo.mp4" type="video/mp4">
     </video>
@@ -700,6 +720,13 @@
   <div id="page-transition"></div>
 
   <script>
+    const vid = document.querySelector('.hero-video');
+    if (vid) {
+      vid.addEventListener('loadeddata', function() {
+        vid.classList.add('loaded');
+      });
+    }
+
     const nav = document.getElementById('main-nav');
     if (nav) window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
 
