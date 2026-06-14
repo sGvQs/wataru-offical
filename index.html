@@ -754,6 +754,8 @@
   <div id="page-transition"></div>
 
   <script>
+    if (history.scrollRestoration) history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
     const vid = document.querySelector('.hero-video');
     if (vid) {
       vid.addEventListener('loadeddata', function() {
