@@ -30,17 +30,14 @@
       --safe-top:   env(safe-area-inset-top, 0px);
     }
 
-    html { scroll-behavior: smooth; overflow-x: clip; background: var(--bg); transition: background .4s ease; }
-    html.in-hero { background: #0d0a07; }
+    html { scroll-behavior: smooth; overflow-x: clip; background: var(--bg); }
     body {
       background: var(--bg);
       color: var(--fg);
       font-family: 'Inter', sans-serif;
       font-weight: 300;
       overflow-x: hidden;
-      transition: background .4s ease;
     }
-    body.in-hero { background: #0d0a07; }
 
     /* Subtle paper texture */
     body::before {
@@ -214,6 +211,19 @@
       color: rgba(255,255,255,.5);
       animation: fadeUp .8s ease .3s both;
     }
+    .hero-store-link {
+      position: relative; z-index: 4;
+      display: inline-block; margin-top: 20px;
+      font-family: 'Inter', sans-serif;
+      font-size: .42rem; letter-spacing: .25em; text-transform: uppercase;
+      color: var(--red);
+      text-decoration: none;
+      font-weight: 700;
+      opacity: .7;
+      transition: opacity .25s;
+      animation: fadeUp .8s ease .45s both;
+    }
+    .hero-store-link:hover { opacity: 1; }
     .hero-actions {
       position: relative; z-index: 2;
       margin-top: 48px; display: flex; gap: 16px; flex-wrap: wrap;
@@ -609,6 +619,7 @@
     <div class="hero-content">
       <img src="assets/jpg/logo.jpg" alt="Dadaïsme" class="hero-logo">
       <p class="hero-site-label">Dadaïsme — Official Site</p>
+      <a href="https://susum.base.shop/" target="_blank" rel="noopener noreferrer" class="hero-store-link">Official Store →</a>
     </div>
   </section>
 
@@ -756,10 +767,8 @@
     const hero = document.getElementById('hero');
     if (nav && hero) {
       const updateScroll = () => {
-        const pastHero = window.scrollY >= window.innerHeight - 80;
+        const pastHero = window.scrollY >= hero.offsetHeight - 80;
         nav.classList.toggle('scrolled', pastHero);
-        document.body.classList.toggle('in-hero', !pastHero);
-        document.documentElement.classList.toggle('in-hero', !pastHero);
       };
       window.addEventListener('scroll', updateScroll, { passive: true });
       updateScroll();
