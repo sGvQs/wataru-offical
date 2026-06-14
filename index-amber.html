@@ -210,6 +210,18 @@
       color: rgba(255,255,255,.5);
       animation: fadeUp .8s ease .3s both;
     }
+    .hero-store-link {
+      position: relative; z-index: 4;
+      display: inline-block; margin-top: 20px;
+      font-family: 'Inter', sans-serif;
+      font-size: .42rem; letter-spacing: .25em; text-transform: uppercase;
+      color: var(--red);
+      text-decoration: none;
+      opacity: .7;
+      transition: opacity .25s;
+      animation: fadeUp .8s ease .45s both;
+    }
+    .hero-store-link:hover { opacity: 1; }
     .hero-actions {
       position: relative; z-index: 2;
       margin-top: 48px; display: flex; gap: 16px; flex-wrap: wrap;
@@ -668,6 +680,7 @@
     <div class="hero-overlay"></div>
     <img src="assets/jpg/logo.jpg" alt="Dadaïsme" class="hero-logo">
     <p class="hero-site-label">Dadaïsme — Official Site</p>
+    <a href="https://susum.base.shop/" target="_blank" rel="noopener noreferrer" class="hero-store-link">Official Store →</a>
   </section>
 
   <section id="about">
