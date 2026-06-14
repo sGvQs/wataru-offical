@@ -30,7 +30,8 @@
       --safe-top:   env(safe-area-inset-top, 0px);
     }
 
-    html { scroll-behavior: smooth; overflow-x: clip; background: #0d0a07; }
+    html { scroll-behavior: smooth; overflow-x: clip; background: var(--bg); transition: background .4s ease; }
+    html.in-hero { background: #0d0a07; }
     body {
       background: var(--bg);
       color: var(--fg);
@@ -754,6 +755,7 @@
         const pastHero = window.scrollY >= hero.offsetHeight - 80;
         nav.classList.toggle('scrolled', pastHero);
         document.body.classList.toggle('in-hero', !pastHero);
+        document.documentElement.classList.toggle('in-hero', !pastHero);
       };
       window.addEventListener('scroll', updateScroll, { passive: true });
       updateScroll();
