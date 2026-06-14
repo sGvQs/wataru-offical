@@ -64,7 +64,7 @@
       justify-content: space-between;
       padding: env(safe-area-inset-top) 48px 0;
       background: var(--bg);
-      border-bottom: none;
+      border-bottom: 1px solid var(--border);
     }
     nav#main-nav.scrolled {
       display: flex;
@@ -275,6 +275,7 @@
     .section-title em { font-style: italic; color: var(--red); }
 
     /* ── ABOUT ── */
+    #about { display: none; }
     .about {
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 80px; align-items: center; max-width: 1200px; margin: 0 auto;
