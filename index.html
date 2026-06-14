@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Dadaïsme — Official [Light]</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -24,6 +24,7 @@
       --red-dim:    rgba(139,94,10,.07); /* original: rgba(181,32,26,.07) */
       --gold:       #7A5C2E;
       --nav-h:      72px;
+      --safe-top:   env(safe-area-inset-top, 0px);
     }
 
     html { scroll-behavior: smooth; overflow-x: clip; }
@@ -56,9 +57,10 @@
     /* ── NAV ── */
     nav#main-nav {
       position: fixed; top: 0; left: 0; right: 0;
-      z-index: 106; height: var(--nav-h);
+      z-index: 106; height: calc(var(--nav-h) + env(safe-area-inset-top));
       display: flex; align-items: center;
-      justify-content: space-between; padding: 0 48px;
+      justify-content: space-between;
+      padding: env(safe-area-inset-top) 48px 0;
       transition: background .4s, border-color .4s;
     }
     nav#main-nav.scrolled {
@@ -120,7 +122,7 @@
     }
     .mobile-menu a:hover { color: var(--red); }
 
-    section[id] { scroll-margin-top: var(--nav-h); }
+    section[id] { scroll-margin-top: calc(var(--nav-h) + var(--safe-top)); }
 
     /* ── HERO ── */
     .hero {
