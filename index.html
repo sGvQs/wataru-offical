@@ -65,12 +65,14 @@
       justify-content: space-between;
       padding: env(safe-area-inset-top) 48px 0;
       background: transparent;
-      transition: background .4s, border-color .4s;
+      opacity: 0; pointer-events: none;
+      transition: background .4s, border-color .4s, opacity .4s;
     }
     nav#main-nav.scrolled {
       background: rgba(242,236,227,.94);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
+      opacity: 1; pointer-events: auto;
     }
     .nav-logo {
       font-family: 'Cormorant Garamond', serif;
@@ -742,7 +744,12 @@
     }
 
     const nav = document.getElementById('main-nav');
-    if (nav) window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+    const hero = document.getElementById('hero');
+    if (nav && hero) {
+      window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY >= hero.offsetHeight - 80);
+      });
+    }
 
     // ── MUSIC PLAYER ──
     const audio = new Audio();
