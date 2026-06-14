@@ -61,18 +61,20 @@
     nav#main-nav {
       position: fixed; top: 0; left: 0; right: 0;
       z-index: 106; height: calc(var(--nav-h) + env(safe-area-inset-top));
-      display: flex; align-items: center;
+      display: none; align-items: center;
       justify-content: space-between;
       padding: env(safe-area-inset-top) 48px 0;
-      background: transparent;
-      opacity: 0; pointer-events: none;
-      transition: background .4s, border-color .4s, opacity .4s;
-    }
-    nav#main-nav.scrolled {
       background: rgba(242,236,227,.94);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
-      opacity: 1; pointer-events: auto;
+    }
+    nav#main-nav.scrolled {
+      display: flex;
+      animation: navEnter .35s ease both;
+    }
+    @keyframes navEnter {
+      from { opacity: 0; transform: translateY(-6px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
     .nav-logo {
       font-family: 'Cormorant Garamond', serif;
