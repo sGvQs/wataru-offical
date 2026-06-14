@@ -64,7 +64,7 @@
       justify-content: space-between;
       padding: env(safe-area-inset-top) 48px 0;
       background: var(--bg);
-      border-bottom: 1px solid var(--border);
+      border-bottom: none;
     }
     nav#main-nav.scrolled {
       display: flex;
@@ -181,7 +181,7 @@
         display: block;
         position: absolute; top: 0; left: 0; right: 0;
         height: calc(env(safe-area-inset-top, 0px) + 160px);
-        background: linear-gradient(to bottom, var(--bg) 0%, var(--bg) 25%, transparent 100%);
+        background: linear-gradient(to bottom, var(--bg) 0%, var(--bg) 25%, rgba(26,18,8,0) 100%);
         z-index: 3; pointer-events: none;
       }
     }
