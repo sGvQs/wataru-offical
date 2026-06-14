@@ -752,7 +752,7 @@
     const hero = document.getElementById('hero');
     if (nav && hero) {
       const updateScroll = () => {
-        const pastHero = window.scrollY >= hero.offsetHeight - 80;
+        const pastHero = window.scrollY >= window.innerHeight - 80;
         nav.classList.toggle('scrolled', pastHero);
         document.body.classList.toggle('in-hero', !pastHero);
         document.documentElement.classList.toggle('in-hero', !pastHero);
