@@ -168,6 +168,11 @@
       opacity: 0;
     }
     .hero-video.loaded { transition: opacity 1.2s ease; opacity: 1; }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      z-index: 2;
+      background: rgba(26,18,8,.45);
+    }
     .hero-content {
       position: relative; z-index: 4;
       display: flex; flex-direction: column; align-items: center;
@@ -206,6 +211,7 @@
       margin-top: 24px;
       font-family: 'Inter', sans-serif;
       font-size: .5rem; letter-spacing: .4em; text-transform: uppercase;
+      font-weight: 700;
       color: rgba(255,255,255,.5);
       animation: fadeUp .8s ease .3s both;
     }
@@ -650,10 +656,11 @@
     <video class="hero-video" autoplay muted loop playsinline>
       <source src="assets/mp4/kvVideo.mp4" type="video/mp4">
     </video>
+    <div class="hero-overlay"></div>
     <div class="hero-content">
       <img src="assets/jpg/logo.jpg" alt="Dadaïsme" class="hero-logo">
       <p class="hero-site-label">Dadaïsme — Official Site</p>
-      <a href="https://susum.base.shop/" target="_blank" rel="noopener noreferrer" class="hero-store-link">Official Store →</a>
+      <a href="https://susum.base.shop/" target="_blank" rel="noopener noreferrer" class="hero-store-link">Store →</a>
     </div>
   </section>
 
@@ -831,7 +838,8 @@
     if (history.scrollRestoration) history.scrollRestoration = 'manual';
     document.querySelector('.nav-logo').addEventListener('click', e => {
       e.preventDefault();
-      window.scrollTo({ top: window.innerHeight * 0.12, behavior: 'smooth' });
+      const top = window.innerWidth <= 768 ? window.innerHeight * 0.12 : 0;
+      window.scrollTo({ top, behavior: 'smooth' });
     });
     window.scrollTo(0, 0);
     const vid = document.querySelector('.hero-video');
