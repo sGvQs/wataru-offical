@@ -37,17 +37,26 @@
       font-family: 'Inter', sans-serif;
       font-weight: 300;
       overflow-x: hidden;
+      transition: background .4s ease;
     }
+    body.in-hero { background: #0d0a07; }
 
-    /* Subtle paper texture — position:absolute + no animation to avoid GPU compositing layer
-       that would block Dynamic Island invasion on iOS */
+    /* Subtle paper texture */
     body::before {
       content: '';
-      position: absolute; top: 0; left: 0;
-      width: 100%; height: 100%;
+      position: fixed; inset: -50%;
+      width: 200%; height: 200%;
       z-index: 998; pointer-events: none;
       opacity: .025;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+      animation: grain .4s steps(1) infinite;
+    }
+    @keyframes grain {
+      0%  { transform: translate(0,0); }
+      25% { transform: translate(-2%,-3%); }
+      50% { transform: translate(2%,3%); }
+      75% { transform: translate(-3%,1%); }
+      100%{ transform: translate(1%,-1%); }
     }
 
     /* ── NAV ── */
@@ -63,10 +72,10 @@
     }
     nav#main-nav.scrolled {
       display: flex;
-      animation: navEnter .5s ease both;
+      animation: navEnter .35s ease both;
     }
     @keyframes navEnter {
-      from { opacity: 0; transform: translateY(-8px); }
+      from { opacity: 0; transform: translateY(-6px); }
       to   { opacity: 1; transform: translateY(0); }
     }
     .nav-logo {
@@ -741,9 +750,13 @@
     const nav = document.getElementById('main-nav');
     const hero = document.getElementById('hero');
     if (nav && hero) {
-      window.addEventListener('scroll', () => {
-        nav.classList.toggle('scrolled', window.scrollY >= hero.offsetHeight - 80);
-      });
+      const updateScroll = () => {
+        const pastHero = window.scrollY >= hero.offsetHeight - 80;
+        nav.classList.toggle('scrolled', pastHero);
+        document.body.classList.toggle('in-hero', !pastHero);
+      };
+      window.addEventListener('scroll', updateScroll, { passive: true });
+      updateScroll();
     }
 
     // ── MUSIC PLAYER ──
