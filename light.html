@@ -599,6 +599,10 @@
       from { opacity: 0; transform: translateY(20px); }
       to   { opacity: 1; transform: translateY(0); }
     }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
     .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
@@ -612,10 +616,17 @@
         width: 90%;
         transition: opacity .5s ease;
       }
+      .hero-content.sp-hiding {
+        transition: opacity .5s ease, transform .5s ease;
+      }
       .hero-content.sp-fade {
         opacity: 0;
+        transform: translate(-50%, calc(-50% - 28px));
         pointer-events: none;
       }
+      .hero-content .hero-logo,
+      .hero-content .hero-site-label,
+      .hero-content .hero-store-link { animation-name: fadeIn; }
       nav#main-nav { padding: 0 24px; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
@@ -867,7 +878,15 @@
         const pastHero = window.scrollY >= hero.offsetHeight - 80;
         nav.classList.toggle('scrolled', pastHero);
         if (window.innerWidth <= 768 && heroContent) {
-          heroContent.classList.toggle('sp-fade', window.scrollY >= hero.offsetHeight * 0.2);
+          const shouldFade = window.scrollY >= hero.offsetHeight * 0.2;
+          const isFaded = heroContent.classList.contains('sp-fade');
+          if (shouldFade && !isFaded) {
+            heroContent.classList.add('sp-hiding');
+            heroContent.classList.add('sp-fade');
+          } else if (!shouldFade && isFaded) {
+            heroContent.classList.remove('sp-hiding');
+            heroContent.classList.remove('sp-fade');
+          }
         }
       };
       window.addEventListener('scroll', updateScroll, { passive: true });
