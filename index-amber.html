@@ -6,7 +6,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="mobile-web-app-capable" content="yes">
-  <title>Dadaïsme — Official [Light]</title>
+  <title>Dadaïsme — Official [Amber]</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Serif+JP:wght@300;400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -14,18 +14,17 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:         #F2ECE3;
-      --bg2:        #E8E1D6;
-      --bg3:        #DDD6C8;
-      --fg:         #1A1512;
-      --fg2:        #4A3F33;
-      --gray:       #8A7D6E;
-      --gray2:      #C0B5A5;
-      --border:     #C8BFB0;
-      /* --red:     #B5201A; */  /* original red */
-      --red:        #8B5E0A;
-      --red-dim:    rgba(139,94,10,.07); /* original: rgba(181,32,26,.07) */
-      --gold:       #7A5C2E;
+      --bg:         #1A1208;
+      --bg2:        #221A0F;
+      --bg3:        #2C2215;
+      --fg:         #F0E4C8;
+      --fg2:        #C8A878;
+      --gray:       #A07848;
+      --gray2:      #604828;
+      --border:     #503C20;
+      --red:        #D4940C;
+      --red-dim:    rgba(212,148,12,.15);
+      --gold:       #E8B030;
       --nav-h:      72px;
       --safe-top:   env(safe-area-inset-top, 0px);
     }
@@ -67,7 +66,7 @@
       display: none; align-items: center;
       justify-content: space-between;
       padding: env(safe-area-inset-top) 48px 0;
-      background: rgba(242,236,227,.94);
+      background: rgba(26,18,8,.94);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
     }
@@ -120,7 +119,7 @@
     /* ── MOBILE MENU ── */
     .mobile-menu {
       display: none; position: fixed; inset: 0; z-index: 105;
-      background: rgba(242,236,227,.98);
+      background: rgba(26,18,8,.98);
       flex-direction: column; align-items: center; justify-content: center;
       gap: 36px; opacity: 0; pointer-events: none; transition: opacity .3s;
     }
@@ -356,7 +355,7 @@
     .music-card-color { width: 100%; height: 100%; }
     .music-card-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(242,236,227,.96) 0%, rgba(242,236,227,.5) 45%, transparent 100%);
+      background: linear-gradient(to top, rgba(26,18,8,.96) 0%, rgba(26,18,8,.5) 45%, transparent 100%);
       display: flex; flex-direction: column; justify-content: flex-end; padding: 24px;
     }
     .music-year { font-size: .6rem; letter-spacing: .2em; color: var(--gray); text-transform: uppercase; margin-bottom: 6px; }
@@ -497,7 +496,7 @@
 
     /* ── FOOTER ── */
     footer {
-      background: var(--bg2); border-top: 1px solid rgba(200,191,176,.4);
+      background: var(--bg2); border-top: 1px solid rgba(80,60,32,.4);
       padding: 32px 48px; display: flex; flex-direction: column;
       align-items: center; gap: 0;
     }
@@ -898,6 +897,6 @@
     }
     #theme-toggle:hover { opacity: 1; }
   </style>
-  <a href="index-amber.html" id="theme-toggle">Amber →</a>
+  <a href="index.html" id="theme-toggle">← Light</a>
 </body>
 </html>
