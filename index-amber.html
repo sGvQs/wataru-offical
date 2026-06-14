@@ -22,8 +22,9 @@
       --gray:       #A07848;
       --gray2:      #604828;
       --border:     #503C20;
-      --red:        #D4940C;
-      --red-dim:    rgba(212,148,12,.15);
+      --amber:        #D4940C;
+      --amber-dim:    rgba(212,148,12,.15);
+      --accent:       #B5201A;
       --gold:       #E8B030;
       --nav-h:      72px;
       --safe-top:   env(safe-area-inset-top, 0px);
@@ -89,11 +90,11 @@
     }
     .nav-links a:hover { color: var(--fg); }
     .nav-cta {
-      border: 1px solid var(--red) !important;
-      color: var(--red) !important; padding: 7px 20px;
+      border: 1px solid var(--amber) !important;
+      color: var(--amber) !important; padding: 7px 20px;
       transition: background .25s, color .25s !important;
     }
-    .nav-cta:hover { background: var(--red) !important; color: #fff !important; }
+    .nav-cta:hover { background: var(--amber) !important; color: #fff !important; }
 
     /* ── HAMBURGER ── */
     .hamburger {
@@ -126,7 +127,7 @@
       letter-spacing: .15em; text-transform: uppercase;
       color: var(--fg); text-decoration: none; transition: color .2s;
     }
-    .mobile-menu a:hover { color: var(--red); }
+    .mobile-menu a:hover { color: var(--amber); }
 
     section[id] { scroll-margin-top: calc(var(--nav-h) + var(--safe-top)); }
 
@@ -185,7 +186,7 @@
       margin-bottom: 28px; animation: fadeUp .8s ease both;
     }
     .hero-rule {
-      width: 48px; height: 1px; background: var(--red);
+      width: 48px; height: 1px; background: var(--amber);
       margin: 0 auto 28px; animation: fadeUp .8s ease .05s both;
     }
     .hero-name {
@@ -196,7 +197,7 @@
       text-transform: uppercase; color: var(--fg);
       animation: fadeUp .9s ease .1s both;
     }
-    .hero-name em { font-style: italic; color: var(--red); }
+    .hero-name em { font-style: italic; color: var(--amber); }
     .hero-jp {
       font-family: 'Noto Serif JP', serif; font-weight: 300;
       font-size: .9rem; letter-spacing: .25em; color: var(--gray);
@@ -215,8 +216,9 @@
       display: inline-block; margin-top: 20px;
       font-family: 'Inter', sans-serif;
       font-size: .42rem; letter-spacing: .25em; text-transform: uppercase;
-      color: var(--red);
+      color: var(--accent);
       text-decoration: none;
+      font-weight: 700;
       opacity: .7;
       transition: opacity .25s;
       animation: fadeUp .8s ease .45s both;
@@ -235,7 +237,7 @@
       text-decoration: none; transition: all .25s; cursor: pointer;
       font-family: 'Inter', sans-serif;
     }
-    .btn-primary { background: var(--red); color: #fff; border: 1px solid var(--red); }
+    .btn-primary { background: var(--accent); color: #fff; border: 1px solid var(--accent); }
     .btn-primary:hover { background: #901a14; border-color: #901a14; transform: translateY(-2px); }
     .btn-outline { background: transparent; color: var(--fg); border: 1px solid var(--border); }
     .btn-outline:hover { border-color: var(--fg); transform: translateY(-2px); }
@@ -256,7 +258,7 @@
     }
     .scroll-line {
       width: 1px; height: 40px;
-      background: linear-gradient(to bottom, var(--red), transparent);
+      background: linear-gradient(to bottom, var(--amber), transparent);
       animation: scrollPulse 1.8s ease infinite;
     }
     @keyframes scrollPulse { 0%,100%{opacity:.3} 50%{opacity:1} }
@@ -265,14 +267,14 @@
     section { padding: 120px 48px; }
     .section-label {
       font-size: .6rem; letter-spacing: .4em;
-      text-transform: uppercase; color: var(--red); margin-bottom: 14px;
+      text-transform: uppercase; color: var(--amber); margin-bottom: 14px;
     }
     .section-title {
       font-family: 'Cormorant Garamond', serif;
       font-weight: 300; font-size: clamp(2.2rem, 4.5vw, 4rem);
       line-height: 1.1; margin-bottom: 56px; letter-spacing: .02em; color: var(--fg);
     }
-    .section-title em { font-style: italic; color: var(--red); }
+    .section-title em { font-style: italic; color: var(--amber); }
 
     /* ── ABOUT ── */
     #about { display: none; }
@@ -305,7 +307,7 @@
     }
     .stat-num {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 2.8rem; font-weight: 300; color: var(--red); line-height: 1;
+      font-size: 2.8rem; font-weight: 300; color: var(--amber); line-height: 1;
     }
     .stat-label { font-size: .65rem; letter-spacing: .15em; color: var(--gray); text-transform: uppercase; margin-top: 6px; }
 
@@ -336,7 +338,7 @@
       display: flex; align-items: center; justify-content: center;
       cursor: pointer; transition: all .2s; flex-shrink: 0;
     }
-    .carousel-btn:hover { background: var(--red); border-color: var(--red); color: #fff; }
+    .carousel-btn:hover { background: var(--amber); border-color: var(--amber); color: #fff; }
     .carousel-btn:disabled { opacity: .25; pointer-events: none; }
     .carousel-dots { display: flex; gap: 8px; align-items: center; }
     .carousel-dot {
@@ -347,7 +349,7 @@
     }
     .carousel-dot.active {
       width: 30px;
-      background: linear-gradient(to bottom, transparent 46%, var(--red) 46%, var(--red) 54%, transparent 54%);
+      background: linear-gradient(to bottom, transparent 46%, var(--amber) 46%, var(--amber) 54%, transparent 54%);
     }
     .music-card {
       flex: 0 0 calc(25% - 1.5px);
@@ -370,8 +372,8 @@
     .music-year { font-size: .6rem; letter-spacing: .2em; color: var(--gray); text-transform: uppercase; margin-bottom: 6px; }
     .music-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; line-height: 1.2; color: var(--fg); }
     .music-title-jp { font-family: 'Noto Serif JP', serif; font-size: 1.1rem; font-weight: 300; }
-    .music-type { font-size: .65rem; color: var(--red); letter-spacing: .1em; margin-top: 5px; }
-    .music-new-tag { position: absolute; top: 12px; left: 12px; font-size: .5rem; letter-spacing: .15em; color: #fff; background: var(--red); padding: 2px 5px; border-radius: 1px; text-transform: uppercase; font-weight: 500; z-index: 3; }
+    .music-type { font-size: .65rem; color: var(--amber); letter-spacing: .1em; margin-top: 5px; }
+    .music-new-tag { position: absolute; top: 12px; left: 12px; font-size: .5rem; letter-spacing: .15em; color: #fff; background: var(--amber); padding: 2px 5px; border-radius: 1px; text-transform: uppercase; font-weight: 500; z-index: 3; }
     .music-play {
       position: absolute; top: 16px; right: 16px;
       width: 40px; height: 40px;
@@ -382,7 +384,7 @@
     }
     .music-card:hover .music-play,
     .music-card.playing .music-play { opacity: 1; }
-    .music-card.playing .music-play { background: var(--red); border-color: var(--red); }
+    .music-card.playing .music-play { background: var(--amber); border-color: var(--amber); }
     .play-icon {
       width: 0; height: 0; border-style: solid;
       border-width: 7px 0 7px 13px;
@@ -394,7 +396,7 @@
       background: linear-gradient(to right, #fff 0%, #fff 35%, transparent 35%, transparent 65%, #fff 65%, #fff 100%);
     }
     .music-progress { position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--border); }
-    .music-progress-bar { height: 100%; width: 0%; background: var(--red); transition: width .5s linear; }
+    .music-progress-bar { height: 100%; width: 0%; background: var(--amber); transition: width .5s linear; }
     .music-waveform {
       display: flex; align-items: flex-end; gap: 3px;
       height: 18px; margin-bottom: 10px;
@@ -403,7 +405,7 @@
     .music-card.playing .music-waveform { opacity: 1; }
     .music-waveform span {
       display: block; width: 3px;
-      background: var(--red); border-radius: 2px;
+      background: var(--amber); border-radius: 2px;
       transform-origin: bottom;
       animation: waveBar .9s ease-in-out infinite alternate;
       animation-play-state: paused;
@@ -479,7 +481,7 @@
       padding: 2px 7px;
     }
     .poster-meta { margin-top: 10px; display: flex; flex-direction: column; gap: 3px; }
-    .poster-date { font-size: .65rem; letter-spacing: .08em; color: var(--red); }
+    .poster-date { font-size: .65rem; letter-spacing: .08em; color: var(--amber); }
     .poster-venue { font-size: .6rem; color: var(--gray); letter-spacing: .04em; }
 
     /* ── OLD EVENT (unused, kept for spacing) ── */
@@ -490,13 +492,13 @@
       transition: border-color .25s; cursor: pointer;
     }
     .event-item:first-child { border-top: 1px solid var(--border); }
-    .event-item:hover { border-bottom-color: var(--red); }
+    .event-item:hover { border-bottom-color: var(--amber); }
     .event-date { font-family: 'Cormorant Garamond', serif; }
-    .event-date .day { font-size: 2.8rem; font-weight: 300; line-height: 1; color: var(--red); }
+    .event-date .day { font-size: 2.8rem; font-weight: 300; line-height: 1; color: var(--amber); }
     .event-date .month-year { font-size: .65rem; color: var(--gray); letter-spacing: .12em; text-transform: uppercase; margin-top: 3px; }
     .event-info-title { font-size: 1rem; font-weight: 400; margin-bottom: 5px; color: var(--fg); }
     .event-info-venue { font-size: .78rem; color: var(--gray); letter-spacing: .04em; }
-    .event-tag { display: inline-block; padding: 3px 9px; font-size: .58rem; letter-spacing: .15em; text-transform: uppercase; border: 1px solid var(--red); color: var(--red); margin-left: 12px; }
+    .event-tag { display: inline-block; padding: 3px 9px; font-size: .58rem; letter-spacing: .15em; text-transform: uppercase; border: 1px solid var(--amber); color: var(--amber); margin-left: 12px; }
     .event-ticket {
       border: 1px solid var(--border); color: var(--fg2);
       padding: 9px 24px; font-size: .68rem; letter-spacing: .15em;
@@ -533,7 +535,7 @@
     .yt-thumb-link { display: block; position: absolute; inset: 0; }
     .yt-thumb-link img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
     .video-card:hover .yt-thumb-link img { transform: scale(1.04); }
-    .yt-thumb-link:hover .video-play-btn { background: var(--red); border-color: var(--red); transform: scale(1.1); }
+    .yt-thumb-link:hover .video-play-btn { background: var(--amber); border-color: var(--amber); transform: scale(1.1); }
     .video-info { padding: 16px 20px; border-top: 1px solid var(--border); }
     .video-info-title { font-size: .9rem; font-weight: 400; margin-bottom: 4px; color: var(--fg); }
     .video-info-meta { font-size: .72rem; color: var(--gray); }
@@ -551,7 +553,7 @@
       font-size: .88rem; font-family: 'Inter', sans-serif;
       outline: none; transition: border-color .2s; width: 100%;
     }
-    .contact-input:focus { border-color: var(--red); }
+    .contact-input:focus { border-color: var(--amber); }
     .contact-textarea { resize: vertical; min-height: 120px; margin-bottom: 16px; }
     .social-bar {
       display: flex; justify-content: center; gap: 20px;
@@ -562,7 +564,7 @@
       display: flex; align-items: center; justify-content: center;
       text-decoration: none; color: var(--gray); font-size: .7rem; transition: border-color .2s, color .2s;
     }
-    .social-link:hover { border-color: var(--red); color: var(--red); }
+    .social-link:hover { border-color: var(--amber); color: var(--amber); }
 
     /* ── FOOTER ── */
     footer {
@@ -596,7 +598,7 @@
     .yt-watch-link::after { content: '↗'; font-size: .8rem; }
     .yt-video-list { max-width: 1200px; margin: 48px auto 0; display: flex; flex-direction: column; border-top: 1px solid var(--border); }
     .yt-video-item { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; border-bottom: 1px solid var(--border); text-decoration: none; color: var(--fg); transition: color .2s; }
-    .yt-video-item:hover { color: var(--red); }
+    .yt-video-item:hover { color: var(--amber); }
     .yt-video-item:hover .yt-video-arrow { transform: translate(3px, -3px); }
     .yt-video-title { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 300; letter-spacing: .06em; }
     .yt-video-meta { font-size: .65rem; letter-spacing: .15em; color: var(--gray); margin-top: 4px; }
