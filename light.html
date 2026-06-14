@@ -605,7 +605,17 @@
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       .hero { height: 120vh; }
-      .hero-content { transform: translateY(-8vh); }
+      .hero-content {
+        position: fixed;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        transition: opacity .5s ease;
+      }
+      .hero-content.sp-fade {
+        opacity: 0;
+        pointer-events: none;
+      }
       nav#main-nav { padding: 0 24px; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
@@ -851,12 +861,17 @@
 
     const nav = document.getElementById('main-nav');
     const hero = document.getElementById('hero');
+    const heroContent = document.querySelector('.hero-content');
     if (nav && hero) {
       const updateScroll = () => {
         const pastHero = window.scrollY >= hero.offsetHeight - 80;
         nav.classList.toggle('scrolled', pastHero);
+        if (window.innerWidth <= 768 && heroContent) {
+          heroContent.classList.toggle('sp-fade', window.scrollY >= hero.offsetHeight * 0.2);
+        }
       };
       window.addEventListener('scroll', updateScroll, { passive: true });
+      window.addEventListener('resize', updateScroll, { passive: true });
       updateScroll();
     }
 
