@@ -128,24 +128,21 @@
       align-items: center; justify-content: center;
       text-align: center; overflow: hidden;
     }
-    .hero-bg {
-      position: absolute; inset: -40%;
-      width: 180%; height: 180%;
-      background:
-        radial-gradient(ellipse 80% 55% at 50% 85%, rgba(181,32,26,.30) 0%, transparent 55%),
-        radial-gradient(ellipse 55% 45% at 15% 65%, rgba(181,32,26,.18) 0%, transparent 50%),
-        radial-gradient(ellipse 50% 40% at 80% 40%, rgba(122,92,46,.14) 0%, transparent 50%),
-        radial-gradient(ellipse 70% 50% at 70% 15%, rgba(181,32,26,.22) 0%, transparent 52%),
-        radial-gradient(ellipse 50% 40% at 20% 20%, rgba(181,32,26,.15) 0%, transparent 50%);
-      animation: heroFloat 9s ease-in-out infinite alternate;
+    .hero-video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; z-index: 0;
     }
-    @keyframes heroFloat {
-      0%   { transform: translate(0, 0) scale(1); }
-      20%  { transform: translate(-10%, 6%) scale(1.12); }
-      40%  { transform: translate(8%, -8%) scale(1.06); }
-      60%  { transform: translate(-6%, 10%) scale(1.15); }
-      80%  { transform: translate(10%, -5%) scale(1.08); }
-      100% { transform: translate(-8%, 4%) scale(1.1); }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,.5);
+      z-index: 1;
+    }
+    .hero-logo {
+      position: relative; z-index: 2;
+      width: clamp(160px, 36vw, 300px);
+      height: auto;
+      animation: fadeUp .9s ease .1s both;
     }
     /* Thin red top rule to break the white */
     .hero::before {
@@ -177,6 +174,7 @@
       margin-top: 28px; animation: fadeUp .8s ease .2s both;
     }
     .hero-actions {
+      position: relative; z-index: 2;
       margin-top: 48px; display: flex; gap: 16px; flex-wrap: wrap;
       justify-content: center;
       animation: fadeUp .8s ease .3s both;
@@ -542,7 +540,7 @@
 
 
   <nav id="main-nav">
-    <a href="#" class="nav-logo"><img src="assets/logo.jpg" alt="Dadaïsme" style="height:32px;width:auto;vertical-align:middle;"></a>
+    <a href="#" class="nav-logo"><img src="assets/jpg/logo.jpg" alt="Dadaïsme" style="height:32px;width:auto;vertical-align:middle;"></a>
     <ul class="nav-links">
       <li><a href="https://susum.base.shop/">Store</a></li>
     </ul>
@@ -561,8 +559,11 @@
   </div>
 
   <section class="hero" id="hero">
-    <div class="hero-bg"></div>
-    <h1 class="hero-name"><em>Dadaïsme</em></h1>
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="assets/mp4/kvVideo.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+    <img src="assets/jpg/logo.jpg" alt="Dadaïsme" class="hero-logo">
     <div class="hero-actions">
       <a href="https://susum.base.shop/#cd" class="btn btn-outline">CD</a>
       <a href="https://susum.base.shop/#apparel" class="btn btn-outline">Apparel</a>
