@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="mobile-web-app-capable" content="yes">
   <title>Dadaïsme — Official [Light]</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -29,7 +30,7 @@
       --safe-top:   env(safe-area-inset-top, 0px);
     }
 
-    html { scroll-behavior: smooth; overflow-x: clip; }
+    html { scroll-behavior: smooth; overflow-x: clip; background: #0d0a07; }
     body {
       background: var(--bg);
       color: var(--fg);
@@ -63,6 +64,7 @@
       display: flex; align-items: center;
       justify-content: space-between;
       padding: env(safe-area-inset-top) 48px 0;
+      background: transparent;
       transition: background .4s, border-color .4s;
     }
     nav#main-nav.scrolled {
@@ -129,7 +131,7 @@
     /* ── HERO ── */
     .hero {
       position: relative;
-      height: 100svh; min-height: 680px;
+      height: 100dvh; min-height: 680px;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
       text-align: center; overflow: hidden;
