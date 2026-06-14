@@ -621,7 +621,7 @@
       }
       .hero-content.sp-fade {
         opacity: 0;
-        transform: translate(-50%, calc(-50% - 28px));
+        transform: translate(-50%, calc(-50% - var(--sp-offset, 40px)));
         pointer-events: none;
       }
       .hero-content .hero-logo,
@@ -873,6 +873,14 @@
     const nav = document.getElementById('main-nav');
     const hero = document.getElementById('hero');
     const heroContent = document.querySelector('.hero-content');
+
+    let _lastY = window.scrollY, _lastT = Date.now(), _vel = 0;
+    window.addEventListener('scroll', () => {
+      const now = Date.now(), dt = now - _lastT;
+      if (dt > 0) _vel = (window.scrollY - _lastY) / dt;
+      _lastY = window.scrollY; _lastT = now;
+    }, { passive: true });
+
     if (nav && hero) {
       const updateScroll = () => {
         const pastHero = window.scrollY >= hero.offsetHeight - 80;
@@ -881,6 +889,8 @@
           const shouldFade = window.scrollY >= hero.offsetHeight * 0.2;
           const isFaded = heroContent.classList.contains('sp-fade');
           if (shouldFade && !isFaded) {
+            const offset = Math.round(Math.min(Math.abs(_vel), 4) * 150);
+            heroContent.style.setProperty('--sp-offset', offset + 'px');
             heroContent.classList.add('sp-hiding');
             heroContent.classList.add('sp-fade');
           } else if (!shouldFade && isFaded) {
