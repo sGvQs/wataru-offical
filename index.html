@@ -19,8 +19,9 @@
       --gray:       #8A7D6E;
       --gray2:      #C0B5A5;
       --border:     #C8BFB0;
-      --red:        #B5201A;
-      --red-dim:    rgba(181,32,26,.07);
+      /* --red:     #B5201A; */  /* original red */
+      --red:        #8B5E0A;
+      --red-dim:    rgba(139,94,10,.07); /* original: rgba(181,32,26,.07) */
       --gold:       #7A5C2E;
       --nav-h:      72px;
     }
@@ -127,16 +128,17 @@
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
       text-align: center; overflow: hidden;
+      background: #0d0a07;
     }
     .hero-bg {
       position: absolute; inset: -40%;
       width: 180%; height: 180%;
       background:
-        radial-gradient(ellipse 80% 55% at 50% 85%, rgba(122,92,46,.40) 0%, transparent 55%),
-        radial-gradient(ellipse 55% 45% at 15% 65%, rgba(122,92,46,.25) 0%, transparent 50%),
-        radial-gradient(ellipse 50% 40% at 80% 40%, rgba(74,63,51,.20) 0%, transparent 50%),
-        radial-gradient(ellipse 70% 50% at 70% 15%, rgba(122,92,46,.30) 0%, transparent 52%),
-        radial-gradient(ellipse 50% 40% at 20% 20%, rgba(74,63,51,.18) 0%, transparent 50%);
+        radial-gradient(ellipse 120% 80% at 50% 100%, rgba(190,130,30,.85) 0%, transparent 60%),
+        radial-gradient(ellipse 80% 65% at 5%  65%,  rgba(160,100,20,.60) 0%, transparent 55%),
+        radial-gradient(ellipse 75% 60% at 95% 40%,  rgba(140,90,15,.55)  0%, transparent 55%),
+        radial-gradient(ellipse 90% 70% at 60% 5%,   rgba(180,120,25,.65) 0%, transparent 58%),
+        radial-gradient(ellipse 70% 55% at 20% 10%,  rgba(150,100,20,.50) 0%, transparent 55%);
       animation: heroFloat 9s ease-in-out infinite alternate;
       z-index: 0;
     }
@@ -154,7 +156,7 @@
     .hero-video.loaded { transition: opacity 1.2s ease; opacity: 1; }
     .hero-overlay {
       position: absolute; inset: 0;
-      background: rgba(0,0,0,.5);
+      background: rgba(0,0,0,.35);
       z-index: 2;
     }
     .hero-logo {
