@@ -29,17 +29,14 @@
       --safe-top:   env(safe-area-inset-top, 0px);
     }
 
-    html { scroll-behavior: smooth; overflow-x: clip; background: var(--bg); transition: background .4s ease; }
-    html.in-hero { background: #0d0a07; }
+    html { scroll-behavior: smooth; overflow-x: clip; background: var(--bg); }
     body {
       background: var(--bg);
       color: var(--fg);
       font-family: 'Inter', sans-serif;
       font-weight: 300;
       overflow-x: hidden;
-      transition: background .4s ease;
     }
-    body.in-hero { background: #0d0a07; }
 
     /* Subtle paper texture */
     body::before {
@@ -167,8 +164,8 @@
     }
     .hero-video {
       position: absolute; inset: 0;
-      width: 100vw; height: 100%;
-      object-fit: none; z-index: 1;
+      width: 100%; height: 100%;
+      object-fit: cover; z-index: 1;
       opacity: 0;
     }
     .hero-video.loaded { transition: opacity 1.2s ease; opacity: 1; }
@@ -177,8 +174,20 @@
       background: rgba(0,0,0,.35);
       z-index: 2;
     }
+    .hero-top-fade {
+      display: none;
+    }
+    @media (max-width: 768px) {
+      .hero-top-fade {
+        display: block;
+        position: absolute; top: 0; left: 0; right: 0;
+        height: calc(env(safe-area-inset-top, 0px) + 80px);
+        background: linear-gradient(to bottom, #0d0a07 0%, transparent 100%);
+        z-index: 3; pointer-events: none;
+      }
+    }
     .hero-logo {
-      position: relative; z-index: 3;
+      position: relative; z-index: 4;
       width: clamp(220px, 36vw, 400px);
       height: auto;
       animation: fadeUp .9s ease .1s both;
@@ -207,7 +216,7 @@
       margin-top: 28px; animation: fadeUp .8s ease .2s both;
     }
     .hero-site-label {
-      position: relative; z-index: 3;
+      position: relative; z-index: 4;
       margin-top: 24px;
       font-family: 'Inter', sans-serif;
       font-size: .5rem; letter-spacing: .4em; text-transform: uppercase;
@@ -605,6 +614,7 @@
       <source src="assets/mp4/kvVideo.mp4" type="video/mp4">
     </video>
     <div class="hero-overlay"></div>
+    <div class="hero-top-fade"></div>
     <img src="assets/jpg/logo.jpg" alt="Dadaïsme" class="hero-logo">
     <p class="hero-site-label">Dadaïsme — Official Site</p>
   </section>
@@ -753,8 +763,6 @@
       const updateScroll = () => {
         const pastHero = window.scrollY >= window.innerHeight - 80;
         nav.classList.toggle('scrolled', pastHero);
-        document.body.classList.toggle('in-hero', !pastHero);
-        document.documentElement.classList.toggle('in-hero', !pastHero);
       };
       window.addEventListener('scroll', updateScroll, { passive: true });
       updateScroll();
