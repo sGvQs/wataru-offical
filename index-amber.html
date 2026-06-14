@@ -173,18 +173,6 @@
       background: rgba(0,0,0,.35);
       z-index: 2;
     }
-    .hero-top-fade {
-      display: none;
-    }
-    @media (max-width: 768px) {
-      .hero-top-fade {
-        display: block;
-        position: absolute; top: 0; left: 0; right: 0;
-        height: calc(env(safe-area-inset-top, 0px) + 160px);
-        background: linear-gradient(to bottom, var(--bg) 0%, var(--bg) 25%, rgba(26,18,8,0) 100%);
-        z-index: 3; pointer-events: none;
-      }
-    }
     .hero-logo {
       position: relative; z-index: 4;
       width: clamp(220px, 36vw, 400px);
@@ -420,8 +408,69 @@
     }
 
     /* ──  EVENT ── */
-    .event-header { max-width: 1200px; margin: 0 auto 48px; }
-    .event-list { max-width: 1200px; margin: 0 auto; }
+    .event-header { max-width: 960px; margin: 0 auto 48px; }
+    .event-block { max-width: 960px; margin: 0 auto; }
+    .event-block-label {
+      font-size: .58rem; letter-spacing: .38em; text-transform: uppercase;
+      color: var(--gray); margin-bottom: 24px;
+    }
+    .event-divider { max-width: 960px; margin: 56px auto; border-top: 1px solid var(--border); }
+
+    /* ── UPCOMING FEATURED ── */
+    .poster-featured {
+      display: grid; grid-template-columns: auto 1fr;
+      gap: 48px; align-items: start;
+    }
+    .poster-featured .poster-img-wrap {
+      position: relative;
+      border: 1px solid var(--border);
+    }
+    .poster-featured .poster-img-wrap img {
+      display: block; width: auto; height: auto;
+      max-height: 520px;
+      opacity: 1;
+      transition: transform .4s ease;
+    }
+    .poster-featured:hover .poster-img-wrap img { transform: scale(1.02); }
+    .poster-featured-info { display: flex; flex-direction: column; justify-content: center; gap: 20px; padding-top: 8px; }
+    .poster-featured-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 300; letter-spacing: .04em; color: var(--fg); line-height: 1.1;
+    }
+    .poster-featured-details { display: flex; flex-direction: column; gap: 8px; }
+    .poster-featured-details dt {
+      font-size: .55rem; letter-spacing: .3em; text-transform: uppercase; color: var(--gray); margin-bottom: 2px;
+    }
+    .poster-featured-details dd { font-size: .85rem; color: var(--fg2); margin: 0 0 10px; }
+
+    /* ── ARCHIVE GRID ── */
+    .poster-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .poster-item { position: relative; }
+    .poster-img-wrap {
+      position: relative; overflow: hidden;
+      border: 1px solid var(--border);
+      aspect-ratio: 3 / 4;
+    }
+    .poster-img-wrap img {
+      width: 100%; height: 100%; display: block;
+      object-fit: cover; object-position: center top;
+    }
+    .poster-past-badge {
+      position: absolute; top: 8px; left: 8px;
+      font-size: .46rem; letter-spacing: .2em; text-transform: uppercase;
+      background: rgba(26,18,8,.8); color: var(--gray);
+      padding: 2px 7px;
+    }
+    .poster-meta { margin-top: 10px; display: flex; flex-direction: column; gap: 3px; }
+    .poster-date { font-size: .65rem; letter-spacing: .08em; color: var(--red); }
+    .poster-venue { font-size: .6rem; color: var(--gray); letter-spacing: .04em; }
+
+    /* ── OLD EVENT (unused, kept for spacing) ── */
     .event-item {
       display: grid; grid-template-columns: 120px 1fr auto;
       gap: 32px; align-items: center; padding: 28px 0;
@@ -574,6 +623,9 @@
       #music .carousel-nav { padding: 0 24px; }
       .about { grid-template-columns: 1fr; gap: 48px; }
 
+      .poster-featured { grid-template-columns: 1fr; gap: 28px; }
+      .poster-featured .poster-img-wrap img { max-height: none; width: 100%; }
+      .poster-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
       .event-item { grid-template-columns: 80px 1fr; }
       .event-ticket { display: none; }
       .video-grid { grid-template-columns: 1fr; }
@@ -614,7 +666,6 @@
       <source src="assets/mp4/kvVideo.mp4" type="video/mp4">
     </video>
     <div class="hero-overlay"></div>
-    <div class="hero-top-fade"></div>
     <img src="assets/jpg/logo.jpg" alt="Dadaïsme" class="hero-logo">
     <p class="hero-site-label">Dadaïsme — Official Site</p>
   </section>
@@ -642,26 +693,66 @@
 
   <section id="event">
     <div class="event-header reveal"><p class="section-label">Schedule</p><h2 class="section-title">Event</h2></div>
-    <div class="event-list">
-      <div class="event-item reveal">
-        <div class="event-date"><div class="day">21</div><div class="month-year">Jun 2026</div></div>
-        <div class="event-info"><div class="event-info-title">Dadaïsme ONE-MAN  EVENT 2026 <span class="event-tag">Headliner</span></div><div class="event-info-venue">Shibuya O-EAST — Tokyo</div></div>
-        <a href="#" class="event-ticket">Tickets</a>
+
+    <div class="event-block">
+      <p class="event-block-label">Upcoming</p>
+      <div class="poster-featured reveal">
+        <div class="poster-img-wrap">
+          <img src="assets/event/20251214.jpg" alt="DADA Vol.11 — 2025.12.14">
+        </div>
+        <div class="poster-featured-info">
+          <div class="poster-featured-title">DADA Vol.11</div>
+          <dl class="poster-featured-details">
+            <dt>Date</dt>
+            <dd>2025.12.14 (SUN)　OPEN 16:00 — LAST</dd>
+            <dt>Venue</dt>
+            <dd>ラーメンショップ 一玲<br>神奈川県藤沢市湘南台2丁目3-14</dd>
+            <dt>Entrance</dt>
+            <dd>¥2,000 — 1D　/ ID ¥500</dd>
+            <dt>Live</dt>
+            <dd>Wataru Takahashi / スリル THE スリル</dd>
+            <dt>DJ</dt>
+            <dd>ILLEFFECTS / CROW / TAICHIP / TK</dd>
+          </dl>
+        </div>
       </div>
-      <div class="event-item reveal">
-        <div class="event-date"><div class="day">05</div><div class="month-year">Jul 2026</div></div>
-        <div class="event-info"><div class="event-info-title">NEON UNDERGROUND Vol.12</div><div class="event-info-venue">Contact — Tokyo</div></div>
-        <a href="#" class="event-ticket">Tickets</a>
-      </div>
-      <div class="event-item reveal">
-        <div class="event-date"><div class="day">19</div><div class="month-year">Jul 2026</div></div>
-        <div class="event-info"><div class="event-info-title">OSAKA HIP-HOP SUMMIT <span class="event-tag">Festival</span></div><div class="event-info-venue">Zepp Osaka Bayside — Osaka</div></div>
-        <a href="#" class="event-ticket">Tickets</a>
-      </div>
-      <div class="event-item reveal">
-        <div class="event-date"><div class="day">02</div><div class="month-year">Aug 2026</div></div>
-        <div class="event-info"><div class="event-info-title">CIRCUIT  EVENT — Seoul</div><div class="event-info-venue">KT&amp;G Sangsangmadang — Seoul, Korea</div></div>
-        <a href="#" class="event-ticket">Tickets</a>
+    </div>
+
+    <div class="event-divider"></div>
+
+    <div class="event-block">
+      <p class="event-block-label">Archive</p>
+      <div class="poster-grid">
+        <div class="poster-item reveal">
+          <div class="poster-img-wrap">
+            <img src="assets/event/20250706.jpg" alt="DADA Vol.10.5 — 2025.07.06">
+            <span class="poster-past-badge">Past</span>
+          </div>
+          <div class="poster-meta">
+            <span class="poster-date">2025.07.06</span>
+            <span class="poster-venue">Virgin Flamingo — 大和</span>
+          </div>
+        </div>
+        <div class="poster-item reveal">
+          <div class="poster-img-wrap">
+            <img src="assets/event/20250518.jpg" alt="DADA Vol.10 — 2025.05.18">
+            <span class="poster-past-badge">Past</span>
+          </div>
+          <div class="poster-meta">
+            <span class="poster-date">2025.05.18</span>
+            <span class="poster-venue">Virgin Flamingo — 大和</span>
+          </div>
+        </div>
+        <div class="poster-item reveal">
+          <div class="poster-img-wrap">
+            <img src="assets/event/20250209.jpg" alt="DADA Vol.9.5 — 2025.02.09">
+            <span class="poster-past-badge">Past</span>
+          </div>
+          <div class="poster-meta">
+            <span class="poster-date">2025.02.09</span>
+            <span class="poster-venue">ラーメンショップ 一玲 — 藤沢</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
