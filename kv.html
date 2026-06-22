@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Dadaïsme — KV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:     #1A1208;
+      --fg:     #F0E4C8;
+      --gray:   #A07848;
+      --amber:  #D4940C;
+      --accent: #B5201A;
+      --border: #503C20;
+    }
+
+    html, body {
+      width: 100%; height: 100%;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    /* grain */
+    body::before {
+      content: '';
+      position: fixed; inset: -50%;
+      width: 200%; height: 200%;
+      z-index: 10; pointer-events: none;
+      opacity: .025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+      animation: grain .4s steps(1) infinite;
+    }
+    @keyframes grain {
+      0%   { transform: translate(0,0); }
+      25%  { transform: translate(-2%,-3%); }
+      50%  { transform: translate(2%,3%); }
+      75%  { transform: translate(-3%,1%); }
+      100% { transform: translate(1%,-1%); }
+    }
+
+    /* hero */
+    .hero {
+      position: relative;
+      width: 100%; height: 100dvh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      background: #0d0a07;
+    }
+
+    /* animated gradient bg */
+    .hero-bg-clip {
+      position: absolute; inset: 0; overflow: hidden; z-index: 0;
+    }
+    .hero-bg {
+      position: absolute; inset: -40%;
+      width: 180%; height: 180%;
+      background:
+        radial-gradient(ellipse 120% 80% at 50% 100%, rgba(190,130,30,.85) 0%, transparent 60%),
+        radial-gradient(ellipse 80% 65% at 5%  65%,  rgba(160,100,20,.60) 0%, transparent 55%),
+        radial-gradient(ellipse 75% 60% at 95% 40%,  rgba(140,90,15,.55)  0%, transparent 55%),
+        radial-gradient(ellipse 90% 70% at 60% 5%,   rgba(180,120,25,.65) 0%, transparent 58%),
+        radial-gradient(ellipse 70% 55% at 20% 10%,  rgba(150,100,20,.50) 0%, transparent 55%);
+      animation: heroFloat 9s ease-in-out infinite alternate;
+      z-index: 0;
+    }
+    @keyframes heroFloat {
+      0%   { transform: translate(0,0) scale(1); }
+      50%  { transform: translate(6%,6%) scale(1.18) rotate(3deg); }
+      100% { transform: translate(-5%,14%) scale(1.1) rotate(-3deg); }
+    }
+
+    /* video */
+    .hero-video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; z-index: 1;
+      opacity: 0;
+    }
+    .hero-video.loaded { transition: opacity 1.2s ease; opacity: 1; }
+
+    /* overlay */
+    .hero-overlay {
+      position: absolute; inset: 0;
+      z-index: 2;
+      background: rgba(26,18,8,.45);
+    }
+
+    /* content */
+    .hero-content {
+      position: relative; z-index: 4;
+      display: flex; flex-direction: column; align-items: center;
+    }
+
+    .hero-logo {
+      width: clamp(220px, 36vw, 400px);
+      height: auto;
+      animation: fadeIn .9s ease .1s both;
+    }
+
+    .hero-site-label {
+      margin-top: 20px;
+      font-family: 'Inter', sans-serif;
+      font-size: .5rem; letter-spacing: .4em; text-transform: uppercase;
+      font-weight: 700;
+      color: rgba(255,255,255,.5);
+      animation: fadeIn .8s ease .3s both;
+    }
+
+    .hero-store-link {
+      display: inline-block; margin-top: 16px;
+      font-family: 'Inter', sans-serif;
+      font-size: .42rem; letter-spacing: .25em; text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 700;
+      opacity: .7;
+      transition: opacity .25s;
+      animation: fadeIn .8s ease .45s both;
+    }
+    .hero-store-link:hover { opacity: 1; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="hero-bg-clip"><div class="hero-bg"></div></div>
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="assets/mp4/kvVideo.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <img src="assets/png/logo.png" alt="Dadaïsme" class="hero-logo">
+      <p class="hero-site-label">Dadaïsme — Official Site</p>
+      <a href="https://susum.base.shop/" target="_blank" rel="noopener noreferrer" class="hero-store-link">Store →</a>
+    </div>
+  </div>
+
+  <script>
+    const vid = document.querySelector('.hero-video');
+    if (vid) {
+      vid.addEventListener('loadeddata', () => vid.classList.add('loaded'));
+    }
+  </script>
+</body>
+</html>

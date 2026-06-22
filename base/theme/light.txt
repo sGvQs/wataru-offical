@@ -2127,13 +2127,16 @@
 
     .base-shop-header {
         position: relative;
-        background: var(--bg) !important;
         height: 100svh; min-height: 640px;
-        display: flex; flex-direction: column;
-        align-items: center; justify-content: center;
-        text-align: center; overflow: hidden;
+        overflow: hidden;
         border-bottom: 1px solid var(--border);
-        padding: 0 20px;
+        padding: 0;
+    }
+    .base-shop-header iframe {
+        position: absolute; inset: 0;
+        width: 100%; height: 100%;
+        border: none;
+        display: block;
     }
 
     @keyframes heroFloat {
@@ -3046,14 +3049,7 @@
     {block:ShopPublic}
         {block:NoIndexPageCategory}{block:NoIndexPageSearch}
         <div class="base-shop-header">
-            <div class="base-shop-hero-bg"></div>
-            <h1 class="base-shop-title"><em>Dadaïsme</em></h1>
-            <div class="base-shop-actions">
-                <a href="#categoryTabs" class="base-shop-btn base-shop-btn-outline nav-filter-link" data-tab-target="cd">CD</a>
-                <a href="#categoryTabs" class="base-shop-btn base-shop-btn-outline nav-filter-link" data-tab-target="apparel">Apparel</a>
-                <a href="https://sgvqs.github.io/wataru-offical/index.html#event" class="base-shop-btn base-shop-btn-outline">Event</a>
-                <a href="https://sgvqs.github.io/wataru-offical/index.html" class="base-shop-btn base-shop-btn-primary">Home</a>
-            </div>
+            <iframe src="https://sgvqs.github.io/wataru-offical/kv.html" title="Dadaïsme KV" scrolling="no" allowtransparency="true"></iframe>
         </div>
         {/block:NoIndexPageSearch}{/block:NoIndexPageCategory}
         {block:AppsBlogArticleIsPinned}{block:NoIndexPageCategory}{block:NoIndexPageSearch}
